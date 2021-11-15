@@ -1,0 +1,16 @@
+1. git status (brittanybranch)
+    git add
+    git commit -m
+    git push
+
+2. Go to Github, pull request
+    review ur own changes
+
+3. Someone else has to approve changes
+    also merge on git hub
+
+4. git checkout main
+    git pull (pulls new approved stuff to main)
+
+5. git checkout brittanybranch
+    git merge main (pulls updated main to ur own branch)
