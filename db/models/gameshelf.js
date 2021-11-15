@@ -1,11 +1,23 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const GameShelf = sequelize.define('GameShelf', {
-    shelfName: DataTypes.STRING,
-    userId: DataTypes.INTEGER
-  }, {});
-  GameShelf.associate = function(models) {
-    // associations can be defined here
+  const GameShelf = sequelize.define(
+    "GameShelf",
+    {
+      shelfName: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
+    },
+    {}
+  );
+  GameShelf.associate = function (models) {
+    GameShelf.belongsTo(models.User, { foreignKey: "userId" });
+
+    columnMapping = {
+      through: "shelvesToGame",
+      otherKey: "boardGameId",
+      foreignKey: "gameShelfId",
+    };
+
+    GameShelf.belongsToMany(models.BoardGame, columnMapping);
   };
   return GameShelf;
 };
