@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Category.associate = function (models) {
-    columnMapping = {
+    const columnMapping = {
       through: "categoriesToGame",
       otherKey: "boardGameId",
       foreignKey: "categoryId",

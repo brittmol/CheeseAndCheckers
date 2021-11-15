@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+    h1 Log in
+
+    form(action='/user/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+            input(type='text' name='userName' value=user.username, placeholder='User Name')
+
+        div
+            input(type='password' name='password' value=user.password, placeholder='Password')
+
+        div
+            button(type='submit') Log in
+    div
+        p: a(href='/users/signup') Need an account?
