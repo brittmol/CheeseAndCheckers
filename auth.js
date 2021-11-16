@@ -1,3 +1,4 @@
+const { NetworkAuthenticationRequire } = require('http-errors');
 const { User } = require('./db/models')
 
 // Persisting user's login state
@@ -9,6 +10,13 @@ const loginUser = (req, res, user) => {
 
 const logoutUser = (req, res) => {
     delete req.session.auth;
+};
+
+const requireAuth = (req, res, next) => {
+    if (!res.locals.authenticated) {
+        return res.redirect('/users/login');
+    }
+    return next();
 };
 
 // to retrieve the user's information from the database
@@ -46,4 +54,5 @@ module.exports = {
     loginUser,
     logoutUser,
     restoreUser,
+    requireAuth,
 }
