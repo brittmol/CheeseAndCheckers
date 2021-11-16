@@ -14,3 +14,7 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 module.exports = router;
+
+
+// REVIEW BUTTON: When click button to write review for game, button will be an href to redirect, including the boardgame/:id info,
+// this enables us to find game by id and populate review page with that info. 
