@@ -132,7 +132,9 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
       if (passwordMatch) {
         loginUser(req, res, user)
-        res.redirect('/');// NTS: change to boardgame path when completed
+
+        return
+       
       }
     }
 
@@ -154,12 +156,13 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 router.post('/demo-user', asyncHandler(async(req, res) => {
   const demoUser = await User.findOne({ where: { username: "DemoUser" } })
   loginUser(req, res, demoUser)
-  res.redirect('/')
+
+
 }))
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res)
-  res.redirect('/')
+
 })
 
 
