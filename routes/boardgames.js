@@ -6,4 +6,11 @@ const { requireAuth } = require('../auth');
 
 const router = express.Router();
 
+router.get('/', asyncHandler(async (req, res) => {
+  const boardGames = await BoardGame.findAll({ include: GameShelf })
+  res.render('boardgames', {
+    boardGames,
+  })
+}));
+
 module.exports = router;

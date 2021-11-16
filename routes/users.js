@@ -134,7 +134,6 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
         loginUser(req, res, user)
 
         return
-       
       }
     }
 
