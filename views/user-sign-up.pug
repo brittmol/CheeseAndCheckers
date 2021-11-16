@@ -7,7 +7,7 @@ block content
     form(action='/user/signup' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
-            input(type='text' name='userName' value=user.username, placeholder='User Name')
+            input(type='text' name='username' value=user.username, placeholder='Username')
         div
             input(type='email' name='email' value=user.email, placeholder='Email')
         div
