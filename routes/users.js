@@ -3,7 +3,7 @@ const { User } = require('../db/models')
 const { check, validationResult } = require('express-validator')
 const bcrypt= require('bcryptjs')
 const { csrfProtection,asyncHandler}= require('./utils');
-const db = require('../db/models');
+const { loginUser, logoutUser } = require('../auth')
 
 const router = express.Router();
 /* GET users listing. */
@@ -92,7 +92,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    // login User
+    loginUser(req, res, user)
     res.redirect('/');// NTS: change to boardgame path when completed
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
@@ -129,13 +129,17 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
 
       if (passwordMatch) {
-        //login user
+        loginUser(req, res, user)
         res.redirect('/');// NTS: change to boardgame path when completed
       }
     }
   }
-
 }))
+
+router.post('/users/logout', (req, res) => {
+  logoutUser(req, res)
+  res.redirect('/')
+})
 
 
 module.exports = router;

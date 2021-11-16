@@ -1,0 +1,5 @@
+- explanation for loginUser function in auth.js
+- req vs res body stuff
+    like why req.session.auth --> user
+    like why res.locals --> authenticate and a user
+    how to easily console.log both req and res

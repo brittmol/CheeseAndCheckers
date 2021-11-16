@@ -7,6 +7,7 @@ const { sequelize } = require('./db/models');
 const session = require('express-session');
 const {sessionSecret} = require('./config')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { restoreUser } = require('./auth')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -25,8 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
-app.use(
-  session({
+app.use(session({
     secret: sessionSecret,
     store,
     saveUninitialized: false,
@@ -37,6 +37,7 @@ app.use(
 // create Session table if it doesn't already exist
 store.sync();
 
+app.use(restoreUser)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
