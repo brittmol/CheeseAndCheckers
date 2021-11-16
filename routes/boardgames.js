@@ -10,7 +10,17 @@ router.get('/', asyncHandler(async (req, res) => {
   const boardGames = await BoardGame.findAll()
   res.render('boardgames', {
     boardGames,
-  })
+  });
+}));
+
+router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
+  const boardGame = await BoardGame.findByPk(req.params.id)
+  const reviews = await Review.findAll({ where: { boardGameId: req.params.id } })
+  
+  res.render('ind-boardgame', {
+    boardGame,
+    reviews,
+  });
 }));
 
 module.exports = router;

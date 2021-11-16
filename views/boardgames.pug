@@ -6,8 +6,8 @@ block content
   ul
     each game in boardGames
       div
-        li= game.title 
+        li: a(href=`/boardgames/${game.id}`)= game.title 
         li= game.company
         li= game.summary 
-        br
         
+        br
