@@ -1,8 +1,13 @@
 extend layout 
 
 block content
-  h1 Board Games 
-  
+  h1 Board Games
+
   ul
-    each game in boardgames
-      li game
+    each game in boardGames
+      div
+        li= game.title 
+        li= game.company
+        li= game.summary 
+        br
+        
