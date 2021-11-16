@@ -7,7 +7,7 @@ const { requireAuth } = require('../auth');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-  const boardGames = await BoardGame.findAll({ include: GameShelf })
+  const boardGames = await BoardGame.findAll()
   res.render('boardgames', {
     boardGames,
   })
