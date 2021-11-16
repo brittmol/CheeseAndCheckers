@@ -1,0 +1,9 @@
+extend layout 
+
+block content   
+  h1= boardGame.title 
+  
+  h3= boardGame.company
+  p= boardGame.summary
+  for review in reviews 
+    li= review.comment
