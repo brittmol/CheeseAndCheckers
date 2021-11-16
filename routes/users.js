@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/signup', csrfProtection,  (req,res)=>{
   const user = User.build()
-  res.render('user-sign-up', {
+  res.render('user-signup', {
     title: 'Sign up',
     user,
     csrfToken: req.csrfToken(),
@@ -18,7 +18,7 @@ router.get('/signup', csrfProtection,  (req,res)=>{
 })
 
 router.get('/login', csrfProtection,  (req,res)=>{
-  res.render('user-log-in', {
+  res.render('user-login', {
     title: 'Log in',
     user: {},
     csrfToken: req.csrfToken(),
@@ -87,7 +87,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
   });
 
   const validatorErrors = validationResult(req);
-  
+
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
@@ -96,7 +96,7 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
     res.redirect('/');// NTS: change to boardgame path when completed
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('user-sign-up', {
+    res.render('user-signup', {
       title: 'Sign Up',
       user,
       errors,
@@ -124,10 +124,10 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
   if (validatorErrors.isEmpty()) {
     const user = await User.findOne({ where: { username } })
-    
+
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
-      
+
       if (passwordMatch) {
         //login user
         res.redirect('/');// NTS: change to boardgame path when completed
