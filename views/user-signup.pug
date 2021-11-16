@@ -4,7 +4,7 @@ block content
 
     h1 Sign up
 
-    form(action='/user/signup' method='post')
+    form(action='/users/signup' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
             input(type='text' name='username' value=user.username, placeholder='Username')
