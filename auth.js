@@ -5,13 +5,13 @@ const { User } = require('./db/models')
 // This creates an auth key and adds who is logged in
 const loginUser = (req, res, user) => {
     req.session.auth = { userId: user.id }
-     req.session.save(()=> res.redirect('/'))
+    req.session.save(()=> res.redirect('/boardgames'))
      // NTS: change to boardgame path when completed
 }
 
 const logoutUser = (req, res) => {
     delete req.session.auth;
-    req.session.save(()=> res.redirect('/'))
+    req.session.save(()=> res.redirect('/boardgames'))
     // NTS: change to boardgame path when completed
 };
 
