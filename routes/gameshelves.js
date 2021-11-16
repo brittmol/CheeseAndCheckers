@@ -6,5 +6,17 @@ const { requireAuth } = require('../auth');
 
 const router = express.Router()
 
+router.get('/', requireAuth, asyncHandler(async (req, res) => {
+  const gameShelves = await GameShelf.findAll({
+    where: {
+      userId: req.session.auth.userId,
+    }
+  })
+  console.log(gameShelves)
+}));
+
+// router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
+  
+// }));
 
 module.exports = router;
