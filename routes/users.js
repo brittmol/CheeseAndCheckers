@@ -120,6 +120,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     password,
   } = req.body
 
+  // ask about this
   let errors = [];
   const validatorErrors = validationResult(req);
 
