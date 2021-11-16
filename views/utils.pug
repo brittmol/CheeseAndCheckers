@@ -1,0 +1,8 @@
+
+mixin validationErrorSummary(errors)
+  if errors
+    div
+      p The following error(s) occurred:
+      ul
+        each error in errors
+          li= error

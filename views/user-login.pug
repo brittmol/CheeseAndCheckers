@@ -1,16 +1,16 @@
 extends layout
-
+include utils
 block content
 
     h1 Log in
-
+    +validationErrorSummary(errors)
     form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
-            input(type='text' name='username' value=user.username, placeholder='Username')
+            input(type='text' name='username' value=username, placeholder='Username')
 
         div
-            input(type='password' name='password' value=user.password, placeholder='Password')
+            input(type='password' name='password' value=null, placeholder='Password')
 
         div
             button(type='submit') Log in

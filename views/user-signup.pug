@@ -1,9 +1,9 @@
 extends layout
-
+include utils
 block content
 
     h1 Sign up
-
+    +validationErrorSummary(errors)
     form(action='/users/signup' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
