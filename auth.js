@@ -1,4 +1,3 @@
-const { NetworkAuthenticationRequire } = require('http-errors');
 const { User } = require('./db/models')
 
 // Persisting user's login state
@@ -6,6 +5,7 @@ const { User } = require('./db/models')
 // This creates an auth key and adds who is logged in
 const loginUser = (req, res, user) => {
     req.session.auth = { userId: user.id }
+    // req.session.save(()=> res.redirect('/'))
 }
 
 const logoutUser = (req, res) => {
