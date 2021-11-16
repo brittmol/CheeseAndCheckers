@@ -120,6 +120,8 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     password,
   } = req.body
 
+  // ask about this
+  let errors = [];
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
@@ -133,7 +135,17 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
         res.redirect('/');// NTS: change to boardgame path when completed
       }
     }
+    errors.push('Login failed for the provided email address and password');
+  } else {
+    errors = validatorErrors.array().map((error) => error.msg);
   }
+  res.render('user-login', {
+    title: 'Login',
+    username,
+    errors,
+    csrfToken: req.csrfToken(),
+  });
+
 }))
 
 router.post('/users/logout', (req, res) => {
