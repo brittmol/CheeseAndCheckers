@@ -3,10 +3,10 @@ extends layout
 
 //- temporarily type manual id of boardgame in path
 block content 
-    h1:a(href=linkToGame) title
-    img(scr="https://www.google.com/imgres?imgurl=https%3A%2F%2F4.bp.blogspot.com%2F-Tgw_c5sb_BM%2FWCK442cv7jI%2FAAAAAAAAWGY%2FYOQb7TEiMwkH_7NDJ27NoN-HJ-FtU-QrgCLcB%2Fs1600%2Fchess-screenshot.png&imgrefurl=https%3A%2F%2Fwww.controlaltachieve.com%2F2016%2F11%2Fgoogle-drawings-chess-checkers.html&tbnid=Rn62I4iejMn1CM&vet=12ahUKEwiY2b_J9Z30AhVSVKwKHfcdAi0QMygBegUIARCWAg..i&docid=MKwU29u05D4a_M&w=1166&h=882&q=google%20images%20chess&ved=2ahUKEwiY2b_J9Z30AhVSVKwKHfcdAi0QMygBegUIARCWAg")
+    a(href=linkToGame)= boardGame.title
+    //- NTS: img(scr="")= boardGame.img
     //- NTS: insert category if doing categories
-    form(action="/reviews/:id" method="post") 
+    form(action="/reviews" method="post") 
         input(type="hidden" name="_csrf" value=csrfToken)
         label(for="reviewContent") What did you think?
         textarea(placeholder="Enter your review" name="reviewContent")

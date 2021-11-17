@@ -5,5 +5,6 @@ block content
   
   h3= boardGame.company
   p= boardGame.summary
+  a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
   for review in reviews 
     li= review.comment
