@@ -57,6 +57,22 @@ router.get(
   })
 );
 
+//How to display user's reviews at the top: 
+// iterate over arr (all reviews), if userId matches logged in user id
+    // put it in user's reviews, if so
+
+// allReviews: iterate over, do conditional check: if current logged in user's id matches the review's userId
+
+//Push into these two arrays: 
+// usersReviews
+// notUsersReviews
+// reviews = [...usersReviews, ...nothTheirReviews]
+// then iterate over this array
+
+// How to create trash can/"X" to delete dynamically using AJAX?
+// in pug template: conditionally if reviewUserID = loggedInUserId, add HTML to click delete/edit
+// on backedn, check if the user has permission to actually delete is (does their userId match the review's user id)
+
 router.get(
   "/:id/reviews/new",
   requireAuth,
@@ -113,12 +129,12 @@ router.post(
 );
 
 router.get(
-  "/:id/reviews/:reviewId",
+  "/:id/reviews/:reviewId/edit",
   requireAuth,
   csrfProtection,
   asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const reviewId = req.params.reviewId; 
+    const reviewId = req.params.reviewId;
 
     const boardGame = await BoardGame.findByPk(id);
     const review = await Review.findByPk(reviewId);
@@ -132,29 +148,33 @@ router.get(
   })
 );
 
-router.put(
-  "/:id/reviews/:id",
+const reviewNotFoundError = (reviewId) => {
+  const error = new Error(`Could not find a review with id: ${reviewId}`);
+  error.title = "Review not found";
+  error.status = 404;
+  return error;
+};
+
+router.post(
+  "/:id/reviews/:reviewId/edit",
   csrfProtection,
   requireAuth,
   reviewValidator,
   asyncHandler(async (req, res) => {
-    // grab id of the review
-    const reviewId = req.params.id;
-    console.log(reviewId);
-    // const review = await Review.findByPk(reviewId);
-    // const boardGame = await BoardGame.findByPk(review.boardGameId);
-    // grab the boardGameId (FK), use that to look up board game
-    // console.log(req.body, 'req.body')
-    // console.log(review, "review-- got here");
-    // console.log(req.params.id, 'req.params.id')
+    const id = req.params.id;
+    const reviewId = req.params.reviewId;
 
-    // get the previous value of the comment populate the textarea
-    // button that updates and saves
-    // redirect to board game (indiv page)
-    res.render("review-edit", {
-      csrfToken: req.csrfToken(),
-      review,
-    });
+    const boardGame = await BoardGame.findByPk(id);
+    const review = await Review.findByPk(reviewId);
+    console.log(review);
+
+    if (review) {
+      const { comment } = req.body;
+      const revisedComment = await review.update({ comment });
+      res.redirect(`/boardgames/${boardGame.id}`);
+    } else {
+      next(reviewNotFoundError(reviewId));
+    }
   })
 );
 
@@ -162,3 +182,6 @@ module.exports = router;
 
 // REVIEW BUTTON: When click button to write review for game, button will be an href to redirect, including the boardgame/:id info,
 // this enables us to find game by id and populate review page with that info.
+
+
+// when grabbing reviews in arr, 
