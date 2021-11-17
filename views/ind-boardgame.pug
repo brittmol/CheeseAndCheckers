@@ -13,7 +13,8 @@ block content
     li= boardGame.summary
     if userId
       li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
-    else 
-      li: a(href='/') Log in to leave a review. 
+    else
+      li: a(href='/') Log in to leave a review.
     for review in reviews
       li= review.comment
+    
