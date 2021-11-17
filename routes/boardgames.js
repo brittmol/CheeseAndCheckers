@@ -12,6 +12,7 @@ const { requireAuth } = require("../auth");
 
 const router = express.Router();
 
+
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -62,7 +63,9 @@ router.get(
   csrfProtection,
   asyncHandler(async (req, res) => {
     const id = req.params.id;
+
     const boardGame = await BoardGame.findByPk(id);
+    console.log(boardGame.title, "this is the line we")
     res.render("review-new", {
       csrfToken: req.csrfToken(),
       boardGame,
@@ -73,33 +76,35 @@ router.get(
 );
 
 const reviewValidator = [
-  check("comment")
+  check('comment')
     .exists({ checkFalsy: true })
     .withMessage("Provide a comment before posting"),
 ];
 
 router.post(
-  "/:id/reviews/new", requireAuth,
-  reviewValidator,
-  csrfProtection,
+  "/:id/reviews/new",csrfProtection,requireAuth,
+   reviewValidator,
+
   asyncHandler(async (req, res) => {
     const { comment } = req.body;
-    const boardGameId = req.params.id;
-    const userId = req.session.auth.userId;
-    console.log(boardGameId);
-    console.log(userId);
-    const review = await Review.build({ comment, boardGameId, userId});
+    let boardGameId = req.params.id;
 
+    const boardGame = await BoardGame.findByPk(boardGameId);
+   
+    const userId = req.session.auth.userId;
+    const review = await Review.build({ comment, boardGameId, userId});
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
       await review.save();
-      res.redirect(`/boardgames/${boardGameId}`);
+      res.redirect(`/boardgames/${boardGame.id}`);
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render('review-new', {
         csrfToken: req.csrfToken(),
-        comment
+        comment,
+        errors,
+        boardGame
       })
     }
   })
