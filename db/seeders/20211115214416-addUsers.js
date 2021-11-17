@@ -6,6 +6,7 @@ module.exports = {
       "Users",
       [
         {
+          id: 1,
           username: "DemoUser",
           email: "demo@user.com",
           hashedPassword: "demoUserHashedPassword",
