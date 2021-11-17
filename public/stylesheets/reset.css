@@ -26,6 +26,12 @@ h1 {
   font-size: 2rem;
 }
 
+.gameContainer {
+  width: 400px;
+  border: black solid 5px;
+  padding: 10px;
+}
+
 .boardGameImage {
   height: 200px;
   width: auto;

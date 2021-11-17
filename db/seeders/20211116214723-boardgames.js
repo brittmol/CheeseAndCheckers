@@ -17,7 +17,7 @@ module.exports = {
           title: "Chess",
           summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
           company: "Chess Inc.",
-          image: "https://media.wired.com/photos/5f592bfb643fbe1f6e6807ec/16:9/w_2400,h_1350,c_limit/business_chess_1200074974.jpg",
+          image: "https://cdn.shopify.com/s/files/1/0121/2740/4090/products/3224-familyclassics-chess-box-1112-v-700x442_1200x1200.png?v=1611505351",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -25,7 +25,7 @@ module.exports = {
           title: "Monoply",
           summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
           company: "Monopoly Dude Inc.",
-          image: "https://images.heb.com/is/image/HEBGrocery/000176249?fit=constrain,1&wid=800&hei=800&fmt=jpg&qlt=85,0&resMode=sharp2&op_usm=1.75,0.3,2,0",
+          image: "https://media.istockphoto.com/photos/monopoly-board-game-box-picture-id458577337",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -33,7 +33,7 @@ module.exports = {
           title: "Chutes and Ladders",
           summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
           company: "Stuff people Inc.",
-          image: "https://images-na.ssl-images-amazon.com/images/I/91KHM1l9qmL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+          image: "https://www.ultraboardgames.com/img/slideshow/chutes-and-ladders.jpg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
