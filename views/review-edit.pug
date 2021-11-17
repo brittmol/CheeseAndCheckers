@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    a(href=linkToGame)= boardGame.title
+    img.boardGameImage(src=boardGame.image)
+    //- NTS: insert category if doing categories
+    form(action=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="comment") What did you think?
+        textarea(name="comment")=review.comment
+        button(type="submit") Update
+
+//- delete button?
+//- add event listener? If save button clicked, vs. if delete button?
+//- How would that affect CRUD operations? Is it possible to do on the same page without a redirect
+
