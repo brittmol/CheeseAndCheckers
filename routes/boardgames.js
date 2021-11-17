@@ -16,9 +16,19 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const boardGames = await BoardGame.findAll();
-    res.render("boardgames", {
-      boardGames,
-    });
+    if (req.session.auth) {
+      const userId = req.session.auth.userId;
+      const gameShelves = await GameShelf.findAll({ where: {userId}});
+      return res.render("boardgames", {
+        boardGames,
+        userId,
+        gameShelves
+      });
+    } else {
+      res.render("boardgames", {
+        boardGames,
+      });
+    }
   })
 );
 
@@ -29,11 +39,21 @@ router.get(
     const reviews = await Review.findAll({
       where: { boardGameId: req.params.id },
     });
-
-    res.render("ind-boardgame", {
-      boardGame,
-      reviews,
-    });
+    if (req.session.auth) {
+      const userId = req.session.auth.userId;
+      const gameShelves = await GameShelf.findAll({ where: {userId}});
+      return res.render("ind-boardgame", {
+        boardGame,
+        reviews,
+        userId,
+        gameShelves
+      });
+    } else {
+      res.render("ind-boardgame", {
+        boardGame,
+        reviews,
+      });
+    }
   })
 );
 
