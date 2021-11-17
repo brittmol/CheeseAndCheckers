@@ -13,6 +13,10 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     }
   })
   console.log(gameShelves)
+  res.render("gameshelves", {
+    gameShelves,
+    
+  })
 }));
 
 // router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {

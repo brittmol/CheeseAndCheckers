@@ -1,0 +1,10 @@
+extends layout 
+
+block content   
+  h1 My Board Games 
+  
+  h3 My Game Shelves 
+  
+  ul
+    each shelf in gameShelves 
+      li= shelf.shelfName
