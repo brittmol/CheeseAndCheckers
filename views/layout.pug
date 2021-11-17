@@ -4,10 +4,13 @@ html
       block head
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
-        script(src="/javascripts/index.js" type="module") 
+        script(src="/javascripts/index.js" type="module")
   body
     //- this will be in the nav bar
     nav
+      ul
+        li: a(href='/boardgames') Board Games
+        li: a(href='/gameshelves') My Board Games
       div
         if locals.authenticated
           span Welcome #{user.username}!
