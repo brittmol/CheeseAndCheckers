@@ -1,4 +1,4 @@
-extend layout 
+extend layout
 
 block content
   h1 Board Games
@@ -6,8 +6,11 @@ block content
   ul
     each game in boardGames
       div
-        li: a(href=`/boardgames/${game.id}`)= game.title 
+        li: a(href=`/boardgames/${game.id}`)= game.title
         li= game.company
-        li= game.summary 
-        
+        if userId
+          li: select(name='gameShelves' id='gameShelvesSelect')
+            each shelf in gameShelves
+              option(value=shelf.shelfId)= shelf.shelfName
+        li= game.summary
         br

@@ -1,10 +1,15 @@
-extend layout 
+extend layout
 
-block content   
-  h1= boardGame.title 
-  
+block content
+  h1= boardGame.title
+
   h3= boardGame.company
-  p= boardGame.summary
-  a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
-  for review in reviews 
-    li= review.comment
+  ul
+    if userId
+      li: select(name='gameShelves' id='gameShelvesSelect')
+        each shelf in gameShelves
+          option(value=shelf.shelfId)= shelf.shelfName
+    li= boardGame.summary
+    li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
+    for review in reviews
+      li= review.comment
