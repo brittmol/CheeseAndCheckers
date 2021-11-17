@@ -1,2 +1,1 @@
-- why we need to click demo user or logout twice
-    (is it race conditions?)
+- 404 error for redirecting after posting a review for a board game
