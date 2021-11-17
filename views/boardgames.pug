@@ -5,7 +5,8 @@ block content
 
   ul
     each game in boardGames
-      div
+      div.gameContainer
+        li: img(src=`${game.image}` class='boardGameImage')
         li: a(href=`/boardgames/${game.id}`)= game.title
         li= game.company
         if userId

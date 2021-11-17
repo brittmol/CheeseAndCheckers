@@ -5,6 +5,7 @@ block content
 
   h3= boardGame.company
   ul
+    li: img(src=`${boardGame.image}` class='boardGameImage')
     if userId
       li: select(name='gameShelves' id='gameShelvesSelect')
         each shelf in gameShelves
