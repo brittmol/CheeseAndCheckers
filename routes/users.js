@@ -1,5 +1,5 @@
 const express = require('express');
-const { User } = require('../db/models')
+const { User, GameShelf } = require('../db/models')
 const { check, validationResult } = require('express-validator')
 const bcrypt= require('bcryptjs')
 const { csrfProtection,asyncHandler}= require('./utils');
@@ -92,8 +92,20 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
+    await GameShelf.create(
+      {
+        shelfName: "Want to play",
+        userId: user.id,
+      }
+    )
+    await GameShelf.create(
+      {
+        shelfName: "Played",
+        userId: user.id,
+      }
+    )
+
     loginUser(req, res, user)
-    res.redirect('/');// NTS: change to boardgame path when completed
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('user-signup', {
@@ -103,6 +115,8 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
       csrfToken: req.csrfToken(),
     });
   }
+
+
 }))
 
 const loginValidators = [
