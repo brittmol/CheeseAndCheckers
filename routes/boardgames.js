@@ -36,11 +36,26 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const boardGame = await BoardGame.findByPk(req.params.id);
-    const reviews = await Review.findAll({
+    let reviews = await Review.findAll({
       where: { boardGameId: req.params.id },
     });
+
     if (req.session.auth) {
       const userId = req.session.auth.userId;
+
+      let usersReviews=[]
+      let notUsersReviews= []
+
+      reviews.forEach(review=>{
+        if(userId==review.userId){
+          usersReviews.push(review)
+        }else{
+          notUsersReviews.push(review)
+        }
+      })
+
+       reviews= [...usersReviews,...notUsersReviews]
+
       const gameShelves = await GameShelf.findAll({ where: { userId } });
       return res.render("ind-boardgame", {
         boardGame,
@@ -57,13 +72,13 @@ router.get(
   })
 );
 
-//How to display user's reviews at the top: 
+//How to display user's reviews at the top:
 // iterate over arr (all reviews), if userId matches logged in user id
     // put it in user's reviews, if so
 
 // allReviews: iterate over, do conditional check: if current logged in user's id matches the review's userId
 
-//Push into these two arrays: 
+//Push into these two arrays:
 // usersReviews
 // notUsersReviews
 // reviews = [...usersReviews, ...nothTheirReviews]
@@ -184,4 +199,4 @@ module.exports = router;
 // this enables us to find game by id and populate review page with that info.
 
 
-// when grabbing reviews in arr, 
+// when grabbing reviews in arr,
