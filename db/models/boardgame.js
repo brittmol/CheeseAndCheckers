@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       summary: DataTypes.TEXT,
       company: DataTypes.STRING,
+      image: DataTypes.TEXT,
     },
     {}
   );
