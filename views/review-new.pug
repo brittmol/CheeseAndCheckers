@@ -2,13 +2,13 @@ extends layout
 
 
 //- temporarily type manual id of boardgame in path
-block content 
+block content
     a(href=linkToGame)= boardGame.title
     //- NTS: img(scr="")= boardGame.img
     //- NTS: insert category if doing categories
-    form(action="/reviews" method="post") 
+    //- NTS: change line 10 to a functional, dynamic link
+    form(action=`/boardgames/${boardGame.id}/reviews/new` method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="reviewContent") What did you think?
-        textarea(placeholder="Enter your review" name="reviewContent")
+        label(for="comment") What did you think?
+        textarea(placeholder="Enter your review" name="comment")
         button(type="submit") Post
-        
