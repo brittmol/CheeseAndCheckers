@@ -104,6 +104,12 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
         userId: user.id,
       }
     )
+    await GameShelf.create(
+      {
+        shelfName: "Favorites",
+        userId: user.id,
+      }
+    )
 
     loginUser(req, res, user)
   } else {
@@ -161,16 +167,12 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     username,
     errors,
     csrfToken: req.csrfToken(),
-
   });
-
 }))
 
 router.post('/demo-user', asyncHandler(async(req, res) => {
   const demoUser = await User.findOne({ where: { username: "DemoUser" } })
   loginUser(req, res, demoUser)
-
-
 }))
 
 router.post('/logout', (req, res) => {

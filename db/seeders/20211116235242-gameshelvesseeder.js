@@ -6,6 +6,24 @@ module.exports = {
       'GameShelves',
       [
         {
+          shelfName: "Played",
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          shelfName: "Want to Play",
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          shelfName: "Favorites",
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
           shelfName: "family",
           userId: 1,
           createdAt: new Date(),
