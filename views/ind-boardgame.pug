@@ -14,10 +14,10 @@ block content
             label(for='gameShelf')= shelf.shelfName
 
     li= boardGame.summary
-    li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
+    if userId
+      li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
+    else
+      li: a(href='/') Log in to leave a review.
     for review in reviews
       li= review.comment
 
-      //- li: select(name='gameShelves' id='gameShelvesSelect')
-      //-   each shelf in gameShelves
-      //-     option(value=shelf.id class='gameShelfOption')= shelf.shelfName
