@@ -94,18 +94,21 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler( async(req, 
     await user.save();
     await GameShelf.create(
       {
+        id: 1,
         shelfName: "Want to play",
         userId: user.id,
       }
     )
     await GameShelf.create(
       {
+        id: 2,
         shelfName: "Played",
         userId: user.id,
       }
     )
     await GameShelf.create(
       {
+        id: 3,
         shelfName: "Favorites",
         userId: user.id,
       }

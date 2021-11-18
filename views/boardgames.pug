@@ -10,11 +10,9 @@ block content
         li: a(href=`/boardgames/${game.id}`)= game.title
         li= game.company
         if userId
-          li: select(name='gameShelves' id='gameShelvesSelect')
-            option(value='') --Choose Playing Status--
-            option(value=shelfWantToPlay.id)= shelfWantToPlay.shelfName
-            option(value=shelfPlayed.id)= shelfPlayed.shelfName
-            //- each shelf in gameShelves
-            //-   option(value=shelf.shelfId)= shelf.shelfName
+          label(for='gameShelves') Choose Playing Status
+          select(name='gameShelves' id='gameShelvesSelect')
+            each shelf in mainGameShelves
+              option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
         li= game.summary
         br
