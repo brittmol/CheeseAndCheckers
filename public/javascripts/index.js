@@ -118,4 +118,3 @@ addShelfBtn.addEventListener("click", async (event)=>{
 })
 
 // ----- when "x" is clicked, the boardgame/list is deleted (with potential alert) -------
-
