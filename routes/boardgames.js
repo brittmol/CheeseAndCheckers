@@ -36,18 +36,38 @@ router.get(
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
-    const boardGame = await BoardGame.findByPk(req.params.id);
+    const boardGameId = req.params.id
+    const boardGame = await BoardGame.findByPk(boardGameId);
     const reviews = await Review.findAll({
-      where: { boardGameId: req.params.id },
+      where: { boardGameId },
     });
     if (req.session.auth) {
       const userId = req.session.auth.userId;
       const gameShelves = await GameShelf.findAll({ where: {userId}});
+      const shelvesWithGameSet = new Set()
+
+      // this array has all of the game shelves that include the game we are currently looking at
+      const shelvesWithGameArray = await GameShelf.findAll({
+        include: {
+          model: BoardGame,
+          where: {id: boardGameId}
+        }
+      })
+      // console.log('.......games.......')
+      console.log(shelvesWithGameArray[0])
+
+      // this is iterating over an array to create a set that adds shelves that contain the game we are looking at currently
+      // we put it into a Set so the pug template to use Set.has() function
+      // could have used array.include, but that is O(n) and Set is O(1)
+      shelvesWithGameArray.forEach(shelfObj => {
+        shelvesWithGameSet.add(shelfObj.id)
+      })
       return res.render("ind-boardgame", {
         boardGame,
         reviews,
         userId,
-        gameShelves
+        gameShelves,
+        shelvesWithGameSet
       });
     } else {
       res.render("ind-boardgame", {
@@ -90,7 +110,7 @@ router.post(
     let boardGameId = req.params.id;
 
     const boardGame = await BoardGame.findByPk(boardGameId);
-   
+
     const userId = req.session.auth.userId;
     const review = await Review.build({ comment, boardGameId, userId});
     const validatorErrors = validationResult(req);

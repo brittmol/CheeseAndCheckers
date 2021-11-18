@@ -10,7 +10,7 @@ block content
       ul(id='gameShelves') Add Board Game to Game Shelves
         each shelf in gameShelves
           li
-            input(type='checkbox' name='gameShelf' id=shelf.id)
+            input(type='checkbox' name='gameShelf' id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
             label(for='gameShelf')= shelf.shelfName
 
     li= boardGame.summary

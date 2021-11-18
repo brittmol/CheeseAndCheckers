@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     BoardGame.hasMany(models.Review, { foreignKey: "boardGameId" });
 
     const columnMapping1 = {
-      through: "shelvesToGame",
+      through: "ShelvesToGame",
       otherKey: "gameShelfId",
       foreignKey: "boardGameId",
     };
     BoardGame.belongsToMany(models.GameShelf, columnMapping1);
 
     const columnMapping2 = {
-      through: "categoriesToGame",
+      through: "CategoriesToGame",
       otherKey: "categoryId",
       foreignKey: "boardGameId",
     };
