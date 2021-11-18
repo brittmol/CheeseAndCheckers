@@ -7,10 +7,10 @@ block content
   ul
     li: img(src=`${boardGame.image}` class='boardGameImage')
     if userId
-      li: select(name='gameShelves' id='gameShelvesSelect')
+      select(name='gameShelves' id='gameShelvesSelect')
         option(value='') --Choose Playing Status--
-        option(value=shelfWantToPlay.id)= shelfWantToPlay.shelfName
-        option(value=shelfPlayed.id)= shelfPlayed.shelfName
+        each shelf in mainGameShelves
+          option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
       ul(id='gameShelves') Add Board Game to Other Game Shelves
         each shelf in otherGameShelves
           li

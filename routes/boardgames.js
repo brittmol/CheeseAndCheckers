@@ -58,27 +58,16 @@ router.get(
 
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const shelfWantToPlay = await GameShelf.findOne({
-        where: {
-          userId,
-          shelfName: 'Want to Play'
-        }
-      })
-      const shelfPlayed = await GameShelf.findOne({
-        where: {
-          userId,
-          shelfName: 'Played'
-        }
-      })
       const gameShelves = await GameShelf.findAll({ where: {userId}});
+      const mainGameShelves = []
       const otherGameShelves = []
       gameShelves.forEach(shelfObj => {
         if(shelfObj.shelfName !== 'Played' && shelfObj.shelfName !== 'Want to Play') {
           otherGameShelves.push(shelfObj)
+        } else {
+          mainGameShelves.push(shelfObj)
         }
       })
-      console.log("gameShelves === ")
-      console.log(gameShelves)
 
       const shelvesWithGameSet = new Set()
       // this array has all of the game shelves that include the game we are currently looking at
@@ -116,9 +105,8 @@ router.get(
         reviews,
         userId,
         otherGameShelves,
+        mainGameShelves,
         shelvesWithGameSet,
-        shelfWantToPlay,
-        shelfPlayed,
       });
     } else {
       res.render("ind-boardgame", {
