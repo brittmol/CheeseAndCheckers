@@ -71,6 +71,15 @@ router.get(
         }
       })
       const gameShelves = await GameShelf.findAll({ where: {userId}});
+      const otherGameShelves = []
+      gameShelves.forEach(shelfObj => {
+        if(shelfObj.shelfName !== 'Played' && shelfObj.shelfName !== 'Want to Play') {
+          otherGameShelves.push(shelfObj)
+        }
+      })
+      console.log("gameShelves === ")
+      console.log(gameShelves)
+
       const shelvesWithGameSet = new Set()
       // this array has all of the game shelves that include the game we are currently looking at
       const shelvesWithGameArray = await GameShelf.findAll({
@@ -90,7 +99,7 @@ router.get(
       })
 
       // theres an error in this code
-      console.log('reviews === ', reviews)
+      // console.log('reviews === ', reviews)
       // let usersReviews=[]
       // let notUsersReviews= []
       // reviews.forEach(review=>{
@@ -106,7 +115,7 @@ router.get(
         boardGame,
         reviews,
         userId,
-        gameShelves,
+        otherGameShelves,
         shelvesWithGameSet,
         shelfWantToPlay,
         shelfPlayed,
