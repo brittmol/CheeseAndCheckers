@@ -75,11 +75,11 @@ router.post("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
   const userId = req.session.auth.userId;
   console.log(req.body);
   const shelfName = req.params.newshelf;
-  await GameShelf.create({
+  const newShelf = await GameShelf.create({
     shelfName,
     userId
   });
-  res.json({message: "success"})
+  res.json({ newShelfId: newShelf.id })
 }))
 
 
