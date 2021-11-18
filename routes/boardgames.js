@@ -63,16 +63,18 @@ router.get(
         shelvesWithGameSet.add(shelfObj.id)
       })
 
-      let usersReviews=[]
-      let notUsersReviews= []
-      reviews.forEach(review=>{
-        if(userId==review.userId){
-          usersReviews.push(review)
-        }else{
-          notUsersReviews.push(review)
-        }
-      })
-       reviews= [...usersReviews,...notUsersReviews]
+      // theres an error in this code
+      console.log('reviews === ', reviews)
+      // let usersReviews=[]
+      // let notUsersReviews= []
+      // reviews.forEach(review=>{
+      //   if(userId==review.userId){
+      //     usersReviews.push(review)
+      //   }else{
+      //     notUsersReviews.push(review)
+      //   }
+      // })
+      //  reviews= [...usersReviews,...notUsersReviews]
 
       return res.render("ind-boardgame", {
         boardGame,
