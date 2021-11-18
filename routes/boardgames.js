@@ -10,6 +10,8 @@ const {
 } = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { requireAuth } = require("../auth");
+const { Op } = require('sequelize');
+
 
 const router = express.Router();
 
@@ -264,6 +266,48 @@ router.post(
     }
   })
 );
+
+
+// ----------- Search function -----------------
+router.post('/', requireAuth, asyncHandler(async (req, res) => {
+  const { term } = req.body
+  const boardGames = await BoardGame.findAll({
+    where: {
+      title: {
+        [Op.iLike]: `%${term}%`
+      }
+    },
+    // include: [ User ]
+  })
+
+  if (req.session.auth) {
+    const userId = req.session.auth.userId;
+    const shelfWantToPlay = await GameShelf.findOne({
+      where: {
+        userId,
+        shelfName: 'Want to Play'
+      }
+    })
+    const shelfPlayed = await GameShelf.findOne({
+      where: {
+        userId,
+        shelfName: 'Played'
+      }
+    })
+    // const gameShelves = await GameShelf.findAll({ where: { userId } });
+    return res.render("boardgames", {
+      boardGames,
+      userId,
+      // gameShelves,
+      shelfWantToPlay,
+      shelfPlayed,
+    });
+  } else {
+    res.render("boardgames", {
+      boardGames,
+    });
+  }
+}))
 
 module.exports = router;
 
