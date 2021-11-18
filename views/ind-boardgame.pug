@@ -1,15 +1,22 @@
 extend layout
 
 block content
-  h1= boardGame.title
+  h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
 
   h3= boardGame.company
   ul
     li: img(src=`${boardGame.image}` class='boardGameImage')
     if userId
-      li: select(name='gameShelves' id='gameShelvesSelect')
-        each shelf in gameShelves
-          option(value=shelf.shelfId)= shelf.shelfName
+      select(name='gameShelves' id='gameShelvesSelect')
+        option(value='') --Choose Playing Status--
+        each shelf in mainGameShelves
+          option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
+      ul(id='gameShelves') Add Board Game to Other Game Shelves
+        each shelf in otherGameShelves
+          li
+            input(type='checkbox' name='gameShelf' id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
+            label(for='gameShelf')= shelf.shelfName
+
     li= boardGame.summary
     if userId
       li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
@@ -23,3 +30,4 @@ block content
           button(class='deleteComment') Delete
       else
         li= review.comment
+

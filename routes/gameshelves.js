@@ -1,6 +1,6 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
-const { User, BoardGame, GameShelf, Category, Review,  } = require('../db/models');
+const { User, BoardGame, GameShelf, Category, Review, ShelvesToGame  } = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { requireAuth } = require('../auth');
 
@@ -12,15 +12,32 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
       userId: req.session.auth.userId,
     }
   })
-  console.log(gameShelves)
+  // console.log(gameShelves)
   res.render("gameshelves", {
     gameShelves,
-    
+
   })
 }));
 
-// router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
-  
-// }));
+
+// --------------------------------------
+// instead of having another route, we should filter the page instead
+// --------------------------------------
+router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
+  const gameShelfId = req.params.id
+  const gameShelf = await GameShelf.findByPk(gameShelfId)
+  // console.log(gameShelf.shelfName)
+}));
+
+
+router.put("/:newshelf", requireAuth, asyncHandler(async(req, res) => {
+  const userId = req.session.auth.userId
+  const shelfName = req.params.newshelf
+  await GameShelf.create({
+      shelfName
+  })
+  res.json({message: 'Success'})
+}))
+
 
 module.exports = router;

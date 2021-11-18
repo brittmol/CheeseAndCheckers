@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      gamesShelfId: {
+      gameShelfId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'GameShelves'}

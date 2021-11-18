@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     GameShelf.belongsTo(models.User, { foreignKey: "userId" });
 
   const columnMapping = {
-      through: "shelvesToGame",
+      through: "ShelvesToGame",
       otherKey: "boardGameId",
       foreignKey: "gameShelfId",
     };
