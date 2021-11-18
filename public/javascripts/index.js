@@ -2,50 +2,33 @@ window.addEventListener("load", (event)=>{
     console.log("hello from javascript!")
 })
 
+
 // -------------- Deleting Reviews --------------------
 const deleteComments = document.querySelectorAll('.deleteComment')
 //boardGameId: grab boardGameId from element on pug templete-- put one on there b/c there is not one
+
 deleteComments.forEach(comment=>{
-console.log(comment.parentNode)
-const commentId= comment.parentNode.id.split('-')[1];
+// console.log(comment.parentNode)
+const commentId= comment.parentNode.id.split('-')[3];
+const boardGameId= comment.parentNode.id.split('-')[1];
 comment.addEventListener('click', async (e)=>{
-console.log(commentId)
+
 // console.log(e.target)
-const res = await fetch(`/boardgames/${boardGame.id}`)
+const res = await fetch(`/boardgames/${boardGameId}/reviews/${commentId}`, {
+    headers: {
+              'Content-Type': 'application/json'
+            },
+    method:'DELETE'
+})
+const data = await res.json()
+        if (data.message == 'Success') {
+            const parent= comment.parentNode
+            parent.remove()
+        }
 
-//res: make a fetch to path: /boardgames/:boardGameId/reviews/:reviewId method: DELETE
-
-//data: await res.json() messege s or f
-
-// if messege = s
-//  select li and remove li from page using
-//      note: e.paretNode.remove()
-//else
-// dont do anything-- hey delete failed
 })
 
 })
-
-
-
-//example
-// const commentButtons = document.querySelectorAll(‘.delete-cmt-btn’)
-// // const answerId = document.getElementById(`answer-delete-${answer.id}`)
-// for (let i = 0; i < commentButtons.length; i++) {
-//     const commentButton = commentButtons[i];
-//     commentButton.addEventListener(‘click’, async (e) => {
-//         e.preventDefault();
-//         const commentId = e.target.id.split(‘-’)[2]
-//         const res = await fetch(`/comments/${commentId}`, {
-//             method: ‘DELETE’
-//         })
-//         const data = await res.json()
-//         if (data.message === “Success”) {
-//             const container = document.querySelector(`#comment-container-${commentId}`)
-//             container.remove()
-//         }
-//     })
-
 
 // ----- when dropdown option is clicked, boardGame is added to gameShelf -------
 
@@ -103,7 +86,7 @@ Array.from(playedStatus).forEach(shelf => {
 // })
 
 // ----- when "submit game shelf" is clicked, game shelf is added to shelves -------
-addShelfBtn = document.getElementById('addShelfBtn')
+const addShelfBtn = document.getElementById('addShelfBtn')
 addShelfBtn.addEventListener("click", async (event)=>{
     // const gameShelfId = event.target.value  // this gets the checked game (id)
     console.log('---------- clicked! -----------')

@@ -265,6 +265,22 @@ router.post(
   })
 );
 
+router.delete(`/:boardGameId/reviews/:reviewId`,requireAuth,
+asyncHandler(async(req,res)=>{
+  //find record
+  const reviewId = req.params.reviewId;
+  const review = await Review.findByPk(reviewId);
+
+  if(review){
+    await review.destroy()
+    res.json({message:'Success'})
+  }else{
+    res.json({message:'Faliure'})
+  }
+})
+
+)
+
 module.exports = router;
 
 // REVIEW BUTTON: When click button to write review for game, button will be an href to redirect, including the boardgame/:id info,
