@@ -6,6 +6,7 @@ const {
   GameShelf,
   Category,
   Review,
+  ShelvesToGame
 } = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { requireAuth } = require("../auth");
@@ -54,7 +55,7 @@ router.get(
         }
       })
       // console.log('.......games.......')
-      console.log(shelvesWithGameArray[0])
+      // console.log(shelvesWithGameArray[0])
 
       // this is iterating over an array to create a set that adds shelves that contain the game we are looking at currently
       // we put it into a Set so the pug template to use Set.has() function
@@ -77,6 +78,32 @@ router.get(
     }
   })
 );
+
+router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async(req, res) => {
+  const boardGameId = req.params.boardgameid
+  const gameShelfId = req.params.gameshelfid
+  const checked = req.params.checked
+  if (checked === 'true') {
+    // add game to shelf
+    await ShelvesToGame.create({
+      boardGameId,
+      gameShelfId
+    })
+  } else {
+    // remove game from shelf
+    await ShelvesToGame.destroy({
+      where: {
+        boardGameId,
+        gameShelfId}
+    })
+  }
+  res.json({message: 'Success'})
+
+}))
+
+
+
+// ---------------- REVIEWS ROUTES ----------------------
 
 router.get(
   "/:id/reviews/new", requireAuth,
