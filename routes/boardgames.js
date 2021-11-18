@@ -19,11 +19,25 @@ router.get(
     const boardGames = await BoardGame.findAll();
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const gameShelves = await GameShelf.findAll({ where: { userId } });
+      const shelfWantToPlay = await GameShelf.findOne({
+        where: {
+          userId,
+          shelfName: 'Want to Play'
+        }
+      })
+      const shelfPlayed = await GameShelf.findOne({
+        where: {
+          userId,
+          shelfName: 'Played'
+        }
+      })
+      // const gameShelves = await GameShelf.findAll({ where: { userId } });
       return res.render("boardgames", {
         boardGames,
         userId,
-        gameShelves,
+        // gameShelves,
+        shelfWantToPlay,
+        shelfPlayed,
       });
     } else {
       res.render("boardgames", {
@@ -45,6 +59,16 @@ router.get(
     if (req.session.auth) {
       const userId = req.session.auth.userId;
       const gameShelves = await GameShelf.findAll({ where: {userId}});
+      const mainGameShelves = []
+      const otherGameShelves = []
+      gameShelves.forEach(shelfObj => {
+        if(shelfObj.shelfName !== 'Played' && shelfObj.shelfName !== 'Want to Play') {
+          otherGameShelves.push(shelfObj)
+        } else {
+          mainGameShelves.push(shelfObj)
+        }
+      })
+
       const shelvesWithGameSet = new Set()
       // this array has all of the game shelves that include the game we are currently looking at
       const shelvesWithGameArray = await GameShelf.findAll({
@@ -63,23 +87,26 @@ router.get(
         shelvesWithGameSet.add(shelfObj.id)
       })
 
-      let usersReviews=[]
-      let notUsersReviews= []
-      reviews.forEach(review=>{
-        if(userId==review.userId){
-          usersReviews.push(review)
-        }else{
-          notUsersReviews.push(review)
-        }
-      })
-       reviews= [...usersReviews,...notUsersReviews]
+      // theres an error in this code
+      // console.log('reviews === ', reviews)
+      // let usersReviews=[]
+      // let notUsersReviews= []
+      // reviews.forEach(review=>{
+      //   if(userId==review.userId){
+      //     usersReviews.push(review)
+      //   }else{
+      //     notUsersReviews.push(review)
+      //   }
+      // })
+      //  reviews= [...usersReviews,...notUsersReviews]
 
       return res.render("ind-boardgame", {
         boardGame,
         reviews,
         userId,
-        gameShelves,
-        shelvesWithGameSet
+        otherGameShelves,
+        mainGameShelves,
+        shelvesWithGameSet,
       });
     } else {
       res.render("ind-boardgame", {
