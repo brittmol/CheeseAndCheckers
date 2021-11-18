@@ -5,7 +5,7 @@ block content
 
   ul My Game Shelves:
     each shelf in gameShelves
-      li= shelf.shelfName
+      li: a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
   br
   //- form(method='post')
   //-   button(id='addShelfBtn') Add a Game Shelf:
