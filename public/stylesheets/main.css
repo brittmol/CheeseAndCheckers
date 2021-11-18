@@ -1,0 +1,32 @@
+a, .text-medium, .text-small, h1 {
+  color: #FBFFF1;
+}
+
+body {
+  background-color: #464947;
+}
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.text_medium {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #FBFFF1;
+  width: fit-content;
+}
+
+.text_small {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #FBFFF1;
+  width: fit-content;
+}

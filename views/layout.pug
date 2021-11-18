@@ -2,27 +2,32 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        title="Cheese & Checkers"
+        link(rel='stylesheet' href='/stylesheets/main.css')
+        link(rel='stylesheet' href='/stylesheets/nav.css')
+        link(rel='stylesheet' href='/stylesheets/buttons.css')
+        link(rel='stylesheet' href='/stylesheets/card.css')
         script(src="/javascripts/index.js" type="module")
   body
     //- this will be in the nav bar
-    nav
-      ul
-        li: a(href='/boardgames') Board Games
-        li: a(href='/gameshelves') My Board Games
-      div
-        if locals.authenticated
-          span Welcome #{user.username}!
-          form(action='/users/logout' method='post')
-            button(type='submit') Log Out
-        else
-          span
-            a(href='/users/login') Log In
-            a(href='/users/signup') Sign Up
-            form( action='/users/demo-user' method='post' )
-              button( type='submit' ) Demo User
-      div
-        form(action='/boardgames' method='post')
-          input(type="search" placeholder="🔎 Search..." name="term" required)
+    header
+      div(id="logo_container")
+        img(src="./logo.svg")
+      form(action='/boardgames' method='post')
+        input(type="search" placeholder="🔎 Search..." name="term" required)
+      nav
+        ul(class="nav_links")
+          li: a(href='/boardgames') Board Games
+          li: a(href='/gameshelves') My Board Games
+          li: a(href='#') About Us
+      if locals.authenticated
+        div(class="medium-text") Welcome #{user.username}!
+        form(action='/users/logout' method='post')
+          button(type='submit') Log Out
+      else
+        a(href='/users/login' class="nav_buttons"): button Log In
+        a(href='/users/signup' class="nav_buttons"): button Sign Up
+        form( action='/users/demo-user' method='post' class="nav_buttons")
+          button( type='submit' ) Demo User
+    
     block content
