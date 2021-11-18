@@ -12,7 +12,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
       userId: req.session.auth.userId,
     }
   })
-  console.log(gameShelves)
+  // console.log(gameShelves)
   res.render("gameshelves", {
     gameShelves,
 
@@ -26,9 +26,18 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
 router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
   const gameShelfId = req.params.id
   const gameShelf = await GameShelf.findByPk(gameShelfId)
-  console.log(gameShelf.shelfName)
+  // console.log(gameShelf.shelfName)
 }));
 
+
+router.put("/:newshelf", requireAuth, asyncHandler(async(req, res) => {
+  const userId = req.session.auth.userId
+  const shelfName = req.params.newshelf
+  await GameShelf.create({
+      shelfName
+  })
+  res.json({message: 'Success'})
+}))
 
 
 module.exports = router;
