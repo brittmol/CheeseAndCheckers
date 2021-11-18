@@ -16,8 +16,9 @@ block content
     div
       input(type='text' id='newShelf')
       button(type='submit' id='addShelfBtn') add
+
   div
-    ul All My Saved Board Games:
+    ul Game Shelf: #{gameShelf.shelfName}
       each boardGame in allGamesOfUser
         li= boardGame.title
         li: img(src=`${boardGame.image}` class='boardGameImage')
