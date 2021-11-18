@@ -1,16 +1,23 @@
 extend layout
 
 block content
-  h1= boardGame.title
+  h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
 
   h3= boardGame.company
   ul
     li: img(src=`${boardGame.image}` class='boardGameImage')
     if userId
-      li: select(name='gameShelves' id='gameShelvesSelect')
+      ul(id='gameShelves') Add Board Game to Game Shelves
         each shelf in gameShelves
-          option(value=shelf.shelfId)= shelf.shelfName
+          li
+            input(type='checkbox' name='gameShelf' id=shelf.id)
+            label(for='gameShelf')= shelf.shelfName
+
     li= boardGame.summary
     li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
     for review in reviews
       li= review.comment
+
+      //- li: select(name='gameShelves' id='gameShelvesSelect')
+      //-   each shelf in gameShelves
+      //-     option(value=shelf.id class='gameShelfOption')= shelf.shelfName
