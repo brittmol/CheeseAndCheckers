@@ -16,5 +16,10 @@ block content
     else
       li: a(href='/') Log in to leave a review.
     for review in reviews
-      li= review.comment
-    
+      if userId==review.userId
+        li(id=`comment-${review.id}` class='comments')
+          p= review.comment
+          a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit`) Edit
+          button(class='deleteComment') Delete
+      else
+        li= review.comment
