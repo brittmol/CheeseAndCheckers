@@ -12,7 +12,7 @@ html
     //- this will be in the nav bar
     header
       div(id="logo_container")
-        img(src="./logo.svg")
+        img(src="/logo.svg")
       form(action='/boardgames' method='post')
         input(type="search" placeholder="🔎 Search..." name="term" required)
       nav
@@ -21,7 +21,7 @@ html
           li: a(href='/gameshelves') My Board Games
           li: a(href='#') About Us
       if locals.authenticated
-        div(class="medium-text") Welcome #{user.username}!
+        div(class="text_medium") Welcome #{user.username}!
         form(action='/users/logout' method='post')
           button(type='submit') Log Out
       else

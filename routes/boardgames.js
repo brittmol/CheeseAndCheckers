@@ -135,8 +135,6 @@ router.get(
         shelvesWithGameSet.add(shelfObj.id)
       })
 
-      // theres an error in this code
-      // console.log('reviews === ', reviews)
       let usersReviews=[]
       let notUsersReviews= []
       reviews.forEach(review=>{
@@ -193,23 +191,6 @@ router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async
 
 // ---------------- REVIEWS ROUTES ----------------------
 
-//How to display user's reviews at the top:
-// iterate over arr (all reviews), if userId matches logged in user id
-    // put it in user's reviews, if so
-
-// allReviews: iterate over, do conditional check: if current logged in user's id matches the review's userId
-
-//Push into these two arrays:
-// usersReviews
-// notUsersReviews
-// reviews = [...usersReviews, ...nothTheirReviews]
-// then iterate over this array
-
-// How to create trash can/"X" to delete dynamically using AJAX?
-// in pug template: conditionally if reviewUserID = loggedInUserId, add HTML to click delete/edit
-// on backedn, check if the user has permission to actually delete is (does their userId match the review's user id)
-
-
 router.get(
   "/:id/reviews/new",
   requireAuth,
@@ -222,7 +203,6 @@ router.get(
     res.render("review-new", {
       csrfToken: req.csrfToken(),
       boardGame,
-      // NTS: image: boardGame.image,
       linkToGame: `/boardgames/${id}`,
     });
   })
