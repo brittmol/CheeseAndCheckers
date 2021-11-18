@@ -7,12 +7,12 @@ block content
     each shelf in gameShelves
       li= shelf.shelfName
   br
-  //- form(method='post')
-  //-   button(id='addShelfBtn') Add a Game Shelf:
+  div#createAddShelf
+    button(id='addShelfBtn') Add a Game Shelf:
 
-  form(action=`/gameshelves/:newshelf` method='post')
-    div
-      label(for='newShelf') Add a Shelf:
-    div
-      input(type='text' id='newShelf')
-      button(type='submit' id='addShelfBtn') add
+  //- form(action=`/gameshelves/:newshelf` method='post')
+  //-   div
+  //-     label(for='newShelf') Add a Shelf:
+  //-   div
+  //-     input(type='text' id='newShelf')
+  //-     button(type='submit' id='addShelfBtn') add
