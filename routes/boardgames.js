@@ -6,6 +6,7 @@ const {
   GameShelf,
   Category,
   Review,
+  ShelvesToGame
 } = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { requireAuth } = require("../auth");
@@ -35,17 +36,35 @@ router.get(
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
-    const boardGame = await BoardGame.findByPk(req.params.id);
-    let reviews = await Review.findAll({
-      where: { boardGameId: req.params.id },
+    const boardGameId = req.params.id
+    const boardGame = await BoardGame.findByPk(boardGameId);
+    const reviews = await Review.findAll({
+      where: { boardGameId },
     });
 
     if (req.session.auth) {
       const userId = req.session.auth.userId;
+      const gameShelves = await GameShelf.findAll({ where: {userId}});
+      const shelvesWithGameSet = new Set()
+      // this array has all of the game shelves that include the game we are currently looking at
+      const shelvesWithGameArray = await GameShelf.findAll({
+        include: {
+          model: BoardGame,
+          where: {id: boardGameId}
+        }
+      })
+      // console.log('.......games.......')
+      // console.log(shelvesWithGameArray[0])
+
+      // this is iterating over an array to create a set that adds shelves that contain the game we are looking at currently
+      // we put it into a Set so the pug template to use Set.has() function
+      // could have used array.include, but that is O(n) and Set is O(1)
+      shelvesWithGameArray.forEach(shelfObj => {
+        shelvesWithGameSet.add(shelfObj.id)
+      })
 
       let usersReviews=[]
       let notUsersReviews= []
-
       reviews.forEach(review=>{
         if(userId==review.userId){
           usersReviews.push(review)
@@ -53,15 +72,14 @@ router.get(
           notUsersReviews.push(review)
         }
       })
-
        reviews= [...usersReviews,...notUsersReviews]
 
-      const gameShelves = await GameShelf.findAll({ where: { userId } });
       return res.render("ind-boardgame", {
         boardGame,
         reviews,
         userId,
         gameShelves,
+        shelvesWithGameSet
       });
     } else {
       res.render("ind-boardgame", {
@@ -71,6 +89,32 @@ router.get(
     }
   })
 );
+
+router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async(req, res) => {
+  const boardGameId = req.params.boardgameid
+  const gameShelfId = req.params.gameshelfid
+  const checked = req.params.checked
+  if (checked === 'true') {
+    // add game to shelf
+    await ShelvesToGame.create({
+      boardGameId,
+      gameShelfId
+    })
+  } else {
+    // remove game from shelf
+    await ShelvesToGame.destroy({
+      where: {
+        boardGameId,
+        gameShelfId}
+    })
+  }
+  res.json({message: 'Success'})
+
+}))
+
+
+
+// ---------------- REVIEWS ROUTES ----------------------
 
 //How to display user's reviews at the top:
 // iterate over arr (all reviews), if userId matches logged in user id
@@ -87,6 +131,7 @@ router.get(
 // How to create trash can/"X" to delete dynamically using AJAX?
 // in pug template: conditionally if reviewUserID = loggedInUserId, add HTML to click delete/edit
 // on backedn, check if the user has permission to actually delete is (does their userId match the review's user id)
+
 
 router.get(
   "/:id/reviews/new",

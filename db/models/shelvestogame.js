@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const ShelvesToGame = sequelize.define('ShelvesToGame', {
-    gamesShelfId: DataTypes.INTEGER,
+    gameShelfId: DataTypes.INTEGER,
     boardGameId: DataTypes.INTEGER
   }, {});
   ShelvesToGame.associate = function(models) {

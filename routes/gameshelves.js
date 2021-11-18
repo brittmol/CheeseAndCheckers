@@ -15,12 +15,18 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
   console.log(gameShelves)
   res.render("gameshelves", {
     gameShelves,
-    
+
   })
 }));
 
-// router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
-  
-// }));
+
+
+router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
+  const gameShelfId = req.params.id
+  const gameShelf = await GameShelf.findByPk(gameShelfId)
+  console.log(gameShelf.shelfName)
+}));
+
+
 
 module.exports = router;
