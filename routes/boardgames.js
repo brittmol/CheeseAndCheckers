@@ -19,11 +19,25 @@ router.get(
     const boardGames = await BoardGame.findAll();
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const gameShelves = await GameShelf.findAll({ where: { userId } });
+      const shelfWantToPlay = await GameShelf.findOne({
+        where: {
+          userId,
+          shelfName: 'Want to Play'
+        }
+      })
+      const shelfPlayed = await GameShelf.findOne({
+        where: {
+          userId,
+          shelfName: 'Played'
+        }
+      })
+      // const gameShelves = await GameShelf.findAll({ where: { userId } });
       return res.render("boardgames", {
         boardGames,
         userId,
-        gameShelves,
+        // gameShelves,
+        shelfWantToPlay,
+        shelfPlayed,
       });
     } else {
       res.render("boardgames", {
@@ -44,6 +58,18 @@ router.get(
 
     if (req.session.auth) {
       const userId = req.session.auth.userId;
+      const shelfWantToPlay = await GameShelf.findOne({
+        where: {
+          userId,
+          shelfName: 'Want to Play'
+        }
+      })
+      const shelfPlayed = await GameShelf.findOne({
+        where: {
+          userId,
+          shelfName: 'Played'
+        }
+      })
       const gameShelves = await GameShelf.findAll({ where: {userId}});
       const shelvesWithGameSet = new Set()
       // this array has all of the game shelves that include the game we are currently looking at
@@ -81,7 +107,9 @@ router.get(
         reviews,
         userId,
         gameShelves,
-        shelvesWithGameSet
+        shelvesWithGameSet,
+        shelfWantToPlay,
+        shelfPlayed,
       });
     } else {
       res.render("ind-boardgame", {

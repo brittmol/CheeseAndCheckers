@@ -7,6 +7,10 @@ block content
   ul
     li: img(src=`${boardGame.image}` class='boardGameImage')
     if userId
+      li: select(name='gameShelves' id='gameShelvesSelect')
+        option(value='') --Choose Playing Status--
+        option(value=shelfWantToPlay.id)= shelfWantToPlay.shelfName
+        option(value=shelfPlayed.id)= shelfPlayed.shelfName
       ul(id='gameShelves') Add Board Game to Game Shelves
         each shelf in gameShelves
           li
@@ -20,4 +24,3 @@ block content
       li: a(href='/') Log in to leave a review.
     for review in reviews
       li= review.comment
-
