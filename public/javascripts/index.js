@@ -47,5 +47,29 @@ Array.from(playedStatus).forEach(shelf => {
 
 
 // ----- when "add game shelf" is clicked, an input box will appear -------
+// const addShelfBtn = document.getElementById('addShelfBtn')
+// addShelfBtn.addEventListener("click", (event)=>{
+//     let inputShelf = document.createElement("input");
+//     inputShelf.name = "shelfName";
+//     inputShelf.type = 'text'
+
+//     console.log(event.target)
+
+// })
+
 // ----- when "submit game shelf" is clicked, game shelf is added to shelves -------
+addShelfBtn = document.getElementById('addShelfBtn')
+addShelfBtn.addEventListener("click", async (event)=>{
+    // const gameShelfId = event.target.value  // this gets the checked game (id)
+    console.log('---------- clicked! -----------')
+    console.log(event.target)
+    // fetch request
+    // Default options are marked with *
+    const res = await fetch(`/gameshelves/:newshelf`, {
+        method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+        headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
+    });
+    return res.json(); // parses JSON response into native JavaScript objects
+})
+
 // ----- when "x" is clicked, the boardgame/list is deleted (with potential alert) -------
