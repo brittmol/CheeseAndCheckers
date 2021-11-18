@@ -20,28 +20,35 @@ const router = express.Router();
 router.get(
   "/",
   asyncHandler(async (req, res) => {
+    // need this to be specific to game
+    const boardGameId = 1
+    // -----------------------
     const boardGames = await BoardGame.findAll();
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const shelfWantToPlay = await GameShelf.findOne({
-        where: {
-          userId,
-          shelfName: 'Want to Play'
+      const gameShelves = await GameShelf.findAll({ where: {userId}});
+      const mainGameShelves = []
+      gameShelves.forEach(shelfObj => {
+        if(shelfObj.shelfName === 'Played' || shelfObj.shelfName === 'Want to Play') {
+          mainGameShelves.push(shelfObj)
         }
       })
-      const shelfPlayed = await GameShelf.findOne({
-        where: {
-          userId,
-          shelfName: 'Played'
+
+      const shelvesWithGameSet = new Set()
+      const shelvesWithGameArray = await GameShelf.findAll({
+        include: {
+          model: BoardGame,
+          where: {id: boardGameId}
         }
       })
-      // const gameShelves = await GameShelf.findAll({ where: { userId } });
+      shelvesWithGameArray.forEach(shelfObj => {
+        shelvesWithGameSet.add(shelfObj.id)
+      })
       return res.render("boardgames", {
         boardGames,
         userId,
-        // gameShelves,
-        shelfWantToPlay,
-        shelfPlayed,
+        mainGameShelves,
+        shelvesWithGameSet,
       });
     } else {
       res.render("boardgames", {
@@ -53,44 +60,18 @@ router.get(
 
 
 // ----------- Search function -----------------
-router.post('/', asyncHandler(async (req, res) => {
-  const { term } = req.body
-  const boardGames = await BoardGame.findAll({
-    where: {
-      title: {
-        [Op.iLike]: `%${term}%`
-      }
-    },
-  })
+// router.post('/', asyncHandler(async (req, res) => {
+//   const { term } = req.body
+//   const boardGames = await BoardGame.findAll({
+//     where: {
+//       title: {
+//         [Op.iLike]: `%${term}%`
+//       }
+//     },
+//   })
 
-  if (req.session.auth) {
-    const userId = req.session.auth.userId;
-    const shelfWantToPlay = await GameShelf.findOne({
-      where: {
-        userId,
-        shelfName: 'Want to Play'
-      }
-    })
-    const shelfPlayed = await GameShelf.findOne({
-      where: {
-        userId,
-        shelfName: 'Played'
-      }
-    })
-    // const gameShelves = await GameShelf.findAll({ where: { userId } });
-    return res.render("boardgames", {
-      boardGames,
-      userId,
-      // gameShelves,
-      shelfWantToPlay,
-      shelfPlayed,
-    });
-  } else {
-    res.render("boardgames", {
-      boardGames,
-    });
-  }
-}))
+//   if (req.session.auth) {
+//   .... copy rest from '/'
 
 
 // -------------- individual board game route -------------
