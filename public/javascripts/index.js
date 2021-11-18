@@ -35,7 +35,7 @@ const data = await res.json()
 // boardgame is the h1 element
 const boardGame = document.querySelector('.boardGameTitle')
 const gameShelves = document.getElementById('gameShelves').children
-const playedStatus = document.getElementById('gameShelvesSelect').children
+const playedStatus = document.getElementById('gameShelvesSelect')
 
 
 Array.from(gameShelves).forEach(shelf => {
@@ -55,23 +55,22 @@ Array.from(gameShelves).forEach(shelf => {
     })
 });
 
-Array.from(playedStatus).forEach(shelf => {
-    // console.log(shelf)
-    shelf.addEventListener("change", async (event)=>{
-        const gameShelfId = event.target.value  // this gets the checked game (id)
-        const boardGameId = boardGame.id // this gets the boardGame id from h1 class
-        const checked = event.target.selected // gives true or false if its checked
-        console.log('---------- clicked! -----------')
-        console.log(event.target)
-        // fetch request
-        // Default options are marked with *
-        const res = await fetch(`/boardgames/${boardGameId}/${gameShelfId}/${checked}`, {
-            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-            headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
-        });
-        return res.json(); // parses JSON response into native JavaScript objects
-    })
-});
+
+playedStatus.addEventListener("change", async (event)=>{
+    const gameShelfId = event.target.value  // this gets the checked game (id)
+    const boardGameId = boardGame.id // this gets the boardGame id from h1 class
+    console.log('board game Id ====', boardGameId)
+    const checked = event.target.selected // gives true or false if its checked
+    console.log('---------- clicked! -----------')
+    console.log(event.target.value)
+    // fetch request
+    // Default options are marked with *
+    const res = await fetch(`/boardgames/${boardGameId}/${gameShelfId}/${checked}`, {
+        method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+        headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
+    });
+    return res.json(); // parses JSON response into native JavaScript objects
+})
 
 
 // ----- when "add game shelf" is clicked, an input box will appear -------

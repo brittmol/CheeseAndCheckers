@@ -14,3 +14,11 @@
 
 5. git checkout brittanybranch
     git merge main (pulls updated main to ur own branch)
+
+
+
+
+npx dotenv sequelize db:seed:undo:all
+npx dotenv sequelize db:migrate:undo:all
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all

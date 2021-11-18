@@ -10,8 +10,12 @@ const {
 } = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { requireAuth } = require("../auth");
+const { Op } = require('sequelize');
+
 
 const router = express.Router();
+
+// ------------- boardgames route ---------------
 
 router.get(
   "/",
@@ -46,6 +50,50 @@ router.get(
     }
   })
 );
+
+
+// ----------- Search function -----------------
+router.post('/', asyncHandler(async (req, res) => {
+  const { term } = req.body
+  const boardGames = await BoardGame.findAll({
+    where: {
+      title: {
+        [Op.iLike]: `%${term}%`
+      }
+    },
+  })
+
+  if (req.session.auth) {
+    const userId = req.session.auth.userId;
+    const shelfWantToPlay = await GameShelf.findOne({
+      where: {
+        userId,
+        shelfName: 'Want to Play'
+      }
+    })
+    const shelfPlayed = await GameShelf.findOne({
+      where: {
+        userId,
+        shelfName: 'Played'
+      }
+    })
+    // const gameShelves = await GameShelf.findAll({ where: { userId } });
+    return res.render("boardgames", {
+      boardGames,
+      userId,
+      // gameShelves,
+      shelfWantToPlay,
+      shelfPlayed,
+    });
+  } else {
+    res.render("boardgames", {
+      boardGames,
+    });
+  }
+}))
+
+
+// -------------- individual board game route -------------
 
 router.get(
   "/:id(\\d+)",
@@ -116,6 +164,8 @@ router.get(
     }
   })
 );
+
+// ---------------- edit game shelves on individual board game page -------------------
 
 router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async(req, res) => {
   const boardGameId = req.params.boardgameid
@@ -280,6 +330,7 @@ asyncHandler(async(req,res)=>{
 })
 
 )
+
 
 module.exports = router;
 
