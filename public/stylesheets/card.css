@@ -31,7 +31,7 @@ main {
 
 .card_img-container {
   width: 100%;
-  padding-top: 28%;
+  padding-top: 50%;
   overflow: hidden;
   position: relative;
 }
@@ -39,7 +39,7 @@ main {
 .card_img-container img {
   width: 100%;
   position: absolute;
-  top: 50%;
+  top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
