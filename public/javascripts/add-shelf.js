@@ -5,29 +5,38 @@ window.addEventListener("load", (event) => {
     const addShelfBtn = document.getElementById('addShelfBtn');
     const createAddShelf = document.getElementById("createAddShelf");
 
-
     addShelfBtn.addEventListener("click", (event) => {
         createAddShelf.removeChild(addShelfBtn)
 
         const inputShelf = document.createElement("input");
         inputShelf.name = "shelfInput";
         inputShelf.type = 'text';
-
+        
         const addShelf = document.createElement("button");
         addShelf.innerText = "Add a Shelf";
         addShelf.type = "submit";
-
-
+        
         createAddShelf.appendChild(inputShelf);
         createAddShelf.appendChild(addShelf);
-
 
         const createHtmlShelf = (shelfName, shelfId) => {
             const li = document.createElement("li");
             const a = document.createElement("a");
+
+            const editBtn = document.createElement("button")
+            editBtn.innerText = 'edit'
+            editBtn.id = 'shelfEditBtn'
+
+            const deleteBtn = document.createElement("button")
+            deleteBtn.innerText = 'X'
+            deleteBtn.id = 'shelfDeleteBtn'
+
             a.setAttribute("href", `/gameshelves/${shelfId}`);
             a.innerText = shelfName;
+
             li.appendChild(a);
+            li.appendChild(editBtn)
+            li.appendChild(deleteBtn)
             return li;
         }
 
@@ -43,11 +52,11 @@ window.addEventListener("load", (event) => {
         }
 
         addShelf.addEventListener("click", async(e) => {
-            const res = await fetch(`/gameshelves/${inputShelf.value}`, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            let result
+            await fetch(`/gameshelves/${inputShelf.value}`, {
+                method: 'PUT', // *GET, POST, PUT, DELETE, etc.
                 headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
-            });
-            const result = await res.json()
+            }).then( async(response) => result = await response.json());
             console.log("result =", result.newShelfId);
             const shelfId = result.newShelfId;
             if (Number(shelfId)) {
@@ -59,23 +68,69 @@ window.addEventListener("load", (event) => {
     })
 
 
+    const shelfEditBtn = document.getElementById('shelfEditBtn');;
+    const shelfDeleteBtn = document.getElementById('shelfDeleteBtn');
 
-    // ----- when "submit game shelf" is clicked, game shelf is added to shelves -------
-
-    const addShelfBtn = document.getElementById("addShelfBtn");
-    addShelfBtn.addEventListener("click", async (event) => {
-    // const gameShelfId = event.target.value  // this gets the checked game (id)
-    console.log("---------- clicked! -----------");
-    console.log(event.target);
-    // fetch request
-    // Default options are marked with *
-    const res = await fetch(`/gameshelves/:newshelf`, {
-        method: "PUT", // *GET, POST, PUT, DELETE, etc.
-        headers: { "Content-Type": "application/json" }, // 'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    return res.json(); // parses JSON response into native JavaScript objects
+    shelfDeleteBtn.addEventListener("click", (event) => {
+        
     });
 
+    shelfEditBtn.addEventListener("click", (event) => {
+        const li = document.getElementById("shelfLi");
+        
+        const shelfName = li.innerText
+        
+        const shelfInput = document.createElement('input');
 
+        const doneBtn = document.createElement('button');
+        doneBtn.innerText = "done"
+        doneBtn.type = 'submit';
+
+        const div = document.createElement('div');
+        div.appendChild(shelfInput);
+        div.appendChild(doneBtn);
+
+        li.insertAdjacentElement('beforebegin', div);
+        li.remove();
+        shelfEditBtn.remove();
+        shelfDeleteBtn.remove();
+
+        const createHtmlShelf = (shelfName, shelfId) => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+
+            const editBtn = document.createElement("button")
+            editBtn.innerText = 'edit'
+            editBtn.id = 'shelfEditBtn'
+
+            const deleteBtn = document.createElement("button")
+            deleteBtn.innerText = 'X'
+            deleteBtn.id = 'shelfDeleteBtn'
+
+            a.setAttribute("href", `/gameshelves/${shelfId}`);
+            a.innerText = shelfName;
+
+            li.appendChild(a);
+            li.appendChild(editBtn)
+            li.appendChild(deleteBtn)
+            return li;
+        }
+        
+
+
+        doneBtn.addEventListener("click", async(event) => {
+            let result
+            await fetch(`/gameshelves/${shelfName}/${shelfInput.value}`, {
+                method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+                headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
+            }).then( async(response) => result = await response.json());
+            const newShelfId = result.newShelfId;
+            const newShelfName = result.newShelfName
+            if (Number(newShelfId)) {
+                const htmlShelf = createHtmlShelf(newShelfName, newShelfId);
+                appendNewShelf(htmlShelf);
+            }
+        })
+    });
 
 });

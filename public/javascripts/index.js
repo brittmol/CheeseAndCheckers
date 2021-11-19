@@ -93,9 +93,21 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         const createHtmlShelf = (shelfName, shelfId) => {
             const li = document.createElement("li");
             const a = document.createElement("a");
+
+            const editBtn = document.createElement("button")
+            editBtn.innerText = 'edit'
+            editBtn.id = 'shelfEditBtn'
+
+            const deleteBtn = document.createElement("button")
+            deleteBtn.innerText = 'X'
+            deleteBtn.id = 'shelfDeleteBtn'
+
             a.setAttribute("href", `/gameshelves/${shelfId}`);
             a.innerText = shelfName;
+
             li.appendChild(a);
+            li.appendChild(editBtn)
+            li.appendChild(deleteBtn)
             return li;
         }
 
