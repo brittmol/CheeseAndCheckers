@@ -7,11 +7,11 @@ block content
     form(action='/users/signup' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         div
-            input(type='text' name='username' value=user.username, placeholder='Username')
+            input(type='text' name='username' value=user.username placeholder='Username')
         div
-            input(type='email' name='email' value=user.email, placeholder='Email')
+            input(type='email' name='email' value=user.email placeholder='Email')
         div
-            input(type='password' name='password' value=user.password, placeholder='Password')
+            input(type='password' name='password' value=user.password placeholder='Password')
         div
             input(type='password' name='confirmPassword' placeholder='Confirm Password')
         div
