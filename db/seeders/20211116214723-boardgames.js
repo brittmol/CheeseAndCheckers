@@ -6,42 +6,58 @@ module.exports = {
       "BoardGames",
       [
         {
-          title: "Checkers",
-          summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-          company: "Checkers Inc.",
-          image: "https://images-na.ssl-images-amazon.com/images/I/81qe4VEfaFS.__AC_SY300_SX300_QL70_FMwebp_.jpg",
+          title: "Settlers of Catan",
+          summary: "Trade, build and settle the Island of CATAN in this addictively fun strategy game previously called Settlers of CATAN. Players control their own civilization and look to spread across a modular hex board in a competition for victory points.",
+          company: "Kosmos",
+          image: "https://source.unsplash.com/w7eaCH6ShR4/1920x1080",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title: "Chess",
-          summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-          company: "Chess Inc.",
-          image: "https://cdn.shopify.com/s/files/1/0121/2740/4090/products/3224-familyclassics-chess-box-1112-v-700x442_1200x1200.png?v=1611505351",
+          title: "Concordia",
+          summary: "Two thousand years ago, the Roman Empire ruled the lands around the Mediterranean Sea. With peace at the borders, harmony inside the provinces, uniform law, and a common currency, the economy thrived and gave rise to mighty Roman dynasties as they expanded throughout the numerous cities. Guide one of these dynasties and send colonists to the remote realms of the Empire.",
+          company: "PD-Verlag",
+          image: "https://source.unsplash.com/NrS53eUKgiE/1920x1080",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           title: "Monoply",
-          summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-          company: "Monopoly Dude Inc.",
-          image: "https://media.istockphoto.com/photos/monopoly-board-game-box-picture-id458577337",
+          summary: "It's the fast-dealing property trading game where players buy, sell, dream and scheme their way to riches. This version of the Monopoly game welcomes the Rubber Ducky, Tyrannosaurus Rex, and Penguin into its family of tokens. Choose your token, place it on GO! and roll the dice to own it all! There can be only one winner in the Monopoly game. Will it be you?.",
+          company: "Hasbro",
+          image: "https://source.unsplash.com/c-jTL24e50c/1920x1080",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title: "Chutes and Ladders",
-          summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-          company: "Stuff people Inc.",
-          image: "https://www.ultraboardgames.com/img/slideshow/chutes-and-ladders.jpg",
+          title: "Parcheesi",
+          summary: "Pachisi, also called Ludo, or Parcheesi, board game, sometimes called the national game of India. Race your pawns around the gameboard from start to home. Capture opponents, from blockades and do a little artful dodging to escape.",
+          company: "Samuel Loyd",
+          image: "https://source.unsplash.com/3WceTBlUoMs/1920x1080",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title: "Life",
-          summary: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-          company: "God",
-          image: "https://cf.geekdo-images.com/c4S2XDRb_DCYCAV-ZAzDpg__imagepage/img/w6c1ugeBPWsIC5d-nX9vHZ4l0jo=/fit-in/900x600/filters:no_upscale():strip_icc()/pic288405.jpg",
+          title: "Merv: The Heart of the Silk Road",
+          summary: "Merv: The Heart of the Silk Road is a tense economic game charting the rise and fall of the greatest city in the world. In Merv, players are vying to amass power and wealth in the prosperous heart of the Silk Road. Through careful court intrigue, timely donations to the grand mosque, and favorable trade deals, players attempt to redirect as much of that prosperity as possible into their own pockets.",
+          company: "Osprey Games",
+          image: "https://source.unsplash.com/fwRMK19zavc/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "Dominoes",
+          summary: "A traditional tile game played in many different cultures around the world. This entry is for Western Dominoes; the standard set being the 28 'Double Six' tiles. Chinese Dominoes use a 32 tile set with different distributions.",
+          company: "Public Domain",
+          image: "https://source.unsplash.com/8pwPnveOEiE/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "Chess",
+          summary: "Chess is a two-player, abstract strategy board game that represents medieval warfare on an 8x8 board with alternating light and dark squares. Opposing pieces, traditionally designated White and Black, are initially lined up on either side. Each type of piece has a unique form of movement and capturing occurs when a piece, via its movement, occupies the square of an opposing piece.",
+          company: "Public Domain",
+          image: "https://source.unsplash.com/8Bc9CJgXHXs/1920x1080",
           createdAt: new Date(),
           updatedAt: new Date()
         },
