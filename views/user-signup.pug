@@ -2,19 +2,19 @@ extends layout
 include utils
 block content
 
-    h1 Sign up
-    +validationErrorSummary(errors)
-    form(action='/users/signup' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            input(type='text' name='username' value=user.username placeholder='Username')
-        div
-            input(type='email' name='email' value=user.email placeholder='Email')
-        div
-            input(type='password' name='password' value=user.password placeholder='Password')
-        div
-            input(type='password' name='confirmPassword' placeholder='Confirm Password')
-        div
-            button(type='submit') Sign up
-    div
-        p: a(href='/users/login') Already have an account?
+    div.login_div
+        h1#login_h1 Sign up
+        +validationErrorSummary(errors)
+        div.login_form_div
+            form.login_form(action='/users/signup' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='text' name='username' value=user.username placeholder='Username')
+                br
+                input(type='email' name='email' value=user.email placeholder='Email')
+                br
+                input(type='password' name='password' value=user.password placeholder='Password')
+                br
+                input(type='password' name='confirmPassword' placeholder='Confirm Password')
+                p: a#need_account_txt(href='/users/login') Already have an account?
+                button.login_page_button(type='submit') Sign up
+                
