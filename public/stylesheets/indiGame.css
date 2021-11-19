@@ -1,0 +1,125 @@
+
+
+ .boardGameTitle {
+   display:flex;
+   justify-content: center;
+   background-color: aquamarine;
+   font-size: xx-large;
+   color:black;
+   font-size: 500%;
+
+  }
+  .image {
+      display: flex;
+    justify-content: center;
+
+     /* green */
+  }
+  .boardGameImage{
+height:300px;
+width:auto;
+box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
+  }
+
+  .boardGameImage:hover{
+    transform: translateY(-7px);
+
+  }
+  .company {
+    display: flex;
+    justify-content: center;
+    grid-area: sidebar;
+    background-color: indianred; /* red */
+    font-size: 200%;
+  }
+
+  #gameShelves{
+
+    background-color: red;
+
+  }
+
+  #gameShelvesSelect{
+      background-color: yellow;
+      display: flex;
+      justify-content: center;
+  }
+  #dropDown{
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+  }
+
+  .summary{
+    background-color: yellowgreen;
+  }
+
+  .review{
+      color: #FBFFF1;
+  font-weight: bolder;
+  margin-left: 20px;
+  padding: 10px 25px;
+  background-color: #84291B;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition:  all 0.5s ease 0s;
+
+  }
+  .review:hover{
+    background-color: #662015
+  }
+
+  .reviewLi{
+      margin-top: 40px;
+  }
+
+  .select{
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto; /* the default */
+  grid-template-areas:
+    ". header header ."
+    "main main main main"
+    "footer footer footer footer";
+  background-color: white;
+}
+#gameShelvesSelect {
+  grid-area: header;
+  background-color: mediumpurple; /* purple */
+}
+#gameShelves {
+  grid-area: main;
+  background-color: mediumseagreen; /* green */
+  display:flex;
+  justify-content: center;
+  padding:20px
+}
+.item-3 {
+  grid-area: sidebar;
+  background-color: indianred; /* red */
+}
+.item-4 {
+  grid-area: footer;
+  background-color: deepskyblue; /* blue */
+}
+
+.checkLi{
+    padding:10px
+}
+.editButton{
+    color: #FBFFF1;
+    font-weight: bolder;
+    margin-left: 20px;
+    padding: 10px 25px;
+    background-color: #84291B;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition:  all 0.5s ease 0s;
+}
+
+.editButton:hover{
+    background-color: #662015
+}
