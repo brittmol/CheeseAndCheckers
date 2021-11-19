@@ -19,7 +19,7 @@ html
         div(id="search_container")
           i(class="fas fa-search")
           form(action='/boardgames' method='post')
-            input(type="search" placeholder="Search..." name="term" required id="search_input")
+            input(type="search" placeholder="Search..." name="term" id="search_input" required )
       nav
         ul(class="nav_links")
           li: a(href='/boardgames') Board Games
@@ -39,5 +39,5 @@ html
           form( action='/users/demo-user' method='post')
             button( type='submit' id="log_out") Demo Use
 
-    
+
     block content

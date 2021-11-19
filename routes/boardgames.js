@@ -20,35 +20,12 @@ const router = express.Router();
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    // need this to be specific to game
-    const boardGameId = 1
-    // -----------------------
     const boardGames = await BoardGame.findAll();
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const gameShelves = await GameShelf.findAll({ where: {userId}});
-      const mainGameShelves = []
-      gameShelves.forEach(shelfObj => {
-        if(shelfObj.shelfName === 'Played' || shelfObj.shelfName === 'Want to Play') {
-          mainGameShelves.push(shelfObj)
-        }
-      })
-
-      const shelvesWithGameSet = new Set()
-      const shelvesWithGameArray = await GameShelf.findAll({
-        include: {
-          model: BoardGame,
-          where: {id: boardGameId}
-        }
-      })
-      shelvesWithGameArray.forEach(shelfObj => {
-        shelvesWithGameSet.add(shelfObj.id)
-      })
       return res.render("boardgames", {
         boardGames,
         userId,
-        mainGameShelves,
-        shelvesWithGameSet,
       });
     } else {
       res.render("boardgames", {
@@ -60,18 +37,30 @@ router.get(
 
 
 // ----------- Search function -----------------
-// router.post('/', asyncHandler(async (req, res) => {
-//   const { term } = req.body
-//   const boardGames = await BoardGame.findAll({
-//     where: {
-//       title: {
-//         [Op.iLike]: `%${term}%`
-//       }
-//     },
-//   })
-
-//   if (req.session.auth) {
-//   .... copy rest from '/'
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { term } = req.body
+    const boardGames = await BoardGame.findAll({
+      where: {
+        title: {
+          [Op.iLike]: `%${term}%`
+        }
+      },
+    })
+    if (req.session.auth) {
+      const userId = req.session.auth.userId;
+      return res.render("boardgames", {
+        boardGames,
+        userId,
+      });
+    } else {
+      res.render("boardgames", {
+        boardGames,
+      });
+    }
+  })
+);
 
 
 // -------------- individual board game route -------------
@@ -181,60 +170,32 @@ router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async
 // drop down (playing status)
 router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)", asyncHandler(async(req, res) => {
   const boardGameId = req.params.boardgameid
-
   // we need to do parseInt because the choose option value is = 0, which is falsey, but "0" is truthy
   const gameShelfId = parseInt(req.params.gameshelfid, 10)
-  if (gameShelfId) {
-
+  if (gameShelfId) {  // 1 or 2 (not 0)
+    // step 1: find the shelf object that is "Want to Play" and "Played"
     wantToPlayShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Want to Play' }})
     playedShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Played' }})
+    // step 2: check if board game is on either of those shelves
+    // if boardgame is on wantShelf, remove it
+    // if boardgame is on playedShelf, remove it
+      await ShelvesToGame.destroy({
+        where: {
+          boardGameId,
+          gameShelfId}
+      })
+    // step 3: add boardgame to shelf that is selected
+      await ShelvesToGame.create({
+        boardGameId,
+        gameShelfId
+      })
 
-    console.log(playedShelf)
+    // step 4:
+    res.json({message: 'Success'})
 
-    /*
-    step 1: find the shelf object that is "Want to Play" and "Played"
-      wantShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Want to Play' }})
-      playedShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Played' }})
-    step 2: check if boardgame is on either of those shelves
-              if boardgame is on wantShelf, remove it
-              if boardgame is on playedShelf, remove it
-                  await ShelvesToGame.destroy({
-                    where: {
-                      boardGameId,
-                      gameShelfId}
-                  })
-    step 3: add boardgame to shelf that is selected
-              await ShelvesToGame.create({
-                boardGameId,
-                gameShelfId
-              })
-    step 4:  res.json({message: 'Success'})
-
-    */
-  } else {
-    /*
-    // selected choose fail
-    res.json ({message: 'Remove})
-    */
-  }
-
-
-  // if (checked === 'true') {
-  //   // add game to shelf
-  //   await ShelvesToGame.create({
-  //     boardGameId,
-  //     gameShelfId
-  //   })
   // } else {
-  //   // remove game from shelf
-  //   await ShelvesToGame.destroy({
-  //     where: {
-  //       boardGameId,
-  //       gameShelfId}
-  //   })
-  // }
-  res.json({message: 'Success'})
-
+  //   res.json ({message: 'Remove})
+  }
 }))
 
 // ---------------- REVIEWS ROUTES ----------------------

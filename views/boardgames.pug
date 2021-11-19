@@ -3,7 +3,7 @@ extends layout
 block content
   h1 Board Games
 
-  main 
+  main
     section(class="cards")
       each game in boardGames
         div(class="card"): a(href=`/boardgames/${game.id}` id="card_link")
@@ -12,17 +12,7 @@ block content
           div.card_content
             p(class="card_title text_medium")= game.title
             p(class="text_small")=game.company
-            if userId
-                select(name='gameShelves' id='gameShelvesSelect')
-                  option(value='') --Choose Playing Status--
-                  option(value=shelfWantToPlay.id)= shelfWantToPlay.shelfName
-                  option(value=shelfPlayed.id)= shelfPlayed.shelfName
             div.card_info
               p(class="text_small card_info")=game.summary
                 //- each shelf in gameShelves
                 //-   option(value=shelf.shelfId)= shelf.shelfName
-            
-          
-      
-  
-
