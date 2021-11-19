@@ -71,7 +71,7 @@ router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
 }));
 
 
-router.post("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
+router.put("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
   const userId = req.session.auth.userId;
   console.log(req.body);
   const shelfName = req.params.newshelf;
