@@ -1,20 +1,27 @@
 extends layout
 
 block content
-  h1 My Board Games
+  main
+    div.side_bar
+      h1 My Board Games
+      ul(id="shelfList") My Game Shelves:
+        each shelf in gameShelves
+          li(id='shelfLi')
+            a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
+            button(type="submit" id='shelfEditBtn') edit
+            button(type="submit" id='shelfDeleteBtn') X 
+      h3 Add a Game Shelf
+      div(id='createAddShelf')
+        button(id='addShelfBtn') Add a Game Shelf:
 
-  ul(id="shelfList") My Game Shelves:
-    each shelf in gameShelves
-      li(id='shelfLi'): a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
-      button(type="submit" id='shelfEditBtn') edit
-      button(type="submit" id='shelfDeleteBtn') X 
-  br
-  h3 Add a Game Shelf
-  div(id='createAddShelf')
-    button(id='addShelfBtn') Add a Game Shelf:
 
-  div
-    ul All My Saved Board Games:
-      each boardGame in allGamesOfUser
-        li= boardGame.title
-        li: img(src=`${boardGame.image}` class='boardGameImage')
+    section(class="cards")
+      each game in allGamesOfUser
+        div(class="card"): a(href=`/boardgames/${game.id}` id="card_link")
+          div.card_img-container
+            img(src=`${game.image}` class='card_img-container boardGameImage')
+          div.card_content
+            p(class="card_title text_medium")= game.title
+            p(class="text_small")=game.company
+            div.card_info
+              p(class="text_small card_info")=game.summary
