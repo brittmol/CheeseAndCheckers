@@ -9,12 +9,14 @@ html
         link(rel='stylesheet' href='/stylesheets/card.css')
         link(rel='stylesheet' href='/stylesheets/card.css')
         link(rel='stylesheet' href='/stylesheets/indiGame.css')
+        link(rel='stylesheet' href='/stylesheets/login.css')
         script(src="https://kit.fontawesome.com/26d6a93618.js" crossorigin="anonymous")
         script(src="/javascripts/navBurger.js" type="module")
         script(src="/javascripts/deleting.js" type="module")
         script(src="/javascripts/add-shelf.js" type="module")
         script(src="/javascripts/checked-shelves.js" type="module")
         script(src="/javascripts/index.js" type="module")
+
   body
     //- this will be in the nav bar
     header
@@ -28,7 +30,7 @@ html
         ul(class="nav_links")
           li: a(href='/boardgames') Board Games
           li: a(href='/gameshelves') My Board Games
-          li: a(href='#') About Us
+          li: a(href='/about') About Us
         div.burger.burger_open: i(class="fas fa-bars fa-lg")
         div.burger.burger_close: i(class="fas fa-times fa-lg")
 
@@ -41,7 +43,7 @@ html
           a(href='/users/login'): button Log In
           a(href='/users/signup'): button Sign Up
           form( action='/users/demo-user' method='post')
-            button( type='submit' id="log_out") Demo Use
+            button( type='submit' id="log_out") Demo User
 
 
     block content

@@ -1,0 +1,28 @@
+.aboutContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas:
+    "A B"
+    "C D";
+}
+
+.brittanyContent {
+  grid-area: "A";
+}
+
+.jeddContent {
+  grid-area: "B";
+}
+
+.maxContent {
+  grid-area: "C";
+}
+
+.shannonContent {
+  grid-area: "D";
+}

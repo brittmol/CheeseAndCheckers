@@ -2,21 +2,18 @@ extends layout
 include utils
 block content
 
-    h1 Log in
-    +validationErrorSummary(errors)
-    form(action='/users/login' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            input(type='text' name='username' value=username, placeholder='Username')
-
-        div
-            input(type='password' name='password' value=null, placeholder='Password')
-
-        div
-            button(type='submit') Log in
-    div
-        p: a(href='/users/signup') Need an account?
-
-    div
-        form( action='/users/demo-user' method='post' )
-            button( type='submit' ) Demo User
+    
+    div.login_div
+        h1#login_h1 Log in
+        +validationErrorSummary(errors)
+        div.login_form_div
+            form.login_form(action='/users/login' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='text' name='username' value=username, placeholder='Username')
+                br
+                input(type='password' name='password' value=null, placeholder='Password')
+                br
+                p: a#need_account_txt(href='/users/signup') Need an account?
+                button.login_page_button(type='submit') Log in
+                form( action='/users/demo-user' method='post' )
+                    button.login_page_button( type='submit' ) Demo User
