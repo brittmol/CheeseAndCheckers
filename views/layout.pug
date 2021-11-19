@@ -7,27 +7,32 @@ html
         link(rel='stylesheet' href='/stylesheets/nav.css')
         link(rel='stylesheet' href='/stylesheets/buttons.css')
         link(rel='stylesheet' href='/stylesheets/card.css')
+        link(rel='stylesheet' href='/stylesheets/card.css')
+        script(src="https://kit.fontawesome.com/26d6a93618.js" crossorigin="anonymous")
         script(src="/javascripts/index.js" type="module")
   body
     //- this will be in the nav bar
     header
-      div(id="logo_container")
-        img(src="/logo.svg")
-      form(action='/boardgames' method='post')
-        input(type="search" placeholder="🔎 Search..." name="term" required)
+      div(id="logo_and_search_container")
+        a(href="/boardgames"): img(src="/logo.svg")
+        div(id="search_container")
+          i(class="fas fa-search")
+          form(action='/boardgames' method='post')
+            input(type="search" placeholder="Search..." name="term" required id="search_input")
       nav
         ul(class="nav_links")
           li: a(href='/boardgames') Board Games
           li: a(href='/gameshelves') My Board Games
           li: a(href='#') About Us
       if locals.authenticated
-        div(class="text_medium") Welcome #{user.username}!
+        div(class="text_medium" id="welcome_text") Welcome #{user.username}!
         form(action='/users/logout' method='post')
           button(type='submit') Log Out
       else
         a(href='/users/login' class="nav_buttons"): button Log In
         a(href='/users/signup' class="nav_buttons"): button Sign Up
         form( action='/users/demo-user' method='post' class="nav_buttons")
-          button( type='submit' ) Demo User
+          button( type='submit' id="log_out") Demo Use
+      button.burger: i(class="fas fa-bars")
     
     block content

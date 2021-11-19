@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
 
 * {
   box-sizing: border-box;
@@ -6,11 +6,13 @@
   padding: 0;
 }
 
-li, a, button {
-  font-family: 'Archivo', sans-serif;
+li,
+a,
+button {
+  font-family: "Archivo", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  color: #FBFFF1;
+  color: #fbfff1;
   text-decoration: none;
 }
 
@@ -18,21 +20,47 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px 10%;
-  background-color: #0B0D0A;
+  padding: 10px 5%;
+  background-color: #0b0d0a;
 }
 
-#logo_container {
+#logo_and_search_container {
   margin-right: auto;
-  width: 200px;
+  width: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-/* .logo {
-  height: 100px; 
-} */
+#search_bar_container {
+  display: flex;
+  align-items: center;
+}
+#search_container {
+  display: flex;
+  align-items: center;
+}
+.fa-search {
+  color: #fbfff1;
+  padding-right: 8px;
+  padding-left: 20px;
+}
 
+#search_input {
+  height: 25px;
+  width: 3fr;
+  color: #fbfff1;
+  border: none;
+  border-radius: 50px;
+}
+#search_input::placeholder {
+  color: #0b0d0a;
+  font-size: 14px;
+  padding-left: 10px;
+}
+#search_input:hover {
+  background-color: #edf1e4;
+}
 .nav_links {
   list-style: none;
 }
@@ -54,30 +82,53 @@ header {
   height: 2px;
   left: 50%;
   position: absolute;
-  background: #FBFFF1;
+  background: #fbfff1;
   transition: width 0.5s ease 0s, left 0.5s ease 0s;
   width: 0;
 }
 
 .nav_links li a:hover:after {
-  width: 100%; 
-  left: 0; 
+  width: 100%;
+  left: 0;
 }
 
-.nav_links li a:hover{
- color: #FBFFF1;
+.nav_links li a:hover {
+  color: #fbfff1;
+}
+
+.burger {
+ 
 }
 
 
-@media only screen and (min-width: 1000px) {
-/* large logo */
+
+@media only screen and (min-width: 1300px) {
+  /* large logo */
+  .burger {
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 700px) {
-/* med logo */
+@media only screen and (max-width: 1000px) {
+  /* large logo */
 }
 
-@media only screen and (max-width: 500px) {
-/* hamburger */
-/* smallest logo */
+@media only screen and (max-width: 750px) {
+  /* med logo */
+  .nav_links,
+  .nav_buttons,
+  #log_out {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* hamburger */
+  /* smallest logo */
+  #search_container,
+  .nav_links,
+  .nav_buttons,
+  #log_out {
+    display: none;
+  }
 }

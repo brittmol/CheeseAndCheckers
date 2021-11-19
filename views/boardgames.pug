@@ -5,21 +5,22 @@ block content
   main 
     section(class="cards")
       each game in boardGames
-        div(class="card"): a(href=`/boardgames/${game.id}`)
+        div(class="card"): a(href=`/boardgames/${game.id}` id="card_link")
           div.card_img-container
-            img(src=`${game.image}` class='card_img-container boardGameImage ')
+            img(src=`${game.image}` class='card_img-container boardGameImage')
           div.card_content
             p(class="card_title text_medium")= game.title
             p(class="text_small")=game.company
-          div.card_info
             if userId
-              select(name='gameShelves' id='gameShelvesSelect')
-                option(value='') --Choose Playing Status--
-                option(value=shelfWantToPlay.id)= shelfWantToPlay.shelfName
-                option(value=shelfPlayed.id)= shelfPlayed.shelfName
-            //- each shelf in gameShelves
-            //-   option(value=shelf.shelfId)= shelf.shelfName
-            p(class="text_small")=game.summary
+                select(name='gameShelves' id='gameShelvesSelect')
+                  option(value='') --Choose Playing Status--
+                  option(value=shelfWantToPlay.id)= shelfWantToPlay.shelfName
+                  option(value=shelfPlayed.id)= shelfPlayed.shelfName
+            div.card_info
+              p(class="text_small card_info")=game.summary
+                //- each shelf in gameShelves
+                //-   option(value=shelf.shelfId)= shelf.shelfName
+            
           
       
   
