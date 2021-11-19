@@ -20,35 +20,12 @@ const router = express.Router();
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    // need this to be specific to game
-    const boardGameId = 1
-    // -----------------------
     const boardGames = await BoardGame.findAll();
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const gameShelves = await GameShelf.findAll({ where: {userId}});
-      const mainGameShelves = []
-      gameShelves.forEach(shelfObj => {
-        if(shelfObj.shelfName === 'Played' || shelfObj.shelfName === 'Want to Play') {
-          mainGameShelves.push(shelfObj)
-        }
-      })
-
-      const shelvesWithGameSet = new Set()
-      const shelvesWithGameArray = await GameShelf.findAll({
-        include: {
-          model: BoardGame,
-          where: {id: boardGameId}
-        }
-      })
-      shelvesWithGameArray.forEach(shelfObj => {
-        shelvesWithGameSet.add(shelfObj.id)
-      })
       return res.render("boardgames", {
         boardGames,
         userId,
-        mainGameShelves,
-        shelvesWithGameSet,
       });
     } else {
       res.render("boardgames", {
@@ -60,18 +37,30 @@ router.get(
 
 
 // ----------- Search function -----------------
-// router.post('/', asyncHandler(async (req, res) => {
-//   const { term } = req.body
-//   const boardGames = await BoardGame.findAll({
-//     where: {
-//       title: {
-//         [Op.iLike]: `%${term}%`
-//       }
-//     },
-//   })
-
-//   if (req.session.auth) {
-//   .... copy rest from '/'
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { term } = req.body
+    const boardGames = await BoardGame.findAll({
+      where: {
+        title: {
+          [Op.iLike]: `%${term}%`
+        }
+      },
+    })
+    if (req.session.auth) {
+      const userId = req.session.auth.userId;
+      return res.render("boardgames", {
+        boardGames,
+        userId,
+      });
+    } else {
+      res.render("boardgames", {
+        boardGames,
+      });
+    }
+  })
+);
 
 
 // -------------- individual board game route -------------
