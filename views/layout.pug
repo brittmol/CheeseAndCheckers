@@ -9,7 +9,7 @@ html
         link(rel='stylesheet' href='/stylesheets/card.css')
         link(rel='stylesheet' href='/stylesheets/card.css')
         script(src="https://kit.fontawesome.com/26d6a93618.js" crossorigin="anonymous")
-        script(src="/javascript/navBurger.js")
+        script(src="/javascripts/navBurger.js")
         script(src="/javascripts/index.js" type="module")
   body
     //- this will be in the nav bar
@@ -25,15 +25,18 @@ html
           li: a(href='/boardgames') Board Games
           li: a(href='/gameshelves') My Board Games
           li: a(href='#') About Us
+        div.burger.burger_open: i(class="fas fa-bars fa-lg")
+        div.burger.burger_close: i(class="fas fa-times fa-lg")
       if locals.authenticated
         div(class="text_medium" id="welcome_text") Welcome #{user.username}!
         form(action='/users/logout' method='post')
           button(type='submit') Log Out
       else
-        a(href='/users/login' class="nav_buttons"): button Log In
-        a(href='/users/signup' class="nav_buttons"): button Sign Up
-        form( action='/users/demo-user' method='post' class="nav_buttons")
-          button( type='submit' id="log_out") Demo Use
-      div.burger: i(class="fas fa-bars fa-lg")
+        div.nav_buttons
+          a(href='/users/login'): button Log In
+          a(href='/users/signup'): button Sign Up
+          form( action='/users/demo-user' method='post')
+            button( type='submit' id="log_out") Demo Use
+
     
     block content

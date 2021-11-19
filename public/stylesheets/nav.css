@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
+
 
 * {
   box-sizing: border-box;
@@ -9,7 +9,7 @@
 li,
 a,
 button {
-  font-family: "Archivo", sans-serif;
+  font-family: sans-serif;
   font-weight: 500;
   font-size: 18px;
   color: #fbfff1;
@@ -26,16 +26,11 @@ header {
 
 #logo_and_search_container {
   margin-right: auto;
-  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#search_bar_container {
-  display: flex;
-  align-items: center;
-}
 #search_container {
   display: flex;
   align-items: center;
@@ -61,7 +56,17 @@ header {
 #search_input:hover {
   background-color: #edf1e4;
 }
+
+nav {
+  background: #0b0d0a;
+  color: #edf1e4;
+  display: flex;
+  justify-content: space-between;
+}
+
 .nav_links {
+  display: flex;
+  align-items: center;
   list-style: none;
 }
 
@@ -97,16 +102,23 @@ header {
 }
 
 .burger {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
-  color: #edf1e4; 
-  width: 40px; 
-  height: 40px; 
-  background-color: #84291B;
+  color: #edf1e4;
+  width: 40px;
+  height: 40px;
+  background-color: #84291b;
   border-radius: 20px;
 }
 
+.burger_close {
+  z-index: -1;
+}
+
+.nav_buttons {
+  display: flex;
+}
 
 @media only screen and (min-width: 1300px) {
   /* large logo */
@@ -115,13 +127,23 @@ header {
   }
 }
 
-@media only screen and (max-width: 1300px) {
-  /* large logo */
-  .nav_buttons {
+@media only screen and (max-width: 1299px) {
+  .nav_buttons,
+  #log_out {
     display: none;
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  /* large logo */
+  .nav_buttons,
+  #log_out {
+    display: none;
+  }
+  .nav_links {
+    font-size: 14px;
+  }
+}
 
 @media only screen and (max-width: 950px) {
   /* large logo */
@@ -134,20 +156,47 @@ header {
 
 @media only screen and (max-width: 750px) {
   /* med logo */
-  .nav_links,
+
   .nav_buttons,
   #log_out {
     display: none;
   }
+
+  nav .nav_links {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0b0d0a;
+    transition: top 2s ease;
+  }
+
 }
 
 @media only screen and (max-width: 480px) {
-  /* hamburger */
-  /* smallest logo */
   #search_container,
   .nav_links,
   .nav_buttons,
   #log_out {
     display: none;
+  }
+
+  nav .nav_links {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0b0d0a;
+    transition: top 2s ease;
   }
 }
