@@ -9,6 +9,7 @@ html
         link(rel='stylesheet' href='/stylesheets/card.css')
         link(rel='stylesheet' href='/stylesheets/card.css')
         script(src="https://kit.fontawesome.com/26d6a93618.js" crossorigin="anonymous")
+        script(src="/javascript/navBurger.js")
         script(src="/javascripts/index.js" type="module")
   body
     //- this will be in the nav bar
@@ -33,6 +34,6 @@ html
         a(href='/users/signup' class="nav_buttons"): button Sign Up
         form( action='/users/demo-user' method='post' class="nav_buttons")
           button( type='submit' id="log_out") Demo Use
-      button.burger: i(class="fas fa-bars")
+      div.burger: i(class="fas fa-bars fa-lg")
     
     block content

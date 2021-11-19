@@ -97,9 +97,15 @@ header {
 }
 
 .burger {
- 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  color: #edf1e4; 
+  width: 40px; 
+  height: 40px; 
+  background-color: #84291B;
+  border-radius: 20px;
 }
-
 
 
 @media only screen and (min-width: 1300px) {
@@ -109,8 +115,21 @@ header {
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1300px) {
   /* large logo */
+  .nav_buttons {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width: 950px) {
+  /* large logo */
+  .nav_buttons,
+  .nav_links,
+  #log_out {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 750px) {
