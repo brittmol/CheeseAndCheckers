@@ -8,6 +8,7 @@ window.addEventListener("load", (event) => {
     const gameShelves = document.getElementById("gameShelves").children;
     const playedStatus = document.getElementById("gameShelvesSelect");
 
+
     Array.from(gameShelves).forEach((shelf) => {
         // console.log(shelf)
         shelf.addEventListener("change", async (event) => {
@@ -26,10 +27,10 @@ window.addEventListener("load", (event) => {
         });
     });
 
-
     playedStatus.addEventListener("change", async (event)=>{
         const gameShelfId = event.target.value  // this gets the checked game (id)
         const boardGameId = boardGame.id // this gets the boardGame id from h1 class
+
 
         console.log('---------- clicked! -----------')
         console.log(event.target.value, event.target)
@@ -42,3 +43,4 @@ window.addEventListener("load", (event) => {
         });
     })
 });
+

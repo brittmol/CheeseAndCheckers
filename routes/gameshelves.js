@@ -9,7 +9,10 @@ const router = express.Router()
 router.get('/', requireAuth, asyncHandler(async (req, res) => {
   const userId = req.session.auth.userId
   const gameShelves = await GameShelf.findAll({
-    where: { userId }
+    where: { userId },
+    order: [
+      ['shelfName', 'ASC']
+    ]
   })
   // this array has all of the board games that include the shelf we are currently looking at
   const allGamesOfUserSet = new Set()
@@ -80,7 +83,27 @@ router.put("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
     userId
   });
   res.json({ newShelfId: newShelf.id })
+}));
+
+
+router.put("/:shelfName/:newShelfName", requireAuth, asyncHandler(async (req, res) => {
+  const userId = req.session.auth.userId;
+  console.log(req.body);
+  const newShelfName = req.params.newshelfName
+  const shelfName = req.params.shelfName;
+  await GameShelf.update({ shelfName: newShelfName }, {
+    where: {
+      shelfName,
+      userId,
+    }
+  })
+  res.json({
+    newShelfId: newShelfName.id,
+    newShelfName: newShelfName.name
+  })
 }))
+
+
 
 
 module.exports = router;
