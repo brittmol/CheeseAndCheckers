@@ -3,19 +3,15 @@ extends layout
 block content
   h1 My Board Games
 
-  ul My Game Shelves:
+  ul(id="shelfList") My Game Shelves:
     each shelf in gameShelves
-      li: a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
+      li(id='shelfLi'): a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
+      button(type="submit" id='shelfEditBtn') edit
+      button(type="submit" id='shelfDeleteBtn') X
   br
-  //- form(method='post')
-  //-   button(id='addShelfBtn') Add a Game Shelf:
-
-  form(action=`/gameshelves/:newshelf` method='post')
-    div
-      label(for='newShelf') Add a Shelf:
-    div
-      input(type='text' id='newShelf')
-      button(type='submit' id='addShelfBtn') add
+  h3 Add a Game Shelf
+  div(id='createAddShelf')
+    button(id='addShelfBtn') Add a Game Shelf:
 
   div
     ul Game Shelf: #{gameShelf.shelfName}
