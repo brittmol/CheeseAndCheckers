@@ -15,5 +15,6 @@ block content
                 br
                 p: a#need_account_txt(href='/users/signup') Need an account?
                 button.login_page_button(type='submit') Log in
-                form( action='/users/demo-user' method='post' )
-                    button.login_page_button( type='submit' ) Demo User
+        form.login_form( action='/users/demo-user' method='post' )
+                button.login_page_button( type='submit' ) Demo User
+            
