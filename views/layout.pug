@@ -19,7 +19,7 @@ html
         ul(class="nav_links")
           li: a(href='/boardgames') Board Games
           li: a(href='/gameshelves') My Board Games
-          li: a(href='#') About Us
+          li: a(href='/about') About Us
       if locals.authenticated
         div(class="medium-text") Welcome #{user.username}!
         form(action='/users/logout' method='post')
