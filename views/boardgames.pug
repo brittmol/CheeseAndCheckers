@@ -9,10 +9,10 @@ block content
         li: img(src=`${game.image}` class='boardGameImage')
         li: a(href=`/boardgames/${game.id}`)= game.title
         li= game.company
-        if userId
-          label(for='gameShelves') Choose Playing Status
-          select(name='gameShelves' id='gameShelvesSelect')
-            each shelf in mainGameShelves
-              option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
+        //- if userId
+        //-   label(for='gameShelves') Choose Playing Status
+        //-   select(name='gameShelves' id=`gameShelvesSelect-${game.id}`)
+        //-     each shelf in mainGameShelves
+        //-       option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
         li= game.summary
         br

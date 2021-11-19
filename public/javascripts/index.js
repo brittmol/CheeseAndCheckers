@@ -45,13 +45,13 @@ Array.from(gameShelves).forEach(shelf => {
         const boardGameId = boardGame.id // this gets the boardGame id from h1 class
         const checked = event.target.checked // gives true or false if its checked
         console.log('---------- clicked! -----------')
+        console.log(event.target.id, event.target.checked)
         // fetch request
         // Default options are marked with *
         const res = await fetch(`/boardgames/${boardGameId}/${gameShelfId}/${checked}`, {
             method: 'PUT', // *GET, POST, PUT, DELETE, etc.
             headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
         });
-        return res.json(); // parses JSON response into native JavaScript objects
     })
 });
 
@@ -59,17 +59,15 @@ Array.from(gameShelves).forEach(shelf => {
 playedStatus.addEventListener("change", async (event)=>{
     const gameShelfId = event.target.value  // this gets the checked game (id)
     const boardGameId = boardGame.id // this gets the boardGame id from h1 class
-    console.log('board game Id ====', boardGameId)
-    const checked = event.target.selected // gives true or false if its checked
+
     console.log('---------- clicked! -----------')
-    console.log(event.target.value)
+    console.log(event.target.value, event.target)
     // fetch request
     // Default options are marked with *
-    const res = await fetch(`/boardgames/${boardGameId}/${gameShelfId}/${checked}`, {
+    const res = await fetch(`/boardgames/${boardGameId}/${gameShelfId}`, {
         method: 'PUT', // *GET, POST, PUT, DELETE, etc.
         headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
     });
-    return res.json(); // parses JSON response into native JavaScript objects
 })
 
 
@@ -85,18 +83,18 @@ playedStatus.addEventListener("change", async (event)=>{
 // })
 
 // ----- when "submit game shelf" is clicked, game shelf is added to shelves -------
-const addShelfBtn = document.getElementById('addShelfBtn')
-addShelfBtn.addEventListener("click", async (event)=>{
-    // const gameShelfId = event.target.value  // this gets the checked game (id)
-    console.log('---------- clicked! -----------')
-    console.log(event.target)
-    // fetch request
-    // Default options are marked with *
-    const res = await fetch(`/gameshelves/:newshelf`, {
-        method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-        headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
-    });
-    return res.json(); // parses JSON response into native JavaScript objects
-})
+// const addShelfBtn = document.getElementById('addShelfBtn')
+// addShelfBtn.addEventListener("click", async (event)=>{
+//     // const gameShelfId = event.target.value  // this gets the checked game (id)
+//     console.log('---------- clicked! -----------')
+//     console.log(event.target)
+//     // fetch request
+//     // Default options are marked with *
+//     const res = await fetch(`/gameshelves/:newshelf`, {
+//         method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+//         headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
+//     });
+//     return res.json(); // parses JSON response into native JavaScript objects
+// })
 
 // ----- when "x" is clicked, the boardgame/list is deleted (with potential alert) -------

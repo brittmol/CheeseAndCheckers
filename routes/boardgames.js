@@ -98,20 +98,27 @@ router.get(
         }
       })
 
-      const shelvesWithGameSet = new Set()
       // this array has all of the game shelves that include the game we are currently looking at
       const shelvesWithGameArray = await GameShelf.findAll({
+        where: { userId },
         include: {
           model: BoardGame,
           where: {id: boardGameId}
         }
       })
-      // console.log('.......games.......')
-      // console.log(shelvesWithGameArray[0])
+
+      // const gameOnMainGameShelfId = null
+      // shelvesWithGameArray.forEach(shelfObj => {
+      //   if (shelfObj.id === mainGameShelves[0].id) {
+      //     gameOnMainGameShelfId =
+      //   }
+      // })
+
 
       // this is iterating over an array to create a set that adds shelves that contain the game we are looking at currently
       // we put it into a Set so the pug template to use Set.has() function
       // could have used array.include, but that is O(n) and Set is O(1)
+      const shelvesWithGameSet = new Set()
       shelvesWithGameArray.forEach(shelfObj => {
         shelvesWithGameSet.add(shelfObj.id)
       })
@@ -128,6 +135,9 @@ router.get(
         }
       })
        reviews= [...usersReviews,...notUsersReviews]
+
+      console.log("Main Shelves ===", mainGameShelves)
+      console.log("shelvesWithGameSet ===", shelvesWithGameSet)
 
       return res.render("ind-boardgame", {
         boardGame,
@@ -147,7 +157,7 @@ router.get(
 );
 
 // ---------------- edit game shelves on individual board game page -------------------
-
+// checkboxes
 router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async(req, res) => {
   const boardGameId = req.params.boardgameid
   const gameShelfId = req.params.gameshelfid
@@ -167,10 +177,67 @@ router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async
     })
   }
   res.json({message: 'Success'})
-
 }))
 
 
+// drop down (playing status)
+router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)", asyncHandler(async(req, res) => {
+  const boardGameId = req.params.boardgameid
+
+  // we need to do parseInt because the choose option value is = 0, which is falsey, but "0" is truthy
+  const gameShelfId = parseInt(req.params.gameshelfid, 10)
+  if (gameShelfId) {
+
+    wantToPlayShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Want to Play' }})
+    playedShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Played' }})
+
+    console.log(playedShelf)
+
+    /*
+    step 1: find the shelf object that is "Want to Play" and "Played"
+      wantShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Want to Play' }})
+      playedShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Played' }})
+    step 2: check if boardgame is on either of those shelves
+              if boardgame is on wantShelf, remove it
+              if boardgame is on playedShelf, remove it
+                  await ShelvesToGame.destroy({
+                    where: {
+                      boardGameId,
+                      gameShelfId}
+                  })
+    step 3: add boardgame to shelf that is selected
+              await ShelvesToGame.create({
+                boardGameId,
+                gameShelfId
+              })
+    step 4:  res.json({message: 'Success'})
+
+    */
+  } else {
+    /*
+    // selected choose fail
+    res.json ({message: 'Remove})
+    */
+  }
+
+
+  // if (checked === 'true') {
+  //   // add game to shelf
+  //   await ShelvesToGame.create({
+  //     boardGameId,
+  //     gameShelfId
+  //   })
+  // } else {
+  //   // remove game from shelf
+  //   await ShelvesToGame.destroy({
+  //     where: {
+  //       boardGameId,
+  //       gameShelfId}
+  //   })
+  // }
+  res.json({message: 'Success'})
+
+}))
 
 // ---------------- REVIEWS ROUTES ----------------------
 
