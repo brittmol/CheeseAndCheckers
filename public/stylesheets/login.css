@@ -1,0 +1,78 @@
+.login_div {
+  width: 50%; 
+  max-width: 500px;
+  min-width: fit-content;
+  margin: 100px auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #84291b;
+  padding: 20px; 
+  border-radius: 30px;
+}
+
+#login_h1 {
+  font-family: sans-serif;
+  color: #fbfff1;
+  margin-bottom: 15px;
+}
+
+.login_form {
+  width: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login_form input {
+  height: 25px;
+  width: 4fr;
+  color: #0b0d0a;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  padding-left: 10px;
+  color: #0b0d0a;
+}
+
+.login_form_div {
+  display: flex;
+
+}
+.login_page_button {
+  align-self: center; 
+  width: fit-content;
+  margin: 10px 0 0 0;
+  background-color: #0b0d0a;
+}
+
+.login_page_button:hover {
+  background-color: #1a1c19
+}
+
+.login_form_div p {
+ align-self: center;
+}
+
+#need_account_txt {
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s ease 0s;
+}
+
+#need_account_txt:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fbfff1;
+  transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  width: 0;
+}
+
+#need_account_txt:hover:after {
+  width: 100%;
+  left: 0;
+}
