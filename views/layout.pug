@@ -27,6 +27,7 @@ html
           li: a(href='#') About Us
         div.burger.burger_open: i(class="fas fa-bars fa-lg")
         div.burger.burger_close: i(class="fas fa-times fa-lg")
+
       if locals.authenticated
         div(class="text_medium" id="welcome_text") Welcome #{user.username}!
         form(action='/users/logout' method='post')

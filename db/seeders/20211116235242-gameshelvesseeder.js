@@ -6,13 +6,13 @@ module.exports = {
       'GameShelves',
       [
         {
-          shelfName: "Played",
+          shelfName: "Want to Play",
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          shelfName: "Want to Play",
+          shelfName: "Played",
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -24,17 +24,23 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          shelfName: "family",
+          shelfName: "Family",
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          shelfName: "strategy",
+          shelfName: "Strategy",
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
-        }
+        },
+        {
+          shelfName: "Party Games",
+          userId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {});
   },
