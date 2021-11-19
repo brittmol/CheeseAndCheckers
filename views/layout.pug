@@ -27,7 +27,7 @@ html
         ul(class="nav_links")
           li: a(href='/boardgames') Board Games
           li: a(href='/gameshelves') My Board Games
-          li: a(href='#') About Us
+          li: a(href='/about') About Us
         div.burger.burger_open: i(class="fas fa-bars fa-lg")
         div.burger.burger_close: i(class="fas fa-times fa-lg")
 
@@ -40,7 +40,7 @@ html
           a(href='/users/login'): button Log In
           a(href='/users/signup'): button Sign Up
           form( action='/users/demo-user' method='post')
-            button( type='submit' id="log_out") Demo Use
+            button( type='submit' id="log_out") Demo User 
 
 
     block content
