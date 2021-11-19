@@ -3,7 +3,7 @@
  .boardGameTitle {
    display:flex;
    justify-content: center;
-   background-color: aquamarine;
+
    font-size: xx-large;
    color:black;
    font-size: 500%;
@@ -16,6 +16,7 @@
      /* green */
   }
   .boardGameImage{
+      margin-top: 50px;
 height:300px;
 width:auto;
 box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
@@ -29,7 +30,7 @@ box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
     display: flex;
     justify-content: center;
     grid-area: sidebar;
-    background-color: indianred; /* red */
+
     font-size: 200%;
   }
 

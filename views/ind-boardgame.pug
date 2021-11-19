@@ -3,11 +3,12 @@ extends layout
 block content
 
   div(class='meta')
+    li(class='image'): img(src=`${boardGame.image}` class='boardGameImage')
     h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
 
     h3(class='company')= boardGame.company
     ul
-      li(class='image'): img(src=`${boardGame.image}` class='boardGameImage')
+
     if userId
     div(class='select')
       label(for='gameShelves' id='gameShelvesSelect') Playing Status:
