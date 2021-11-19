@@ -20,35 +20,12 @@ const router = express.Router();
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    // need this to be specific to game
-    const boardGameId = 1
-    // -----------------------
     const boardGames = await BoardGame.findAll();
     if (req.session.auth) {
       const userId = req.session.auth.userId;
-      const gameShelves = await GameShelf.findAll({ where: {userId}});
-      const mainGameShelves = []
-      gameShelves.forEach(shelfObj => {
-        if(shelfObj.shelfName === 'Played' || shelfObj.shelfName === 'Want to Play') {
-          mainGameShelves.push(shelfObj)
-        }
-      })
-
-      const shelvesWithGameSet = new Set()
-      const shelvesWithGameArray = await GameShelf.findAll({
-        include: {
-          model: BoardGame,
-          where: {id: boardGameId}
-        }
-      })
-      shelvesWithGameArray.forEach(shelfObj => {
-        shelvesWithGameSet.add(shelfObj.id)
-      })
       return res.render("boardgames", {
         boardGames,
         userId,
-        mainGameShelves,
-        shelvesWithGameSet,
       });
     } else {
       res.render("boardgames", {
@@ -60,18 +37,30 @@ router.get(
 
 
 // ----------- Search function -----------------
-// router.post('/', asyncHandler(async (req, res) => {
-//   const { term } = req.body
-//   const boardGames = await BoardGame.findAll({
-//     where: {
-//       title: {
-//         [Op.iLike]: `%${term}%`
-//       }
-//     },
-//   })
-
-//   if (req.session.auth) {
-//   .... copy rest from '/'
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { term } = req.body
+    const boardGames = await BoardGame.findAll({
+      where: {
+        title: {
+          [Op.iLike]: `%${term}%`
+        }
+      },
+    })
+    if (req.session.auth) {
+      const userId = req.session.auth.userId;
+      return res.render("boardgames", {
+        boardGames,
+        userId,
+      });
+    } else {
+      res.render("boardgames", {
+        boardGames,
+      });
+    }
+  })
+);
 
 
 // -------------- individual board game route -------------
@@ -98,26 +87,31 @@ router.get(
         }
       })
 
-      const shelvesWithGameSet = new Set()
       // this array has all of the game shelves that include the game we are currently looking at
       const shelvesWithGameArray = await GameShelf.findAll({
+        where: { userId },
         include: {
           model: BoardGame,
           where: {id: boardGameId}
         }
       })
-      // console.log('.......games.......')
-      // console.log(shelvesWithGameArray[0])
+
+      // const gameOnMainGameShelfId = null
+      // shelvesWithGameArray.forEach(shelfObj => {
+      //   if (shelfObj.id === mainGameShelves[0].id) {
+      //     gameOnMainGameShelfId =
+      //   }
+      // })
+
 
       // this is iterating over an array to create a set that adds shelves that contain the game we are looking at currently
       // we put it into a Set so the pug template to use Set.has() function
       // could have used array.include, but that is O(n) and Set is O(1)
+      const shelvesWithGameSet = new Set()
       shelvesWithGameArray.forEach(shelfObj => {
         shelvesWithGameSet.add(shelfObj.id)
       })
 
-      // theres an error in this code
-      // console.log('reviews === ', reviews)
       let usersReviews=[]
       let notUsersReviews= []
       reviews.forEach(review=>{
@@ -128,6 +122,9 @@ router.get(
         }
       })
        reviews= [...usersReviews,...notUsersReviews]
+
+      console.log("Main Shelves ===", mainGameShelves)
+      console.log("shelvesWithGameSet ===", shelvesWithGameSet)
 
       return res.render("ind-boardgame", {
         boardGame,
@@ -147,7 +144,7 @@ router.get(
 );
 
 // ---------------- edit game shelves on individual board game page -------------------
-
+// checkboxes
 router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async(req, res) => {
   const boardGameId = req.params.boardgameid
   const gameShelfId = req.params.gameshelfid
@@ -167,29 +164,41 @@ router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async
     })
   }
   res.json({message: 'Success'})
-
 }))
 
 
+// drop down (playing status)
+router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)", asyncHandler(async(req, res) => {
+  const boardGameId = req.params.boardgameid
+  // we need to do parseInt because the choose option value is = 0, which is falsey, but "0" is truthy
+  const gameShelfId = parseInt(req.params.gameshelfid, 10)
+  if (gameShelfId) {  // 1 or 2 (not 0)
+    // step 1: find the shelf object that is "Want to Play" and "Played"
+    wantToPlayShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Want to Play' }})
+    playedShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Played' }})
+    // step 2: check if board game is on either of those shelves
+    // if boardgame is on wantShelf, remove it
+    // if boardgame is on playedShelf, remove it
+      await ShelvesToGame.destroy({
+        where: {
+          boardGameId,
+          gameShelfId}
+      })
+    // step 3: add boardgame to shelf that is selected
+      await ShelvesToGame.create({
+        boardGameId,
+        gameShelfId
+      })
+
+    // step 4:
+    res.json({message: 'Success'})
+
+  // } else {
+  //   res.json ({message: 'Remove})
+  }
+}))
 
 // ---------------- REVIEWS ROUTES ----------------------
-
-//How to display user's reviews at the top:
-// iterate over arr (all reviews), if userId matches logged in user id
-    // put it in user's reviews, if so
-
-// allReviews: iterate over, do conditional check: if current logged in user's id matches the review's userId
-
-//Push into these two arrays:
-// usersReviews
-// notUsersReviews
-// reviews = [...usersReviews, ...nothTheirReviews]
-// then iterate over this array
-
-// How to create trash can/"X" to delete dynamically using AJAX?
-// in pug template: conditionally if reviewUserID = loggedInUserId, add HTML to click delete/edit
-// on backedn, check if the user has permission to actually delete is (does their userId match the review's user id)
-
 
 router.get(
   "/:id/reviews/new",
@@ -203,7 +212,6 @@ router.get(
     res.render("review-new", {
       csrfToken: req.csrfToken(),
       boardGame,
-      // NTS: image: boardGame.image,
       linkToGame: `/boardgames/${id}`,
     });
   })

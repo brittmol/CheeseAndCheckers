@@ -1,12 +1,10 @@
-- 404 error for redirecting after posting a review for a board game
-- adding image column (rather than undo migrating)
-- heroku
-- dom manipulation (played status and gameShelves)
+Jedd
+- add game shelf
+
+Brittany
+- drop down still not saving (selected part)
+- can't find boardgameid specific to drop down in /boardgames
+- search functionality no longer working
+- cant repopulate search function
 
 
-
-TODO
-- seed reviews
-- add image column
-- S & M: continue reviews (new, edit, delete), nav bar, buttons
-- B & J: continue gameShelves, look at how to add boardGames to lists, look into DOM manipulation
