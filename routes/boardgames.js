@@ -96,14 +96,6 @@ router.get(
         }
       })
 
-      // const gameOnMainGameShelfId = null
-      // shelvesWithGameArray.forEach(shelfObj => {
-      //   if (shelfObj.id === mainGameShelves[0].id) {
-      //     gameOnMainGameShelfId =
-      //   }
-      // })
-
-
       // this is iterating over an array to create a set that adds shelves that contain the game we are looking at currently
       // we put it into a Set so the pug template to use Set.has() function
       // could have used array.include, but that is O(n) and Set is O(1)
@@ -123,8 +115,8 @@ router.get(
       })
        reviews= [...usersReviews,...notUsersReviews]
 
-      console.log("Main Shelves ===", mainGameShelves)
-      console.log("shelvesWithGameSet ===", shelvesWithGameSet)
+      // console.log("Main Shelves ===", mainGameShelves)
+      // console.log("shelvesWithGameSet ===", shelvesWithGameSet)
 
       return res.render("ind-boardgame", {
         boardGame,
@@ -144,58 +136,84 @@ router.get(
 );
 
 // ---------------- edit game shelves on individual board game page -------------------
+
+// ---------- helper functions ---------------
+const checkIfGameOnShelf = (boardGameId, shelfGamesArray) => {
+  const shelfGamesSet = new Set()
+  shelfGamesArray.forEach(gameObj => shelfGamesSet.add(gameObj.id))
+  return shelfGamesSet.has(boardGameId)
+}
+
+const removeGameFromShelf = async(boardGameId, gameShelfId) => {
+  await ShelvesToGame.destroy({
+    where: {
+      boardGameId,
+      gameShelfId}
+  })
+}
+
+const addGameToShelf = async(boardGameId, gameShelfId) => {
+  await ShelvesToGame.create({
+      boardGameId,
+      gameShelfId
+  })
+}
+
+
 // checkboxes
-router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", asyncHandler(async(req, res) => {
+router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)/:checked", requireAuth, asyncHandler(async(req, res) => {
   const boardGameId = req.params.boardgameid
   const gameShelfId = req.params.gameshelfid
   const checked = req.params.checked
+  console.log('boardGameId ===', boardGameId)
+  console.log('gameShelfId ===', gameShelfId)
   if (checked === 'true') {
-    // add game to shelf
-    await ShelvesToGame.create({
-      boardGameId,
-      gameShelfId
-    })
+    await addGameToShelf(boardGameId, gameShelfId)
   } else {
-    // remove game from shelf
-    await ShelvesToGame.destroy({
-      where: {
-        boardGameId,
-        gameShelfId}
-    })
+    await removeGameFromShelf(boardGameId, gameShelfId)
   }
   res.json({message: 'Success'})
 }))
 
 
 // drop down (playing status)
-router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)", asyncHandler(async(req, res) => {
-  const boardGameId = req.params.boardgameid
+router.put("/:boardgameid(\\d+)/:gameshelfid(\\d+)", requireAuth, asyncHandler(async(req, res) => {
+  const userId = req.session.auth.userId;
+  // need it to strictly be a number to use in the Set
+  const boardGameId = parseInt(req.params.boardgameid, 10)
   // we need to do parseInt because the choose option value is = 0, which is falsey, but "0" is truthy
   const gameShelfId = parseInt(req.params.gameshelfid, 10)
+
+  const wantToPlayShelf = await GameShelf.findOne({
+    where: {
+      userId,
+      shelfName: 'Want to Play'
+    },
+    include: [BoardGame]
+  })
+
+  const playedShelf = await GameShelf.findOne({
+    where: {
+      userId,
+      shelfName: 'Played'
+    },
+    include: [BoardGame]
+  })
+
+  const gameIsOnWTP = checkIfGameOnShelf(boardGameId, wantToPlayShelf.BoardGames)
+  const gameIsOnPlayed = checkIfGameOnShelf(boardGameId, playedShelf.BoardGames)
+
+  if (gameIsOnWTP) await removeGameFromShelf(boardGameId, wantToPlayShelf.id)
+  if (gameIsOnPlayed) await removeGameFromShelf(boardGameId, playedShelf.id)
+
+
   if (gameShelfId) {  // 1 or 2 (not 0)
-    // step 1: find the shelf object that is "Want to Play" and "Played"
-    wantToPlayShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Want to Play' }})
-    playedShelf = await GameShelf.findAll({ where: {userId, shelfName: 'Played' }})
-    // step 2: check if board game is on either of those shelves
-    // if boardgame is on wantShelf, remove it
-    // if boardgame is on playedShelf, remove it
-      await ShelvesToGame.destroy({
-        where: {
-          boardGameId,
-          gameShelfId}
-      })
-    // step 3: add boardgame to shelf that is selected
-      await ShelvesToGame.create({
-        boardGameId,
-        gameShelfId
-      })
-
-    // step 4:
-    res.json({message: 'Success'})
-
-  // } else {
-  //   res.json ({message: 'Remove})
+    await addGameToShelf(boardGameId, gameShelfId)
+    res.json({message: 'Added'})
+  } else {  // picked -- choose option --- (0)
+    res.json ({message: 'Removed'})
   }
+
 }))
 
 // ---------------- REVIEWS ROUTES ----------------------
