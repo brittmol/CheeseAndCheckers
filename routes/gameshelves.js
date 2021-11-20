@@ -36,6 +36,12 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     }
   })
 
+  console.log("wantToPlayShelf ===", wantToPlayShelf)
+  console.log("playedShelf ===", playedShelf)
+  console.log("favoritesShelf ===", favoritesShelf)
+  console.log("otherGameShelves ===", otherGameShelves)
+
+
   // this array has all of the board games that include the shelf we are currently looking at
   const allGamesOfUserSet = new Set()
   const allGamesOfUserArray = await BoardGame.findAll({
@@ -146,14 +152,14 @@ router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
         gameShelfId: id
       }
     });
-  
+
     await GameShelf.destroy({
       where: {
         id,
       }
     })
     res.json({message: "success"})
-    
+
   } else {
     res.json({message: "failure"})
   }
