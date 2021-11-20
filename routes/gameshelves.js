@@ -147,6 +147,12 @@ router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
   const shelfToDelete = await GameShelf.findByPk(id)
   console.log("shelftToDelete =", shelfToDelete)
   if (shelfToDelete) {
+    await ShelvesToGame.destroy({
+      where: {
+        gameShelfId: id
+      }
+    })
+
     await shelfToDelete.destroy({
       where: {
         gameShelfId: id
