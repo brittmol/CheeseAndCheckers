@@ -1,4 +1,5 @@
 Britt
+- fix new signup shelves
 - gameshelf (singular) page
 - scoreCard Description box
 - look into old projects for 404 page
