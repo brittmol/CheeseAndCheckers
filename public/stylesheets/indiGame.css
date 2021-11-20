@@ -1,92 +1,76 @@
+.boardGameTitle {
+  display: flex;
+  justify-content: center;
 
+  color: #662015;
+  font-size: 400%;
+}
+.boardGameTitle:hover {
+  transform: translateY(-1px);
+}
+.image {
+  display: flex;
+  justify-content: center;
 
- .boardGameTitle {
-   display:flex;
-   justify-content: center;
+  /* green */
+}
+.boardGameImageIndiv {
+  margin-top: 50px;
+  height: 300px;
+  width: auto;
+  box-shadow: -10px 10px rgba(0, 0, 0, 0.142);
+}
 
+.company {
+  display: flex;
+  justify-content: center;
+  grid-area: sidebar;
+  color: whitesmoke;
+  font-size: 100%;
+}
 
-   color:#662015;
-   font-size: 400%;
+#gameShelvesSelect:hover {
+  transform: translateY(-2px);
+}
 
-  }
-  .boardGameTitle:hover{
+#gameShelvesSelect {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-radius: 9px;
+}
+#dropDown {
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+}
 
-      transform: translateY(-1px);
-  }
-  .image {
-      display: flex;
-    justify-content: center;
+.summary {
+  color: whitesmoke;
+  padding: 10px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
 
-     /* green */
-  }
-  .boardGameImage{
-      margin-top: 50px;
-height:300px;
-width:auto;
-box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
-  }
-
-  .boardGameImage:hover{
-    transform: translateY(-4px);
-
-  }
-  .company {
-    display: flex;
-    justify-content: center;
-    grid-area: sidebar;
-    color:whitesmoke;
-    font-size: 100%;
-  }
-
-
-  #gameShelvesSelect:hover{
-    transform: translateY(-2px);
-  }
-
-  #gameShelvesSelect{
-
-      display: flex;
-      justify-content: center;
-      padding: 10px;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-top: 20px;
-      border: 1px solid black ;
-      border-radius: 9px;
-
-
-  }
-  #dropDown{
-    background-color: yellow;
-    display: flex;
-    justify-content: center;
-  }
-
-  .summary{
-    color:whitesmoke;
-    padding: 10px;
-    margin-left: 25%;
-    margin-right:25%;
-  }
-
-  .review{
-      color: #FBFFF1;
+.review {
+  color: #fbfff1;
   font-weight: bolder;
   margin-left: 20px;
   padding: 10px 25px;
-  background-color: #84291B;
+  background-color: #84291b;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition:  all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.review:hover {
+  background-color: #662015;
+}
 
-  }
-  .review:hover{
-    background-color: #662015
-  }
-
-
-
-  /* .select{
+/* .select{
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -97,39 +81,34 @@ box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
     "footer footer footer footer";
 
 } */
-.wrap{
-    display: flex;
-    justify-content: center;
+.wrap {
+  display: flex;
+  justify-content: center;
 }
-.wrap2{
-    display: flex;
-    justify-content: center;
+.wrap2 {
+  display: flex;
+  justify-content: center;
 }
 #gameShelvesSelect {
   grid-area: header;
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 #gameShelves {
-
   color: white;
 
-margin-top: 10px;
-font-weight: bolder;
-
+  margin-top: 10px;
+  font-weight: bolder;
 }
 .item-3 {
   grid-area: sidebar;
   background-color: indianred; /* red */
 }
 .checkLi {
-
-
- display:flex;
- justify-content: center;
-padding: 5px;
-align-items: center;
-
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  align-items: center;
 }
 /* .label{
     display: flex;
@@ -140,93 +119,85 @@ align-items: center;
     align-items: center;
 } */
 
-
-.editButton{
-    color: #FBFFF1;
-    font-weight: bolder;
-    margin-left: 20px;
-    padding: 10px 25px;
-    background-color: #84291B;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition:  all 0.5s ease 0s;
+.editButton {
+  color: #fbfff1;
+  font-weight: bolder;
+  margin-left: 20px;
+  padding: 10px 25px;
+  background-color: #84291b;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.5s ease 0s;
 }
 
-.editButton:hover{
-    background-color: #662015
+.editButton:hover {
+  background-color: #662015;
 }
 
-.reviewLi{
-display: flex;
-justify-content: center;
-margin-top: 15px;
+.reviewLi {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
 }
 
-
-.indiComments{
-
-    color: white;
-    padding:10px;
-    margin-top:30px;
-    list-style-type: none;
-    width:95%;
-    margin-left: 22px;
-    margin-bottom: 30px;
+.indiComments {
+  color: white;
+  padding: 10px;
+  margin-top: 30px;
+  list-style-type: none;
+  width: 95%;
+  margin-left: 22px;
+  margin-bottom: 30px;
 }
-.comments{
-    list-style-type: none;
+.comments {
+  list-style-type: none;
 
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
-.commentTitle{
-    font-size: 30px;
+.commentTitle {
+  font-size: 30px;
 }
-.loggedOutReview{
-    color: #FBFFF1;
-    font-weight: bolder;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-   margin-left: 10px;
-    padding: 10px;
-    background-color: #84291B;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition:  all 0.5s ease 0s;
-    list-style-type: none;
-    width:250px;
-    display: flex;
-    justify-content: center;
-    font-weight: bolder;
+.loggedOutReview {
+  color: #fbfff1;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #84291b;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.5s ease 0s;
+  list-style-type: none;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
 }
-.loggedOutReview:hover{
-    background-color: #662015
-}
-
-.reviewTitle{
-    color: #FBFFF1;
-    font-weight: bolder;
-
-
-    width:5.5%;
-    padding: 10px;
-
-    border-radius: 50px;
-    margin-left: 40px;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    font-size:30px;
-
-
-
+.loggedOutReview:hover {
+  background-color: #662015;
 }
 
+.reviewTitle {
+  color: #fbfff1;
+  font-weight: bolder;
 
-.wrap3{
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+  width: 5.5%;
+  padding: 10px;
+
+  border-radius: 50px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.wrap3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
