@@ -5,9 +5,10 @@ block content
 
   ul(id="shelfList") My Game Shelves:
     each shelf in gameShelves
-      li(id='shelfLi'): a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
-      button(type="submit" id='shelfEditBtn') edit
-      button(type="submit" id='shelfDeleteBtn') X 
+      li(class='shelfLi' id=`shelf-${shelf.id}`)
+        a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
+        button(type="submit" class='shelfEditBtn') edit
+        button(type="submit" class='shelfDeleteBtn') X 
   br
   h3 Add a Game Shelf
   div(id='createAddShelf')
