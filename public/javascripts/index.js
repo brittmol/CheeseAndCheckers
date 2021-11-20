@@ -73,68 +73,68 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
 
 // ----- when "add game shelf" is clicked, an input box will appear -------
-    const addShelfBtn = document.getElementById('addShelfBtn');
-    const createAddShelf = document.getElementById("createAddShelf");
+//     const addShelfBtn = document.getElementById('addShelfBtn');
+//     const createAddShelf = document.getElementById("createAddShelf");
 
-    addShelfBtn.addEventListener("click", (event) => {
-        createAddShelf.removeChild(addShelfBtn)
+//     addShelfBtn.addEventListener("click", (event) => {
+//         createAddShelf.removeChild(addShelfBtn)
 
-        const inputShelf = document.createElement("input");
-        inputShelf.name = "shelfInput";
-        inputShelf.type = 'text';
+//         const inputShelf = document.createElement("input");
+//         inputShelf.name = "shelfInput";
+//         inputShelf.type = 'text';
         
-        const addShelf = document.createElement("button");
-        addShelf.innerText = "Add a Shelf";
-        addShelf.type = "submit";
+//         const addShelf = document.createElement("button");
+//         addShelf.innerText = "Add a Shelf";
+//         addShelf.type = "submit";
         
-        createAddShelf.appendChild(inputShelf);
-        createAddShelf.appendChild(addShelf);
+//         createAddShelf.appendChild(inputShelf);
+//         createAddShelf.appendChild(addShelf);
 
-        const createHtmlShelf = (shelfName, shelfId) => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
+//         const createHtmlShelf = (shelfName, shelfId) => {
+//             const li = document.createElement("li");
+//             const a = document.createElement("a");
 
-            const editBtn = document.createElement("button")
-            editBtn.innerText = 'edit'
-            editBtn.id = 'shelfEditBtn'
+//             const editBtn = document.createElement("button")
+//             editBtn.innerText = 'edit'
+//             editBtn.id = 'shelfEditBtn'
 
-            const deleteBtn = document.createElement("button")
-            deleteBtn.innerText = 'X'
-            deleteBtn.id = 'shelfDeleteBtn'
+//             const deleteBtn = document.createElement("button")
+//             deleteBtn.innerText = 'X'
+//             deleteBtn.id = 'shelfDeleteBtn'
 
-            a.setAttribute("href", `/gameshelves/${shelfId}`);
-            a.innerText = shelfName;
+//             a.setAttribute("href", `/gameshelves/${shelfId}`);
+//             a.innerText = shelfName;
 
-            li.appendChild(a);
-            li.appendChild(editBtn)
-            li.appendChild(deleteBtn)
-            return li;
-        }
+//             li.appendChild(a);
+//             li.appendChild(editBtn)
+//             li.appendChild(deleteBtn)
+//             return li;
+//         }
 
-        const appendNewShelf = htmlshelf => {
-            const shelfList = document.getElementById("shelfList");
-            shelfList.appendChild(htmlshelf);
-        }
+//         const appendNewShelf = htmlshelf => {
+//             const shelfList = document.getElementById("shelfList");
+//             shelfList.appendChild(htmlshelf);
+//         }
 
-        const revertHtml = () => {
-            createAddShelf.removeChild(inputShelf)
-            createAddShelf.removeChild(addShelf)
-            createAddShelf.appendChild(addShelfBtn)
-        }
+//         const revertHtml = () => {
+//             createAddShelf.removeChild(inputShelf)
+//             createAddShelf.removeChild(addShelf)
+//             createAddShelf.appendChild(addShelfBtn)
+//         }
 
-        addShelf.addEventListener("click", async(e) => {
-            let result
-            await fetch(`/gameshelves/${inputShelf.value}`, {
-                method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-                headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
-            }).then( async(response) => result = await response.json());
-            console.log("result =", result.newShelfId);
-            const shelfId = result.newShelfId;
-            if (Number(shelfId)) {
-                const htmlShelf = createHtmlShelf(inputShelf.value, shelfId);
-                appendNewShelf(htmlShelf);
-                revertHtml();
-            }
-        })
-    })
-})
+//         addShelf.addEventListener("click", async(e) => {
+//             let result
+//             await fetch(`/gameshelves/${inputShelf.value}`, {
+//                 method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+//                 headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
+//             }).then( async(response) => result = await response.json());
+//             console.log("result =", result.newShelfId);
+//             const shelfId = result.newShelfId;
+//             if (Number(shelfId)) {
+//                 const htmlShelf = createHtmlShelf(inputShelf.value, shelfId);
+//                 appendNewShelf(htmlShelf);
+//                 revertHtml();
+//             }
+//         })
+//     })
+ })
