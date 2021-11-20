@@ -113,8 +113,7 @@ justify-content: center;
 #gameShelves {
 
   color: white;
-  display:flex;
-  justify-content: center;
+
 margin-top: 10px;
 font-weight: bolder;
 
@@ -126,8 +125,8 @@ font-weight: bolder;
 .checkLi {
 
 
-  display: flex;
-justify-content: center;
+ display:flex;
+ justify-content: center;
 padding: 5px;
 align-items: center;
 
@@ -166,10 +165,8 @@ margin-top: 15px;
 
 
 .indiComments{
-    background-color:white;
-    color: black;
-    border: 1px solid black ;
-    border-radius: 9px;
+
+    color: white;
     padding:10px;
     margin-top:30px;
     list-style-type: none;
