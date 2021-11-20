@@ -73,26 +73,25 @@ window.addEventListener("load", (event) => {
     liList.forEach( li => {
         
         const liKids = li.childNodes
-        console.log(liKids)
         const aTag = liKids[0]
         const shelfEditBtn = liKids[1];
         const shelfDeleteBtn = liKids[2];
         const specificId = li.id.split('-')[1]
-
+        console.log(specificId)
         
         shelfDeleteBtn.addEventListener("click", async(event) => {
             const confirmed = confirm(`Are you sure you want to Delete "${aTag.innerText}" game shelf?`)
             if (confirmed) {
-                await fetch(`/gameshelves/${specificId}`, {
+                let res = await fetch(`/gameshelves/${specificId}`, {
                     method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
                     headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
-                }).then(async(response) => {
-                    const result = await response.json();
-                    console.log(result.message)
-                    if (result.message === "success") {
-                        li.remove()
-                    }
-                });
+                })
+                const result = await res.json();
+                console.log(result.message)
+                if (result.message === "success") {
+                    li.remove()
+                }
+                
             }
         });
         

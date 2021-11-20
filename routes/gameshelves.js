@@ -110,24 +110,30 @@ router.put("/:oldShelfId/:newShelfName", requireAuth, asyncHandler(async (req, r
   });
 }))
 
-router.delete('/:id(\\d+)', (req, res) => {
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
   const id = req.params.id
   console.log(id)
-  ShelvesToGame.delete({
-    where: {
-      gameShelfId: id
-    }
-  });
+  const shelfToDelete = await GameShelf.findByPk(id)
+  console.log("shelftToDelete =", shelfToDelete)
+  if (shelfToDelete) {
+    await shelfToDelete.destroy({
+      where: {
+        gameShelfId: id
+      }
+    });
+  
+    await GameShelf.destroy({
+      where: {
+        id,
+      }
+    })
+    res.json({message: "success"})
+    
+  } else {
+    res.json({message: "failure"})
+  }
 
-  GameShelf.destroy({
-    where: {
-      id,
-    }
-  })
-
-  res.json({message: "success"})
-})
-
+}))
 
 
 module.exports = router;
