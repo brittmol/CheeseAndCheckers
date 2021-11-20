@@ -67,7 +67,7 @@ window.addEventListener("load", (event) => {
         })
     })
 
-    const liList = document.querySelectorAll('.shelfLi')
+    const liList = document.querySelectorAll('.shelfLi2')
     console.log(liList)
     
     liList.forEach( li => {
