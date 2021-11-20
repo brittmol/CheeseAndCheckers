@@ -1,23 +1,30 @@
 extends layout
 
 block content
-  h1 My Board Games
+  main.main_gameShelves
+    div.side_bar
+      div.shelf_text_header
+        h1#my_board_games My Board Games
+        h3.text_medium#my_game_shelves My Game Shelves:
+      ul(id="shelfList")
+        li(id='shelfLi'): a(href=`/gameshelves/${wantToPlayShelf.id}`)= wantToPlayShelf.shelfName
+        li(id='shelfLi'): a(href=`/gameshelves/${playedShelf.id}`)= playedShelf.shelfName
+        li(id='shelfLi'): a(href=`/gameshelves/${favoritesShelf.id}`)= favoritesShelf.shelfName
+        each shelf in otherGameShelves
+          li(id='shelfLi')
+            a#game_shelf_link(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
+            button(type="submit" id='shelfEditBtn'): i(class="fas fa-edit")
+            button(type="submit" id='shelfDeleteBtn'): i(class="far fa-trash-alt")
+      div(id='createAddShelf')
+        button(id='addShelfBtn') Add a Game Shelf:
 
-  ul(id="shelfList") My Game Shelves:
-    li(id='shelfLi'): a(href=`/gameshelves/${wantToPlayShelf.id}`)= wantToPlayShelf.shelfName
-    li(id='shelfLi'): a(href=`/gameshelves/${playedShelf.id}`)= playedShelf.shelfName
-    li(id='shelfLi'): a(href=`/gameshelves/${favoritesShelf.id}`)= favoritesShelf.shelfName
-    each shelf in otherGameShelves
-      li(id='shelfLi'): a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
-      button(type="submit" id='shelfEditBtn') edit
-      button(type="submit" id='shelfDeleteBtn') X
-  br
-  h3 Add a Game Shelf
-  div(id='createAddShelf')
-    button(id='addShelfBtn') Add a Game Shelf:
-
-  div
-    ul All My Saved Board Games:
-      each boardGame in allGamesOfUser
-        li= boardGame.title
-        li: img(src=`${boardGame.image}` class='boardGameImage')
+    section(class="cards gameshelf_cards")
+      each game in allGamesOfUser
+        div(class="card gameshelf_card"): a(href=`/boardgames/${game.id}` id="card_link")
+          div.card_img-container
+            img(src=`${game.image}` class='card_img-container boardGameImage')
+          div.card_content
+            p(class="card_title text_medium")= game.title
+            p(class="text_small")=game.company
+            div.card_info
+              p(class="text_small card_info")=game.summary

@@ -1,0 +1,101 @@
+.side_bar {
+  display: flex;
+  flex-direction: column;
+  background-color: #0b0d0a;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.shelf_text_header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: #f9b427 2px solid;
+  padding: 15px;
+}
+
+#my_game_shelves {
+  font-weight: bolder;
+  padding-top: 15px;
+}
+
+.main_gameShelves {
+  margin-left: 50px;
+}
+
+#shelfList {
+  padding-left: 10px;
+}
+
+#shelfLi {
+  list-style: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+}
+
+#shelfEditBtn,
+#shelfDeleteBtn {
+  padding: 0;
+  border-radius: 0px;
+  background-color: #0b0d0a;
+  border-radius: 100px;
+}
+
+.fa-edit,
+.fa-trash-alt {
+  color: #878884;
+  width: 15px;
+}
+
+#game_shelf_link {
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s ease 0s;
+  margin-top: 5px;
+}
+
+#game_shelf_link:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fbfff1;
+  transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  width: 0;
+}
+
+#game_shelf_link:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+#createAddShelf {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+
+#addShelfBtn {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+#createAddShelf input {
+  height: 25px;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #0b0d0a;
+  width: 80%;
+  margin-left: 10px;
+}
+
+#my_board_games {
+  color: #f9b427;
+}
