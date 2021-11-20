@@ -4,25 +4,64 @@
   align-items: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-areas:
-    "A B"
-    "C D";
+.allDevs {
+  display: flex;
+  flex-direction: column;
 }
 
-.brittanyContent {
+.topHalf {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: space-between;
+  width: 1200px;
+}
+
+.bottomHalf {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: space-between;
+  width: 1200px;
+}
+
+.devContent {
   grid-area: "A";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 400px;
+  height: 300px;
+  border-radius: 100px;
+  width: 500px;
+  height: 600px;
+  background-color: black;
+  color: aliceblue;
+  justify-content: space-between;
+  box-shadow: -9px 9px 10px 1px #f9b427;
 }
 
-.jeddContent {
-  grid-area: "B";
+.img {
+  border-radius: 300px;
+  width: 200px;
+  height: 200px;
+  float: top;
 }
 
-.maxContent {
-  grid-area: "C";
+.h2P {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
 }
 
-.shannonContent {
-  grid-area: "D";
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
 }
