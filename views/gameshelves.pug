@@ -7,7 +7,11 @@ block content
         h1#my_board_games My Board Games
         h3.text_medium#my_game_shelves My Game Shelves:
       ul(id="shelfList")
-        each shelf in gameShelves
+        li(class='shelfLi'): a(href=`/gameshelves}`) All Games
+        li(class='shelfLi'): a(href=`/gameshelves/${wantToPlayShelf.id}`)= wantToPlayShelf.shelfName
+        li(class='shelfLi'): a(href=`/gameshelves/${playedShelf.id}`)= playedShelf.shelfName
+        li(class='shelfLi'): a(href=`/gameshelves/${favoritesShelf.id}`)= favoritesShelf.shelfName
+        each shelf in otherGameShelves
           li(class='shelfLi' id=`shelf-${shelf.id}`)
             a#game_shelf_link(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
             button(type="submit" id='shelfEditBtn'): i(class="fas fa-edit")
