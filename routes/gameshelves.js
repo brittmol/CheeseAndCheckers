@@ -36,54 +36,54 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
 
 
 // // --------------------------------------
-// // instead of having another route, we should filter the page instead
-// // --------------------------------------
-// router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
-//   const userId = req.session.auth.userId
-//   const gameShelfId = req.params.id
-//   const gameShelves = await GameShelf.findAll({
-//     where: { userId }
-//   })
-//   const gameShelf = await GameShelf.findByPk(gameShelfId, {
-//     where: { userId }
-//   })
-//   // console.log(gameShelf.shelfName)
+// instead of having another route, we should filter the page instead
+// --------------------------------------
+router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
+  const userId = req.session.auth.userId
+  const gameShelfId = req.params.id
+  const gameShelves = await GameShelf.findAll({
+    where: { userId }
+  })
+  const gameShelf = await GameShelf.findByPk(gameShelfId, {
+    where: { userId }
+  })
+  // console.log(gameShelf.shelfName)
 
-//   // this array has all of the board games that include the shelf we are currently looking at
-//   const allGamesOfUserSet = new Set()
-//   const allGamesOfUserArray = await BoardGame.findAll({
-//     include: {
-//       model: GameShelf,
-//       where: {
-//         id: gameShelfId,
-//         userId
-//       }
-//     }
-//   })
-//   allGamesOfUserArray.forEach(gameObj => {
-//     allGamesOfUserSet.add(gameObj)
-//   })
-//   allGamesOfUser = Array.from(allGamesOfUserSet)
+  // this array has all of the board games that include the shelf we are currently looking at
+  const allGamesOfUserSet = new Set()
+  const allGamesOfUserArray = await BoardGame.findAll({
+    include: {
+      model: GameShelf,
+      where: {
+        id: gameShelfId,
+        userId
+      }
+    }
+  })
+  allGamesOfUserArray.forEach(gameObj => {
+    allGamesOfUserSet.add(gameObj)
+  })
+  allGamesOfUser = Array.from(allGamesOfUserSet)
 
-//   // console.log(gameShelves)
-//   res.render("gameshelf", {
-//     gameShelves,
-//     gameShelf,
-//     allGamesOfUser
-//   })
-// }));
+  // console.log(gameShelves)
+  res.render("gameshelf", {
+    gameShelves,
+    gameShelf,
+    allGamesOfUser
+  })
+}));
 
 
-// router.put("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
-//   const userId = req.session.auth.userId;
-//   console.log(req.body);
-//   const shelfName = req.params.newshelf;
-//   const newShelf = await GameShelf.create({
-//     shelfName,
-//     userId
-//   });
-//   res.json({ newShelfId: newShelf.id })
-// }));
+router.put("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
+  const userId = req.session.auth.userId;
+  console.log(req.body);
+  const shelfName = req.params.newshelf;
+  const newShelf = await GameShelf.create({
+    shelfName,
+    userId
+  });
+  res.json({ newShelfId: newShelf.id })
+}));
 
 
 router.put("/:oldShelfId/:newShelfName", requireAuth, asyncHandler(async (req, res) => {
