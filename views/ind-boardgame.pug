@@ -1,9 +1,9 @@
 extends layout
 
 block content
-
+ 
   div(class='meta')
-    li(class='image'): img(src=`${boardGame.image}` class='boardGameImage')
+    li(class='image'): img(src=`${boardGame.image}` class='boardGameImageIndiv')
     h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
 
     h3(class='company')= boardGame.company
