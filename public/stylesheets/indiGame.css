@@ -4,10 +4,14 @@
    display:flex;
    justify-content: center;
 
-   font-size: xx-large;
-   color:black;
-   font-size: 500%;
 
+   color:#662015;
+   font-size: 400%;
+
+  }
+  .boardGameTitle:hover{
+
+      transform: translateY(-1px);
   }
   .image {
       display: flex;
@@ -23,27 +27,33 @@ box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
   }
 
   .boardGameImage:hover{
-    transform: translateY(-7px);
+    transform: translateY(-4px);
 
   }
   .company {
     display: flex;
     justify-content: center;
     grid-area: sidebar;
-
-    font-size: 200%;
+    color:whitesmoke;
+    font-size: 100%;
   }
 
-  #gameShelves{
 
-    background-color: red;
-
+  #gameShelvesSelect:hover{
+    transform: translateY(-2px);
   }
 
   #gameShelvesSelect{
-      background-color: yellow;
+
       display: flex;
       justify-content: center;
+      padding: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 20px;
+      border: 1px solid black ;
+      border-radius: 9px;
+
+
   }
   #dropDown{
     background-color: yellow;
@@ -52,7 +62,10 @@ box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
   }
 
   .summary{
-    background-color: yellowgreen;
+    color:whitesmoke;
+    padding: 10px;
+    margin-left: 25%;
+    margin-right:25%;
   }
 
   .review{
@@ -71,44 +84,64 @@ box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
     background-color: #662015
   }
 
-  .reviewLi{
-      margin-top: 40px;
-  }
 
-  .select{
+
+  /* .select{
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto; /* the default */
+  grid-template-rows: auto;
   grid-template-areas:
     ". header header ."
     "main main main main"
     "footer footer footer footer";
-  background-color: white;
+
+} */
+.wrap{
+    display: flex;
+    justify-content: center;
+}
+.wrap2{
+    display: flex;
+    justify-content: center;
 }
 #gameShelvesSelect {
   grid-area: header;
-  background-color: mediumpurple; /* purple */
+display: flex;
+justify-content: center;
 }
 #gameShelves {
-  grid-area: main;
-  background-color: mediumseagreen; /* green */
+
+  color: white;
   display:flex;
   justify-content: center;
-  padding:20px
+margin-top: 10px;
+font-weight: bolder;
+
 }
 .item-3 {
   grid-area: sidebar;
   background-color: indianred; /* red */
 }
-.item-4 {
-  grid-area: footer;
-  background-color: deepskyblue; /* blue */
-}
+.checkLi {
 
-.checkLi{
-    padding:10px
+
+  display: flex;
+justify-content: center;
+padding: 5px;
+align-items: center;
+
 }
+/* .label{
+    display: flex;
+    align-items: center;
+}
+.input{
+    display: flex;
+    align-items: center;
+} */
+
+
 .editButton{
     color: #FBFFF1;
     font-weight: bolder;
@@ -123,4 +156,80 @@ box-shadow:-10px 10px rgba(0, 0, 0, 0.142);
 
 .editButton:hover{
     background-color: #662015
+}
+
+.reviewLi{
+display: flex;
+justify-content: center;
+margin-top: 15px;
+}
+
+
+.indiComments{
+    background-color:white;
+    color: black;
+    border: 1px solid black ;
+    border-radius: 9px;
+    padding:10px;
+    margin-top:30px;
+    list-style-type: none;
+    width:95%;
+    margin-left: 22px;
+    margin-bottom: 30px;
+}
+.comments{
+    list-style-type: none;
+
+    margin-bottom: 25px;
+}
+
+.commentTitle{
+    font-size: 30px;
+}
+.loggedOutReview{
+    color: #FBFFF1;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+   margin-left: 10px;
+    padding: 10px;
+    background-color: #84291B;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition:  all 0.5s ease 0s;
+    list-style-type: none;
+    width:250px;
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+}
+.loggedOutReview:hover{
+    background-color: #662015
+}
+
+.reviewTitle{
+    color: #FBFFF1;
+    font-weight: bolder;
+
+
+    width:5.5%;
+    padding: 10px;
+
+    border-radius: 50px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size:30px;
+
+
+
+}
+
+
+.wrap3{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
 }
