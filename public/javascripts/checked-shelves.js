@@ -43,4 +43,3 @@ window.addEventListener("load", (event) => {
         });
     })
 });
-

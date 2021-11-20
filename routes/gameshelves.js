@@ -60,7 +60,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 
-// --------------------------------------
+// // --------------------------------------
 // instead of having another route, we should filter the page instead
 // --------------------------------------
 router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
@@ -111,24 +111,54 @@ router.put("/:newshelf", requireAuth, asyncHandler(async (req, res) => {
 }));
 
 
-router.put("/:shelfName/:newShelfName", requireAuth, asyncHandler(async (req, res) => {
+router.put("/:oldShelfId/:newShelfName", requireAuth, asyncHandler(async (req, res) => {
   const userId = req.session.auth.userId;
   console.log(req.body);
-  const newShelfName = req.params.newshelfName
-  const shelfName = req.params.shelfName;
+  const newShelfName = req.params.newShelfName
+  const oldShelfId = req.params.oldShelfId;
   await GameShelf.update({ shelfName: newShelfName }, {
     where: {
-      shelfName,
+      id: oldShelfId,
       userId,
     }
   })
-  res.json({
-    newShelfId: newShelfName.id,
-    newShelfName: newShelfName.name
+  const newShelf = await GameShelf.findOne({
+    where: {
+      shelfName: newShelfName,
+      userId,
+    }
   })
+  console.log(newShelf)
+  res.json({
+    newShelfId: newShelf.id,
+    newShelfName: newShelf.shelfName
+  });
 }))
 
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+  const id = req.params.id
+  console.log(id)
+  const shelfToDelete = await GameShelf.findByPk(id)
+  console.log("shelftToDelete =", shelfToDelete)
+  if (shelfToDelete) {
+    await shelfToDelete.destroy({
+      where: {
+        gameShelfId: id
+      }
+    });
+  
+    await GameShelf.destroy({
+      where: {
+        id,
+      }
+    })
+    res.json({message: "success"})
+    
+  } else {
+    res.json({message: "failure"})
+  }
 
+}))
 
 
 module.exports = router;
