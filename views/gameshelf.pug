@@ -1,20 +1,7 @@
 extends layout
 
 block content
-  h1 My Board Games
-
-  ul(id="shelfList") My Game Shelves:
-    each shelf in gameShelves
-      li(id='shelfLi'): a(href=`/gameshelves/${shelf.id}`)= shelf.shelfName
-      button(type="submit" id='shelfEditBtn') edit
-      button(type="submit" id='shelfDeleteBtn') X
-  br
-  h3 Add a Game Shelf
-  div(id='createAddShelf')
-    button(id='addShelfBtn') Add a Game Shelf:
-
-  div
-    ul Game Shelf: #{gameShelf.shelfName}
-      each boardGame in allGamesOfUser
-        li= boardGame.title
-        li: img(src=`${boardGame.image}` class='boardGameImage')
+  h1 Game Shelf: #{gameShelf.shelfName} ==> (this needs editing)
+  main.main_gameShelves
+    include includes/gameshelves-sideBar
+    include includes/gameshelves-cards

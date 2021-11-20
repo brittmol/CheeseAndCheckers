@@ -72,13 +72,36 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
 router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
   const userId = req.session.auth.userId
   const gameShelfId = req.params.id
-  const gameShelves = await GameShelf.findAll({
-    where: { userId }
-  })
   const gameShelf = await GameShelf.findByPk(gameShelfId, {
     where: { userId }
   })
-  // console.log(gameShelf.shelfName)
+  const gameShelves = await GameShelf.findAll({
+    where: { userId },
+    order: [
+      ['shelfName', 'ASC']
+    ]
+  })
+
+  // have want to play, played, and favorites shelves separate
+  // have rest of gameShelves
+  let wantToPlayShelf
+  let playedShelf
+  let favoritesShelf
+  let otherGameShelves = []
+  gameShelves.forEach(shelfObj => {
+    if(shelfObj.shelfName == 'Want to Play') {
+      wantToPlayShelf = shelfObj
+    }
+    if(shelfObj.shelfName == 'Played') {
+      playedShelf = shelfObj
+    }
+    if(shelfObj.shelfName == 'Favorites') {
+      favoritesShelf = shelfObj
+    }
+    if(shelfObj.shelfName !== 'Played' && shelfObj.shelfName !== 'Want to Play' && shelfObj.shelfName !== 'Favorites') {
+      otherGameShelves.push(shelfObj)
+    }
+  })
 
   // this array has all of the board games that include the shelf we are currently looking at
   const allGamesOfUserSet = new Set()
@@ -98,8 +121,11 @@ router.get("/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
 
   // console.log(gameShelves)
   res.render("gameshelf", {
-    gameShelves,
     gameShelf,
+    wantToPlayShelf,
+    playedShelf,
+    favoritesShelf,
+    otherGameShelves,
     allGamesOfUser
   })
 }));
