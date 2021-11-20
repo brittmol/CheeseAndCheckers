@@ -1,33 +1,45 @@
 extends layout
 
 block content
-  h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
 
-  h3= boardGame.company
-  ul
-    li: img(src=`${boardGame.image}` class='boardGameImage')
-    if userId
-      label(for='gameShelves') Playing Status:
-      select(name='gameShelves' id='gameShelvesSelect')
-        option(value=0) --Choose Playing Status--
-        each shelf in mainGameShelves
-          option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
-      ul(id='gameShelves') Add Board Game to Other Game Shelves
-        each shelf in otherGameShelves
-          li
-            input(type='checkbox' name='gameShelf' id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
-            label(for='gameShelf')= shelf.shelfName
+  div(class='meta')
+    li(class='image'): img(src=`${boardGame.image}` class='boardGameImage')
+    h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
 
-    li= boardGame.summary
+    h3(class='company')= boardGame.company
+    p(class='summary')= boardGame.summary
+    ul
+
     if userId
-      li: a(href=`/boardgames/${boardGame.id}/reviews/new`) Write a Review
+
+      //- label(for='gameShelves' id='gameShelvesSelect') Playing Status:
+      div(class='wrap')
+        select(name='gameShelves' id='gameShelvesSelect')
+          option(value=0) --Choose Playing Status--
+          each shelf in mainGameShelves
+           option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
+      div(class='wrap2')
+        ul(id='gameShelves') Add Board Game to Other Game Shelves
+      each shelf in otherGameShelves
+         li(class='checkLi')
+            input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
+            label(for='gameShelf' class='label')= shelf.shelfName
+
+
+    if userId
+      li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
+
     else
-      li: a(href='/') Log in to leave a review.
+      div(class='wrap3')
+      li(class='loggedOutReview'): a(href='/') Log in to leave a review
+
+    p(class='reviewTitle') Reviews:
     for review in reviews
       if userId==review.userId
+
         li(id=`boardgames-${boardGame.id}-comment-${review.id}` class='comments')
-          p= review.comment
-          a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit`) Edit
+          p(class='indiComments')= review.comment
+          a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton') Edit
           button(class='deleteComment') Delete
       else
-        li= review.comment
+        li(class='indiComments')= review.comment
