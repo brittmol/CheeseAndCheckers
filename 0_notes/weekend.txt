@@ -1,0 +1,25 @@
+Britt
+- gameshelf (singular) page
+- scoreCard Description box
+- look into old projects for 404 page
+- ReadMe
+- seeding
+        - Reviews
+        - ShelvesToGames associations
+        - Games (only if pics are cool)
+                example image: https://source.unsplash.com/8Bc9CJgXHXs/1920x1080
+                            where '8Bc9CJgXHXs' is code after /photos
+
+
+Shannon
+- splash page
+- style the validation errors on login/signup pages
+- fix logo/favicon
+- fix photo layout (boardgame card)
+- fix navbar
+- gameshelf side bar
+- review
+
+
+Group
+- 404 Error handling page and route
