@@ -51,11 +51,13 @@ router.post(
     if (req.session.auth) {
       const userId = req.session.auth.userId;
       return res.render("boardgames", {
+        term,
         boardGames,
         userId,
       });
     } else {
       res.render("boardgames", {
+        term,
         boardGames,
       });
     }
