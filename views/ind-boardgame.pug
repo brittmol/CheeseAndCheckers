@@ -1,7 +1,7 @@
 extends layout
 
 block content
- 
+
   div(class='meta')
     li(class='image'): img(src=`${boardGame.image}` class='boardGameImageIndiv')
     h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
@@ -11,8 +11,6 @@ block content
     ul
 
     if userId
-
-      //- label(for='gameShelves' id='gameShelvesSelect') Playing Status:
       div(class='wrap')
         select(name='gameShelves' id='gameShelvesSelect')
           option(value=0) --Choose Playing Status--
@@ -25,9 +23,6 @@ block content
               li(class='checkLi')
                   input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
                   label(for='gameShelf' class='label')= shelf.shelfName
-
-
-    if userId
       li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
 
     else
