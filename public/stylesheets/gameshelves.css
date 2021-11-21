@@ -18,6 +18,11 @@
   padding-top: 15px;
 }
 
+#mainShelves {
+  padding: 10px 0;
+  border-bottom: #f9b427 2px solid;
+}
+
 .main_gameShelves {
   margin-left: 50px;
 }
@@ -30,6 +35,14 @@
   list-style: none;
   padding: 5px 10px;
   margin-top: 5px;
+  line-height: 1.5;
+}
+
+.shelfLi2 {
+  list-style: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  line-height: 1.5;
 }
 
 #shelfEditBtn,
@@ -43,6 +56,12 @@
 .fa-edit,
 .fa-trash-alt {
   color: #878884;
+  width: 15px;
+}
+
+.fa-check,
+.fa-plus {
+  color: white;
   width: 15px;
 }
 
@@ -73,27 +92,33 @@
 
 #createAddShelf {
   display: flex;
-  flex-direction: column;
-  align-content: space-between;
-  justify-content: flex-start;
-  padding-top: 10px;
+  /* flex-direction: column; */
+  /* align-content: space-between; */
+  /* justify-content: flex-start; */
+  padding: 10px;
 }
 
 #addShelfBtn {
   margin-left: 10px;
   margin-top: 10px;
   width: fit-content;
+  margin-bottom: 30px;
 }
 
-#createAddShelf input {
+#addShelfBtn2 {
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+
+#shelfInput {
   height: 25px;
   border: none;
   border-radius: 50px;
   font-size: 14px;
   font-weight: bolder;
   color: #0b0d0a;
-  width: 80%;
   margin-left: 10px;
+  padding-left: 15px;
 }
 
 #my_board_games {
