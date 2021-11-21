@@ -11,11 +11,16 @@ window.addEventListener("load", (event) => {
         const inputShelf = document.createElement("input");
         inputShelf.name = "shelfInput";
         inputShelf.type = 'text';
-        
+        inputShelf.id = "shelfInput"
+
+        const pIcon = document.createElement('i');
+        pIcon.setAttribute("class", "fas fa-plus");
+
         const addShelf = document.createElement("button");
-        addShelf.innerText = "Add a Shelf";
         addShelf.type = "submit";
-        
+        addShelf.id = "addShelfBtn2"
+        addShelf.appendChild(pIcon)
+
         createAddShelf.appendChild(inputShelf);
         createAddShelf.appendChild(addShelf);
 
@@ -34,7 +39,7 @@ window.addEventListener("load", (event) => {
             const deleteBtn = document.createElement("button");
             deleteBtn.id = 'shelfDeleteBtn';
             deleteBtn.appendChild(dIcon);
-        
+
             a.setAttribute("href", `/gameshelves/${shelfId}`);
             a.innerText = shelfName;
             li.className = "shelfLi2";
@@ -63,7 +68,7 @@ window.addEventListener("load", (event) => {
                 method: 'PUT', // *GET, POST, PUT, DELETE, etc.
                 headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
             }).then( async(response) => result = await response.json());
-            
+
             const shelfId = result.newShelfId;
             console.log(shelfId);
 
@@ -73,21 +78,21 @@ window.addEventListener("load", (event) => {
                 revertHtml();
             }
             location.reload()
-        
+
         })
     })
 
 
     const liList = document.querySelectorAll('.shelfLi2')
-    
+
     liList.forEach( li => {
-        
+
         const liKids = li.childNodes
         const aTag = liKids[0]
         const shelfEditBtn = liKids[1];
         const shelfDeleteBtn = liKids[2];
         const specificId = li.id.split('-')[1]
-        
+
         shelfDeleteBtn.addEventListener("click", async(event) => {
             const confirmed = confirm(`Are you sure you want to Delete "${aTag.innerText}" game shelf?`)
             if (confirmed) {
@@ -101,18 +106,24 @@ window.addEventListener("load", (event) => {
                 if (result.message === "success") {
                     li.remove()
                 }
-                
+
             }
         });
-        
+
         shelfEditBtn.addEventListener("click", (event) => {
-            
             const shelfInput = document.createElement('input');
-    
+            shelfInput.name = "shelfInput";
+            shelfInput.type = 'text';
+            shelfInput.id = "shelfInput"
+
+            const cIcon = document.createElement('i');
+            cIcon.setAttribute("class", "fas fa-check");
+
             const doneBtn = document.createElement('button');
-            doneBtn.innerText = "done"
             doneBtn.type = 'submit';
-    
+            doneBtn.id = 'addShelfBtn2'
+            doneBtn.appendChild(cIcon)
+
             const div = document.createElement('div');
             div.appendChild(shelfInput);
             div.appendChild(doneBtn);
@@ -131,7 +142,7 @@ window.addEventListener("load", (event) => {
                 li.appendChild(shelfEditBtn)
                 li.appendChild(shelfDeleteBtn)
             };
-            
+
             doneBtn.addEventListener("click", async(event) => {
                 await fetch(`/gameshelves/${specificId}/${shelfInput.value}`, {
                     method: 'PUT', // *GET, POST, PUT, DELETE, etc.
@@ -139,18 +150,18 @@ window.addEventListener("load", (event) => {
                 }).then(async (response) => {
                     const result = await response.json();
                     console.log(result);
-    
+
                     const newShelfId = result.newShelfId;
                     console.log(newShelfId);
-        
+
                     const newShelfName = result.newShelfName;
                     console.log(newShelfName);
-                    
+
                     if (Number(newShelfId)) {
                         updateInnerText(newShelfName, newShelfId);
                     }
                 });
-                
+
             })
         });
     })
