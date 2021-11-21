@@ -201,3 +201,8 @@
   justify-content: center;
   margin-top: 40px;
 }
+
+.all-shelves {
+  background-color: black;
+  border-radius: 50px;
+}
