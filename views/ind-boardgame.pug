@@ -3,40 +3,38 @@ extends layout
 block content
 
   div(class='meta')
-    li(class='image'): img(src=`${boardGame.image}` class='boardGameImageIndiv')
-    h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
+    div(class='image'): img(src=`${boardGame.image}` class='boardGameImageIndiv')
+    div.indiv_card_content
+      h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
+      h3(class='company')= boardGame.company
+      p(class='summary')= boardGame.summary
 
-    h3(class='company')= boardGame.company
-    p(class='summary')= boardGame.summary
-    ul
+      if userId
+        div(class='all-shelves')
+          div(class='wrap')
+            label(for='gameShelves' class='label') Playing Status:
+            select(name='gameShelves' id='gameShelvesSelect')
+              option(value=0) --Choose Playing Status--
+              each shelf in mainGameShelves
+                option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
+          div(class='wrap2')
+            ul(id='gameShelves' class='label') Add Board Game to Other Game Shelves
+              each shelf in otherGameShelves
+                li(class='checkLi')
+                  input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
+                  label(for='gameShelf' class='label')= shelf.shelfName
+        p(class='reviewTitle') Reviews:
+        li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
 
-    if userId
-      div(class='all-shelves')
-        div(class='wrap')
-          label(for='gameShelves' class='label') Playing Status:
-          select(name='gameShelves' id='gameShelvesSelect')
-            option(value=0) --Choose Playing Status--
-            each shelf in mainGameShelves
-              option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
-        div(class='wrap2')
-          ul(id='gameShelves' class='label') Add Board Game to Other Game Shelves
-            each shelf in otherGameShelves
-              li(class='checkLi')
-                input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
-                label(for='gameShelf' class='label')= shelf.shelfName
-      li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
-
-    else
-      div(class='wrap3')
-      li(class='loggedOutReview'): a(href='/') Log in to leave a review
-
-    p(class='reviewTitle') Reviews:
-    for review in reviews
-      if userId==review.userId
-
-        li(id=`boardgames-${boardGame.id}-comment-${review.id}` class='comments')
-          p(class='indiComments')= review.comment
-          a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton') Edit
-          button(class='deleteComment') Delete
       else
-        li(class='indiComments')= review.comment
+        div(class='wrap3')
+        li(class='loggedOutReview'): a(href='/') Log in to leave a review
+      div.reviews_div
+        for review in reviews
+          if userId==review.userId
+            li(id=`boardgames-${boardGame.id}-comment-${review.id}` class='comments')
+              p(class='indiComments')= review.comment
+              a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton') Edit
+              button(class='deleteComment') Delete
+          else
+            li(class='indiComments')= review.comment
