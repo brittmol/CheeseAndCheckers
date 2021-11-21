@@ -12,17 +12,17 @@ block content
 
     if userId
       div(class='wrap')
+        label(for='gameShelves' class='label') Playing Status:
         select(name='gameShelves' id='gameShelvesSelect')
           option(value=0) --Choose Playing Status--
           each shelf in mainGameShelves
-           option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
+            option(value=shelf.id selected=shelvesWithGameSet.has(shelf.id))= shelf.shelfName
       div(class='wrap2')
         ul(id='gameShelves') Add Board Game to Other Game Shelves
           each shelf in otherGameShelves
-
-              li(class='checkLi')
-                  input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
-                  label(for='gameShelf' class='label')= shelf.shelfName
+            li(class='checkLi')
+              input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
+              label(for='gameShelf' class='label')= shelf.shelfName
       li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
 
     else
