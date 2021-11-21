@@ -1,4 +1,4 @@
-.boardGameTitle {
+/* .boardGameTitle {
   display: flex;
   justify-content: center;
 
@@ -11,15 +11,8 @@
 .image {
   display: flex;
   justify-content: center;
+}
 
-  /* green */
-}
-.boardGameImageIndiv {
-  margin-top: 50px;
-  height: 300px;
-  width: auto;
-  box-shadow: -10px 10px rgba(0, 0, 0, 0.142);
-}
 
 .company {
   display: flex;
@@ -70,17 +63,6 @@
   background-color: #662015;
 }
 
-/* .select{
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
-  grid-template-areas:
-    ". header header ."
-    "main main main main"
-    "footer footer footer footer";
-
-} */
 .wrap {
   display: flex;
   justify-content: center;
@@ -102,7 +84,7 @@
 }
 .item-3 {
   grid-area: sidebar;
-  background-color: indianred; /* red */
+  background-color: indianred; 
 }
 .checkLi {
   display: flex;
@@ -127,7 +109,7 @@
   background-color: #662015;
 }
 
-.reviewLi {
+.reviewLi { 
   display: flex;
   justify-content: center;
   margin-top: 15px;
@@ -144,7 +126,6 @@
 }
 .comments {
   list-style-type: none;
-
   margin-bottom: 25px;
 }
 
@@ -173,20 +154,7 @@
   background-color: #662015;
 }
 
-.reviewTitle {
-  color: #fbfff1;
-  font-weight: bolder;
 
-  width: 5.5%;
-  padding: 10px;
-
-  border-radius: 50px;
-  margin-left: 40px;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  font-size: 30px;
-}
 
 .wrap3 {
   display: flex;
@@ -194,23 +162,82 @@
   margin-top: 40px;
 }
 
-/* .all-shelves {
-  background-color: black;
-  border-radius: 50px;
-  margin-top: 20px;
-  padding: 20px;
-} */
-
 .label {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
+} */
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  background-color: #0b0d0a;
+  border-radius: 15px;
+  height: fit-content;
+  margin: 7% 15% 10% 15%;
+  box-shadow: -5px 5px rgba(0, 0, 0, 0.142);
 }
-/* .label{
-    display: flex;
-    align-items: center;
+
+.boardGameImageIndiv {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 100%;
 }
-.input{
-    display: flex;
-    align-items: center;
+.indiv_card_content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 50px;
+}
+
+.boardGameTitle {
+  font-family: sans-serif;
+  padding-bottom: 7px;
+}
+
+.company {
+  padding-bottom: 20px;
+}
+
+.reviewTitle {
+  font-weight: bolder;
+}
+
+.reviewTitle,
+.company,
+.summary,
+.label,
+.editButton,
+.deleteComment {
+  color: #fbfff1;
+  font-family: sans-serif;
+}
+
+.reviewLi,
+.checkLi,
+.comments {
+  list-style: none;
+}
+
+.wrap, #gameShelves {
+  background-color: #662015;
+  width: fit-content;
+  display: flex; 
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.all-shelves{ 
+  display: flex; 
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.wrap {
+  justify-content: space-around;
+}
+
+/* .reviews_div {
+  border-top: solid 1px pink;
 } */
