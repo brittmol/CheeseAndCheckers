@@ -37,10 +37,20 @@
   border-radius: 100px;
   width: 500px;
   height: 600px;
-  background-color: black;
+  background-color: #0b0d0a;
   color: aliceblue;
   justify-content: space-between;
   box-shadow: -9px 9px 10px 1px #f9b427;
+}
+
+.imageDiv {
+  background-color: #84291B;
+  border-radius: 300px;
+  width: 225px;
+  height: 225px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .img {
