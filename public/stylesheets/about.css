@@ -77,3 +77,11 @@
   justify-content: space-around;
   width: 300px;
 }
+
+.fab.fa-linkedin {
+  color: #f9b427;
+}
+
+.fab.fa-github-square {
+  color: #84291B;
+}
