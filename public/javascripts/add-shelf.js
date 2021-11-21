@@ -22,21 +22,27 @@ window.addEventListener("load", (event) => {
         const createHtmlShelf = (shelfName, shelfId) => {
             const li = document.createElement("li");
             const a = document.createElement("a");
+            const eIcon = document.createElement('i');
+            const dIcon = document.createElement('i');
+            eIcon.setAttribute("class", "fas fa-edit");
+            dIcon.setAttribute("class", "far fa-trash-alt");
 
-            const editBtn = document.createElement("button")
-            editBtn.innerText = 'edit'
-            editBtn.id = 'shelfEditBtn'
+            const editBtn = document.createElement("button");
+            editBtn.id = 'shelfEditBtn';
+            editBtn.appendChild(eIcon);
 
-            const deleteBtn = document.createElement("button")
-            deleteBtn.innerText = 'X'
-            deleteBtn.id = 'shelfDeleteBtn'
-
+            const deleteBtn = document.createElement("button");
+            deleteBtn.id = 'shelfDeleteBtn';
+            deleteBtn.appendChild(dIcon);
+        
             a.setAttribute("href", `/gameshelves/${shelfId}`);
             a.innerText = shelfName;
-
+            li.className = "shelfLi2";
+            li.id = `shelf-${shelfId}`;
             li.appendChild(a);
-            li.appendChild(editBtn)
-            li.appendChild(deleteBtn)
+            li.appendChild(editBtn);
+            li.appendChild(deleteBtn);
+
             return li;
         }
 
@@ -46,29 +52,33 @@ window.addEventListener("load", (event) => {
         }
 
         const revertHtml = () => {
-            createAddShelf.removeChild(inputShelf)
-            createAddShelf.removeChild(addShelf)
-            createAddShelf.appendChild(addShelfBtn)
+            createAddShelf.removeChild(inputShelf);
+            createAddShelf.removeChild(addShelf);
+            createAddShelf.appendChild(addShelfBtn);
         }
 
         addShelf.addEventListener("click", async(e) => {
-            let result
+            let result;
             await fetch(`/gameshelves/${inputShelf.value}`, {
                 method: 'PUT', // *GET, POST, PUT, DELETE, etc.
                 headers: {'Content-Type': 'application/json'}, // 'Content-Type': 'application/x-www-form-urlencoded',
             }).then( async(response) => result = await response.json());
-            console.log("result =", result.newShelfId);
+            
             const shelfId = result.newShelfId;
+            console.log(shelfId);
+
             if (Number(shelfId)) {
                 const htmlShelf = createHtmlShelf(inputShelf.value, shelfId);
                 appendNewShelf(htmlShelf);
                 revertHtml();
             }
+            location.reload()
+        
         })
     })
 
+
     const liList = document.querySelectorAll('.shelfLi2')
-    console.log(liList)
     
     liList.forEach( li => {
         
@@ -77,7 +87,6 @@ window.addEventListener("load", (event) => {
         const shelfEditBtn = liKids[1];
         const shelfDeleteBtn = liKids[2];
         const specificId = li.id.split('-')[1]
-        console.log(specificId)
         
         shelfDeleteBtn.addEventListener("click", async(event) => {
             const confirmed = confirm(`Are you sure you want to Delete "${aTag.innerText}" game shelf?`)
@@ -88,6 +97,7 @@ window.addEventListener("load", (event) => {
                 })
                 const result = await res.json();
                 console.log(result.message)
+
                 if (result.message === "success") {
                     li.remove()
                 }
@@ -106,8 +116,6 @@ window.addEventListener("load", (event) => {
             const div = document.createElement('div');
             div.appendChild(shelfInput);
             div.appendChild(doneBtn);
-            console.log(div)
-            console.log(li)
             li.innerHTML = ""
             li.appendChild(div)
 
