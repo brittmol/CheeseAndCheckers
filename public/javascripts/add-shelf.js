@@ -115,6 +115,7 @@ window.addEventListener("load", (event) => {
             shelfInput.name = "shelfInput";
             shelfInput.type = 'text';
             shelfInput.id = "shelfInput"
+            shelfInput.value = aTag.innerText
 
             const cIcon = document.createElement('i');
             cIcon.setAttribute("class", "fas fa-check");
