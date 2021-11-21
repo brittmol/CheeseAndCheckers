@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    a(href=linkToGame)= boardGame.title
-    img.boardGameImage(src=boardGame.image)
+    div(class='metaReview')
+        li(class="imgReviewEdit"): img(src=boardGame.image class='boardGameImageEdit')
+        a(href=linkToGame class='reviewName' )= boardGame.title
+
     //- NTS: insert category if doing categories
-    form(action=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` method="post")
+    form(action=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` method="post" class='f' )
         input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="comment") What did you think?
-        textarea(name="comment")=review.comment
-        button(type="submit") Update
-
-
+        label(for="comment" class="wdyt") What did you think?
+        textarea(name="comment" class="inputValueEdit")=review.comment
+        button(type="submit" class="updateButtonEdit") Update
