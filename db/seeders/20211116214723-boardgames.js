@@ -61,6 +61,54 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
         },
+        {
+          title: "Ticket to Ride",
+          summary: "Ticket to Ride is a cross-country train adventure game in which players collect and play matching train cards to claim railway routes connecting cities through North America!",
+          company: "",
+          image: "https://source.unsplash.com/FdTmaUlEr4A/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "",
+          summary: "",
+          company: "",
+          image: "https://source.unsplash.com/xxx/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "",
+          summary: "",
+          company: "",
+          image: "https://source.unsplash.com/xxx/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "",
+          summary: "",
+          company: "",
+          image: "https://source.unsplash.com/xxx/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "",
+          summary: "",
+          company: "",
+          image: "https://source.unsplash.com/xxx/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          title: "",
+          summary: "",
+          company: "",
+          image: "https://source.unsplash.com/xxx/1920x1080",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
       ],
       {}
     );

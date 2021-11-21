@@ -1,3 +1,34 @@
+Presentation:
+
+Shannon:
+- briefly test out signup (validation errors) before logging in as demo user
+- Splash page
+- Nav Bar (CSS)
+- Search functionality
+- Boardgames (cards)
+- Reviews
+
+Max
+- Reviews
+- auth & CRUD features
+- individual board game CSS
+
+Britt
+- My board games (on ind boardgame)
+- Played status (on ind boardgame)
+- Game shelves (on ind boardgame)
+
+Jedd
+- Game shelves (DOM CRUD features)
+- About us
+
+
+
+
+
+
+=======================================
+
 Britt
 - fix new signup shelves
 - gameshelf (singular) page
