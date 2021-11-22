@@ -71,7 +71,7 @@
   margin-top: 5px;
 }
 
-/* 
+/*
 #game_shelf_link:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
@@ -128,7 +128,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #84291b;;
+  background-color: #84291b;
+  font-size: 20px;
+  padding: 10px
 }
 
 h1 {
@@ -151,7 +153,7 @@ h1 {
   }
   .gameshelf_card {
     grid-column-end: span 6;
-    margin: 0 10px; 
+    margin: 0 10px;
   }
 }
 
@@ -177,7 +179,7 @@ h1 {
   }
   .gameshelf_card {
     grid-column-end: span 6;
-    margin: 0 10px; 
+    margin: 0 10px;
   }
 }
 .gameShelfName {
