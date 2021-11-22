@@ -26,9 +26,9 @@
 
 .f{
     /* background-color: pink; */
-    width: 50%;
-    margin: 50px auto;
-    padding: 15px;
+    /* width: 50%; */
+    margin: 25px auto;
+    /* padding: 15px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,4 +36,16 @@
 }
 .updateButtonEdit{
     margin-top: 20px;
+}
+
+.summary {
+    border-bottom: #f9b427 solid 3px;
+}
+
+.loggedOutReview, .review {
+    background-color: #662015;
+    border-radius: 30px;
+    width: 140px;
+    padding: 10px;
+    margin: 30px 0;
 }

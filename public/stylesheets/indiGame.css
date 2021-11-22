@@ -19,7 +19,7 @@
   flex-direction: column;
   padding: 20px 0;
 }
- 
+
 .boardGameTitle {
   font-family: sans-serif;
   padding-bottom: 7px;
@@ -35,7 +35,7 @@
 
 .reviewTitle {
   font-weight: bolder;
-  padding: 0 50px;
+  padding: 10px 50px;
 }
 
 .reviewTitle,
@@ -167,6 +167,8 @@ p.reviewTitle {
 p.indiComments {
   padding-top: 30px;
   padding-bottom: 5px;
+  padding-right: 20px;
+  display: inline-block;
 }
 
 a.editButton:hover {
@@ -202,6 +204,10 @@ select#gameShelvesSelect {
     align-items: center;
     background-color: #662015;
     border-radius: 15px;
-    margin: 25px; 
+    margin: 25px;
   }
+}
+
+.comments {
+  line-height: 40px;
 }
