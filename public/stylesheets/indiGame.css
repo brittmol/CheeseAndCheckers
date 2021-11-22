@@ -165,8 +165,8 @@ p.reviewTitle {
 }
 
 p.indiComments {
-  padding-top: 30px;
-  padding-bottom: 5px;
+  /* padding-top: 30px;
+  padding-bottom: 5px; */
   padding-right: 20px;
   display: inline-block;
 }
@@ -182,6 +182,9 @@ select#gameShelvesSelect {
   box-shadow: -3px 3px rgba(0, 0, 0, 0.142);
 }
 
+.comments {
+  line-height: 40px;
+}
 
 @media only screen and (min-width: 1101px) {
   .meta {
@@ -206,8 +209,4 @@ select#gameShelvesSelect {
     border-radius: 15px;
     margin: 25px;
   }
-}
-
-.comments {
-  line-height: 40px;
 }
