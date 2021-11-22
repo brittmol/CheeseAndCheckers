@@ -124,3 +124,14 @@
 #my_board_games {
   color: #f9b427;
 }
+
+.h1Div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #84291b;;
+}
+
+h1 {
+  color: #f9b427;
+}
