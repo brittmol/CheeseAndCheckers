@@ -1,55 +1,37 @@
-.boardGameImageEdit{
-    display: flex;
-    justify-content: center;
-    height: 300px;
-    width: auto;
-    margin-top: 50px;
-    box-shadow: -10px 10px rgba(0, 0, 0, 0.142);
+.wdyt{
+    color:#f9b427;
+    padding: 25px;
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
-.imgReviewEdit{
-    display: flex;
-    justify-content: center;
-
-}
-.reviewName{
-    display: flex;
-    justify-content: center;
-    margin-top: 7px;
-    color: #662015;
-  font-size: 400%;
-  font-family: 'Times New Roman', Times, serif;
-    font-weight: bolder;
-}
- .wdyt{
-    font-size: 100%;
-    font-weight: bolder;
-    color: white;
-    margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
-}
 .inputValueEdit{
+    font-family: sans-serif;
     color: black;
-  font-weight: bolder;
-  margin-left: 20px;
-  padding: 10px 25px;
-  background-color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  transition:  all 0.5s ease 0s;
+    font-weight: bolder;
+    margin-left: 20px;
+    padding: 30px 35px;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition:  all 0.5s ease 0s;
+    font-size: 18px;
+    width: 500px;
+    height: 200px;
+    /* border: #f9b427 solid 15px; */
+
 }
 
 .f{
+    /* background-color: pink; */
     width: 50%;
-    max-width: 500px;
-
-    margin: 5px auto;
+    margin: 50px auto;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
     border-radius: 30px;
 }
 .updateButtonEdit{
