@@ -186,6 +186,12 @@ select#gameShelvesSelect {
   line-height: 40px;
 }
 
+.loggedOutReview {
+  text-decoration: underline 2px #edf1e4;
+  padding: 0 50px;
+}
+
+
 @media only screen and (min-width: 1101px) {
   .meta {
     width: 60%;
