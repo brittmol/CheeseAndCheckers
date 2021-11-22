@@ -38,13 +38,13 @@
   width: 500px;
   height: 600px;
   background-color: #0b0d0a;
-  color: aliceblue;
+  color: #fbfff1;
   justify-content: space-between;
   box-shadow: -9px 9px 10px 1px #f9b427;
 }
 
 .imageDiv {
-  background-color: #84291B;
+  background-color: #84291b;
   border-radius: 300px;
   width: 325px;
   height: 325px;
@@ -66,8 +66,9 @@
   justify-content: space-around;
   align-items: center;
   width: 400px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: medium;
+  color: #fbfff1;
 }
 
 .links {
@@ -83,7 +84,7 @@
 }
 
 .fab.fa-github-square {
-  color: #84291B;
+  color: #84291b;
 }
 
 .meetDev{

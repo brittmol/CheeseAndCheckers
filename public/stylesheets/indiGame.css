@@ -21,7 +21,7 @@
 }
 
 .boardGameTitle {
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
   padding-bottom: 7px;
   padding: 0 50px;
   color: #f9b427;
@@ -45,7 +45,7 @@
 .editButton,
 .deleteComment {
   color: #fbfff1;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .reviewLi,

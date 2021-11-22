@@ -1,9 +1,10 @@
-.wdyt{
-    color:#f9b427;
-    padding: 25px;
-    font-size: 40px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
+.boardGameImageEdit{
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: auto;
+    margin-top: 50px;
+    box-shadow: -10px 10px rgba(0, 0, 0, 0.142);
 }
 
 .imgReviewEdit{
@@ -20,6 +21,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bolder;
 }
+
 .wdyt{
     font-size: 100%;
     font-weight: bolder;
@@ -28,45 +30,29 @@
     font-family: 'Open Sans', sans-serif;
 }
 .inputValueEdit{
-    font-family: sans-serif;
     color: black;
     font-weight: bolder;
     margin-left: 20px;
-    padding: 30px 35px;
+    padding: 10px 25px;
     background-color: white;
     border: none;
     border-radius: 15px;
     cursor: pointer;
     transition:  all 0.5s ease 0s;
-    font-size: 18px;
-    width: 500px;
-    height: 200px;
-    /* border: #f9b427 solid 15px; */
-
 }
 
 .f{
-    /* background-color: pink; */
-    /* width: 50%; */
-    margin: 25px auto;
-    /* padding: 15px; */
+    width: 50%;
+    max-width: 500px;
+
+    margin: 5px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+
     border-radius: 30px;
 }
 .updateButtonEdit{
     margin-top: 20px;
-}
-
-.summary {
-    border-bottom: #f9b427 solid 3px;
-}
-
-.loggedOutReview, .review {
-    background-color: #662015;
-    border-radius: 30px;
-    width: 140px;
-    padding: 10px;
-    margin: 30px 0;
 }
