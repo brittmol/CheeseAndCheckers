@@ -74,6 +74,7 @@ router.get(
     const boardGame = await BoardGame.findByPk(boardGameId);
     let reviews = await Review.findAll({
       where: { boardGameId },
+      include: [User]
     });
 
     if (req.session.auth) {
