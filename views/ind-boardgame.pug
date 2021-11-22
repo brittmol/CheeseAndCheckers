@@ -32,9 +32,16 @@ block content
         for review in reviews
           if userId==review.userId
             li(id=`boardgames-${boardGame.id}-comment-${review.id}` class='comments')
-              p(class='indiComments')= review.comment
+              img.user-icon(src='../stylesheets/userIcon.jpg')
+              p(class='indiComments' id='username')= review.User.username
               a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton' id='shelfEditBtn'): i(class="fas fa-edit")
               button(class='deleteComment' id='shelfDeleteBtn'): i(class="far fa-trash-alt")
               br
+              p(class='indiComments' id='reviewComment')= review.comment
+              br
           else
-            li(class='comments')= review.comment
+            li(class='comments')
+              img.user-icon(src='../stylesheets/userIcon.jpg')
+              p(class='indiComments' id='username')= review.User.username
+              br
+              p(class='indiComments' id='reviewComment')= review.comment

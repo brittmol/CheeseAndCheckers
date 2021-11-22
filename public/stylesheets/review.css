@@ -68,3 +68,31 @@
     transition:  all 0.5s ease 0s;
     text-decoration: underline;
 }
+
+.user-icon {
+    display: inline-flex;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    /* display: inline-block; */
+    vertical-align: middle;
+    background-color: white;
+}
+
+#username {
+    padding-left: 10px;
+    /* font-weight: bold; */
+    text-decoration: underline;
+}
+
+#reviewComment {
+    padding-left: 40px;
+}
+
+.comments {
+    padding: 20px;
+    margin: 20px;
+    border: rgb(48, 48, 48) solid 2px;
+    border-radius: 10px;
+    width: auto;
+}
