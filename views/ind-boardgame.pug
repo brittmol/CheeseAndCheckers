@@ -23,7 +23,7 @@ block content
                 li(class='checkLi')
                   input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
                   label(for='gameShelf' class='label')= shelf.shelfName
-        p(class='reviewTitle') Reviews:
+        p(class='reviewTitle') Reviews
         li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
 
       else
@@ -35,6 +35,6 @@ block content
             li(id=`boardgames-${boardGame.id}-comment-${review.id}` class='comments')
               p(class='indiComments')= review.comment
               a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton') Edit
-              button(class='deleteComment') Delete
+              button(class='deleteComment'): i(class = "fas fa-times")
           else
             li(class='indiComments')= review.comment
