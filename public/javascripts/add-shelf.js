@@ -70,7 +70,6 @@ window.addEventListener("load", (event) => {
             }).then( async(response) => result = await response.json());
 
             const shelfId = result.newShelfId;
-            console.log(shelfId);
 
             if (Number(shelfId)) {
                 const htmlShelf = createHtmlShelf(inputShelf.value, shelfId);
@@ -106,7 +105,6 @@ window.addEventListener("load", (event) => {
                 if (result.message === "success") {
                     li.remove()
                 }
-
             }
         });
 
@@ -130,11 +128,6 @@ window.addEventListener("load", (event) => {
             div.appendChild(doneBtn);
             li.innerHTML = ""
             li.appendChild(div)
-
-            // li.insertAdjacentElement('beforebegin', div);
-            // li.remove();
-            // shelfEditBtn.remove();
-            // shelfDeleteBtn.remove();
 
             const updateInnerText = (newShelfName) => {
                 li.removeChild(div)

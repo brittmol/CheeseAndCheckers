@@ -115,7 +115,7 @@ router.get(
           notUsersReviews.push(review)
         }
       })
-       reviews= [...usersReviews,...notUsersReviews]
+      reviews= [...usersReviews,...notUsersReviews]
 
       // console.log("Main Shelves ===", mainGameShelves)
       // console.log("shelvesWithGameSet ===", shelvesWithGameSet)
