@@ -8,7 +8,7 @@ main {
 #card_link {
   z-index: 0;
 }
-
+ 
 .cards {
   grid-column: 2 / span 12;
   display: grid;
