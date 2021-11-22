@@ -23,18 +23,18 @@ block content
                 li(class='checkLi')
                   input(type='checkbox' name='gameShelf' class='input'  id=shelf.id checked=shelvesWithGameSet.has(shelf.id))
                   label(for='gameShelf' class='label')= shelf.shelfName
-        p(class='reviewTitle') Reviews:
-        li(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
-
+        div(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
       else
-        div(class='wrap3')
-        li(class='loggedOutReview'): a(href='/') Log in to leave a review
+        div(class='loggedOutReview'): a(href='/users/login') Write a review
+      br
       div.reviews_div
+        h3(class='reviewTitle') Reviews:
         for review in reviews
           if userId==review.userId
             li(id=`boardgames-${boardGame.id}-comment-${review.id}` class='comments')
               p(class='indiComments')= review.comment
-              a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton') Edit
-              button(class='deleteComment') Delete
+              a(href=`/boardgames/${boardGame.id}/reviews/${review.id}/edit` class='editButton' id='shelfEditBtn'): i(class="fas fa-edit")
+              button(class='deleteComment' id='shelfDeleteBtn'): i(class="far fa-trash-alt")
+              br
           else
-            li(class='indiComments')= review.comment
+            li(class='comments')= review.comment

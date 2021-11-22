@@ -84,7 +84,7 @@
 }
 .item-3 {
   grid-area: sidebar;
-  background-color: indianred; 
+  background-color: indianred;
 }
 .checkLi {
   display: flex;
@@ -109,7 +109,7 @@
   background-color: #662015;
 }
 
-.reviewLi { 
+.reviewLi {
   display: flex;
   justify-content: center;
   margin-top: 15px;
@@ -219,25 +219,43 @@
   list-style: none;
 }
 
-.wrap, #gameShelves {
+.wrap,
+#gameShelves {
   background-color: #662015;
   width: fit-content;
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 20px;
   border-radius: 15px;
 }
 
-.all-shelves{ 
-  display: flex; 
+.all-shelves {
+  display: flex;
   justify-content: space-between;
   padding: 15px 0;
 }
 
 .wrap {
   justify-content: space-around;
+  margin-bottom: 50px;
 }
 
 /* .reviews_div {
   border-top: solid 1px pink;
 } */
+
+.indiComments {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.comments {
+  line-height: 20px;
+}
+
+.review,
+.loggedOutReview {
+  background-color: #662015;
+  padding: 10px;
+  border-radius: 20px;
+}

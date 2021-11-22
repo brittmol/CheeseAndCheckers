@@ -4,10 +4,10 @@ div.side_bar
         h3.text_medium#my_game_shelves My Game Shelves:
     div(id="shelfList")
         ul(id="mainShelves")
-            li(class='shelfLi'): a(href=`/gameshelves`) All Games
-            li(class='shelfLi'): a(href=`/gameshelves/${wantToPlayShelf.id}`)= wantToPlayShelf.shelfName
-            li(class='shelfLi'): a(href=`/gameshelves/${playedShelf.id}`)= playedShelf.shelfName
-            li(class='shelfLi'): a(href=`/gameshelves/${favoritesShelf.id}`)= favoritesShelf.shelfName
+            li(class='shelfLi'): a#game_shelf_link(href=`/gameshelves`) All Saved Games
+            li(class='shelfLi'): a#game_shelf_link(href=`/gameshelves/${wantToPlayShelf.id}`)= wantToPlayShelf.shelfName
+            li(class='shelfLi'): a#game_shelf_link(href=`/gameshelves/${playedShelf.id}`)= playedShelf.shelfName
+            li(class='shelfLi'): a#game_shelf_link(href=`/gameshelves/${favoritesShelf.id}`)= favoritesShelf.shelfName
         ul(id="otherShelves")
             each shelf in otherGameShelves
                 li(class='shelfLi2' id=`shelf-${shelf.id}`)
