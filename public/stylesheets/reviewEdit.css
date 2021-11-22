@@ -17,11 +17,12 @@
     justify-content: center;
     margin-top: 7px;
     color: #662015;
-  font-size: 400%;
-  font-family: 'Open Sans', sans-serif;
+    font-size: 400%;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bolder;
 }
- .wdyt{
+
+.wdyt{
     font-size: 100%;
     font-weight: bolder;
     color: white;
@@ -30,14 +31,14 @@
 }
 .inputValueEdit{
     color: black;
-  font-weight: bolder;
-  margin-left: 20px;
-  padding: 10px 25px;
-  background-color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  transition:  all 0.5s ease 0s;
+    font-weight: bolder;
+    margin-left: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition:  all 0.5s ease 0s;
 }
 
 .f{

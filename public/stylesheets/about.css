@@ -86,3 +86,13 @@
 .fab.fa-github-square {
   color: #84291b;
 }
+
+.meetDev{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.maxim{
+  font-size: 14.5px;
+}
