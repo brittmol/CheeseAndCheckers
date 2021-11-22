@@ -19,7 +19,7 @@
   flex-direction: column;
   padding: 20px 0;
 }
- 
+
 .boardGameTitle {
   font-family: sans-serif;
   padding-bottom: 7px;
@@ -35,7 +35,7 @@
 
 .reviewTitle {
   font-weight: bolder;
-  padding: 0 50px;
+  padding: 10px 50px;
 }
 
 .reviewTitle,
@@ -165,8 +165,10 @@ p.reviewTitle {
 }
 
 p.indiComments {
-  padding-top: 30px;
-  padding-bottom: 5px;
+  /* padding-top: 30px;
+  padding-bottom: 5px; */
+  padding-right: 20px;
+  display: inline-block;
 }
 
 a.editButton:hover {
@@ -178,6 +180,10 @@ select#gameShelvesSelect {
   border: none;
   border-radius: 5px;
   box-shadow: -3px 3px rgba(0, 0, 0, 0.142);
+}
+
+.comments {
+  line-height: 40px;
 }
 
 .loggedOutReview {
@@ -207,6 +213,6 @@ select#gameShelvesSelect {
     align-items: center;
     background-color: #662015;
     border-radius: 15px;
-    margin: 25px; 
+    margin: 25px;
   }
 }
