@@ -2,7 +2,7 @@
     color:#f9b427;
     padding: 25px;
     font-size: 40px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: sans-serif;
     font-weight: bold;
 }
 
@@ -20,13 +20,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bolder;
 }
-.wdyt{
-    font-size: 100%;
-    font-weight: bolder;
-    color: white;
-    margin-bottom: 20px;
-    font-family: 'Open Sans', sans-serif;
-}
+
 .inputValueEdit{
     font-family: sans-serif;
     color: black;
