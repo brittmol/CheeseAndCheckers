@@ -1,11 +1,32 @@
-extends layout
-
-append head
-  //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
-
-block content
-  h1= title
-  p Welcome to your Project Skeleton
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= "Cheese & Checkers"
+    link(rel='stylesheet' href='/stylesheets/main.css')
+    //- link(rel='stylesheet' href='/stylesheets/nav.css')
+    link(rel='stylesheet' href='/stylesheets/buttons.css')
+    //- link(rel='stylesheet' href='/stylesheets/card.css')
+    //- link(rel='stylesheet' href='/stylesheets/card.css')
+    //- link(rel='stylesheet' href='/stylesheets/indiGame.css')
+    //- link(rel='stylesheet' href='/stylesheets/login.css')
+    link(rel='stylesheet' href='/stylesheets/splash.css')
+    script(src="https://kit.fontawesome.com/26d6a93618.js" crossorigin="anonymous")
+    script(src="/javascripts/navBurger.js" type="module")
+    script(src="/javascripts/deleting.js" type="module")
+    script(src="/javascripts/add-shelf.js" type="module")
+    script(src="/javascripts/checked-shelves.js" type="module")
+    script(src="/javascripts/index.js" type="module")
+  body
+    main.splash_image_container
+      div.splash_nav_container
+        div.splash_nav
+          a(href="/boardgames"): img(src="/logo.svg")
+          a(href='/users/login'): button Log In
+          a(href='/users/signup'): button Sign Up
+          form( action='/users/demo-user' method='post')
+            button(type='submit' id="demo_user_splash") Demo User
+          a(href='/boardgames'): button Explore Board Games
+    

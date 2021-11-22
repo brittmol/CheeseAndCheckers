@@ -46,8 +46,8 @@
 .imageDiv {
   background-color: #84291B;
   border-radius: 300px;
-  width: 225px;
-  height: 225px;
+  width: 325px;
+  height: 325px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,8 +55,8 @@
 
 .img {
   border-radius: 300px;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   float: top;
 }
 
@@ -66,6 +66,8 @@
   justify-content: space-around;
   align-items: center;
   width: 400px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
 }
 
 .links {
@@ -74,4 +76,12 @@
   align-items: center;
   justify-content: space-around;
   width: 300px;
+}
+
+.fab.fa-linkedin {
+  color: #f9b427;
+}
+
+.fab.fa-github-square {
+  color: #84291B;
 }
