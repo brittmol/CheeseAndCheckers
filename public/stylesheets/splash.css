@@ -22,7 +22,7 @@ main.splash_image_container {
 .splash_nav > * {
   padding: 5px;
 }
-
+ 
 .splash_nav > a > button, #demo_user_splash {
   font-size: 20px;
   margin: 7px 0;
