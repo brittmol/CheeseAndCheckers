@@ -8,6 +8,7 @@ button {
   border-radius: 50px;
   cursor: pointer;
   transition:  all 0.5s ease 0s;
+  box-shadow: -5px 5px rgba(0, 0, 0, 0.142);
 }
 
 button:hover {

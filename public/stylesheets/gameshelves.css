@@ -1,9 +1,12 @@
 .side_bar {
+  position: sticky;
   display: flex;
   flex-direction: column;
   background-color: #0b0d0a;
   width: 300px;
+  height: fit-content;
   border-radius: 10px;
+  box-shadow: -5px 5px rgba(0, 0, 0, 0.142);
 }
 
 .shelf_text_header {
@@ -27,20 +30,16 @@
   margin-left: 50px;
 }
 
-#shelfList {
-  padding-left: 10px;
-}
-
 .shelfLi {
   list-style: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin-top: 5px;
   line-height: 1.5;
 }
 
 .shelfLi2 {
   list-style: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin-top: 5px;
   line-height: 1.5;
 }
@@ -72,6 +71,7 @@
   margin-top: 5px;
 }
 
+/* 
 #game_shelf_link:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
@@ -88,13 +88,10 @@
 #game_shelf_link:hover:after {
   width: 100%;
   left: 0;
-}
+} */
 
 #createAddShelf {
   display: flex;
-  /* flex-direction: column; */
-  /* align-content: space-between; */
-  /* justify-content: flex-start; */
   padding: 10px;
 }
 
@@ -123,4 +120,50 @@
 
 #my_board_games {
   color: #f9b427;
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .main_gameShelves {
+    grid-gap: 20px;
+  }
+  .gameshelf_card {
+    grid-column-end: span 6;
+  }
+}
+
+@media only screen and (min-width: 851px) and (max-width: 1000px) {
+  .gameshelf_cards {
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+  }
+  .gameshelf_card {
+    grid-column-end: span 6;
+    margin: 0 10px; 
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .main_gameShelves {
+    grid-template-columns: 10px repeat(6, 1fr) 10px;
+    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  .side_bar {
+    width: 90%;
+  }
+  .gameshelf_cards {
+    grid-column: 2 / span 6;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+  }
+  .gameshelf_card {
+    grid-column-end: span 6;
+    margin: 0 10px; 
+  }
 }
