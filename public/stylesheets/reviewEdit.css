@@ -22,13 +22,6 @@
     font-weight: bolder;
 }
 
-.wdyt{
-    font-size: 100%;
-    font-weight: bolder;
-    color: white;
-    margin-bottom: 20px;
-    font-family: 'Open Sans', sans-serif;
-}
 .inputValueEdit{
     color: black;
     font-weight: bolder;
@@ -41,18 +34,6 @@
     transition:  all 0.5s ease 0s;
 }
 
-.f{
-    width: 50%;
-    max-width: 500px;
-
-    margin: 5px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-
-    border-radius: 30px;
-}
 .updateButtonEdit{
     margin-top: 20px;
 }
