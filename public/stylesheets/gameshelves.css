@@ -112,15 +112,27 @@
 
 #shelfInput {
   height: 25px;
+  width: 200px;
+  padding: 15px;
   border: none;
   border-radius: 50px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bolder;
   color: #0b0d0a;
   margin-left: 10px;
-  padding-left: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #my_board_games {
+  color: #f9b427;
+}
+
+.gameShelfName {
+  display: flex;
+  justify-content: center;
+  /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ; */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 80px;
+  margin-top: 50px;
   color: #f9b427;
 }

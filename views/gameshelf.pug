@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 Game Shelf: #{gameShelf.shelfName} ==> (this needs editing)
+  h1.gameShelfName #{gameShelf.shelfName}
   main.main_gameShelves
     include includes/gameshelves-sideBar
     include includes/gameshelves-cards

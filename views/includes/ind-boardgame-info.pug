@@ -1,0 +1,6 @@
+div(class='meta')
+    div(class='image'): img(src=`${boardGame.image}` class='boardGameImageIndiv')
+    div.indiv_card_content
+        h1(class='boardGameTitle' id=boardGame.id)= boardGame.title
+        h3(class='company')= boardGame.company
+        p(class='summary')= boardGame.summary
