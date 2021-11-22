@@ -122,6 +122,17 @@
   color: #f9b427;
 }
 
+.h1Div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #84291b;;
+}
+
+h1 {
+  color: #f9b427;
+}
+
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
   .main_gameShelves {
     grid-gap: 20px;
