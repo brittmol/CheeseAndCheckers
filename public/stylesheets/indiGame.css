@@ -180,6 +180,11 @@ select#gameShelvesSelect {
   box-shadow: -3px 3px rgba(0, 0, 0, 0.142);
 }
 
+.loggedOutReview {
+  text-decoration: underline 2px #edf1e4;
+  padding: 0 50px;
+}
+
 
 @media only screen and (min-width: 1101px) {
   .meta {
