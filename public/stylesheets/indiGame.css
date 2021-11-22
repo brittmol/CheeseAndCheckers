@@ -187,20 +187,25 @@
 .indiv_card_content {
   display: flex;
   flex-direction: column;
-  padding: 20px 50px;
+  padding: 20px 0;
 }
 
 .boardGameTitle {
   font-family: sans-serif;
   padding-bottom: 7px;
+  padding: 0 50px;
+  color: #f9b427;
+  padding-bottom: 5px;
 }
 
 .company {
   padding-bottom: 20px;
+  padding: 0 50px;
 }
 
 .reviewTitle {
   font-weight: bolder;
+  padding: 0 50px;
 }
 
 .reviewTitle,
@@ -217,27 +222,159 @@
 .checkLi,
 .comments {
   list-style: none;
+  padding: 0 50px;
 }
 
-.wrap, #gameShelves {
+.wrap,
+#gameShelves {
   background-color: #662015;
   width: fit-content;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   padding: 15px;
   border-radius: 15px;
 }
+p.summary {
+  padding: 30px 50px;
+  /* padding-top: 30px; */
+}
 
-.all-shelves{ 
-  display: flex; 
+.all-shelves {
+  display: flex;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 15px 50px;
 }
 
 .wrap {
   justify-content: space-around;
+  height: fit-content;
 }
 
-/* .reviews_div {
-  border-top: solid 1px pink;
-} */
+li.checkLi {
+  display: flex;
+  align-content: center;
+  padding: 3px 0;
+}
+
+li.checkLi input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  background-color: #edf1e4;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -3px 3px rgba(0, 0, 0, 0.142);
+}
+
+li.checkLi label[for="gameShelf"] {
+  padding-left: 10px;
+}
+
+li.checkLi input[type="checkbox"]:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-weight: 900;
+  border: none;
+  font-size: 16px;
+  display: none;
+}
+
+li.checkLi input[type="checkbox"]:hover,
+li.checkLi input[type="checkbox"]:checked {
+  background-color: #c1c4bb;
+}
+
+li.checkLi input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+a.review {
+  position: relative;
+  transition: all 0.5s ease 0s;
+}
+
+a.review:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fbfff1;
+  transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  width: 0;
+}
+
+a.review:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+a.review:hover {
+  color: #fbfff1;
+}
+
+a.editButton {
+  font-size: 16px;
+}
+
+button.deleteComment {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00d";
+
+  color: #fbfff1;
+}
+
+p.reviewTitle {
+  border-top: solid 2px #f9b427;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  font-size: 22pt;
+}
+
+p.indiComments {
+  padding-top: 30px;
+  padding-bottom: 5px;
+}
+
+a.editButton:hover {
+  color: #f9b427;
+}
+
+select#gameShelvesSelect {
+  background-color: #fbfff1;
+  border: none;
+  border-radius: 5px;
+  box-shadow: -3px 3px rgba(0, 0, 0, 0.142);
+}
+
+
+@media only screen and (min-width: 1101px) {
+  .meta {
+    width: 60%;
+    margin: 20px auto;
+
+  }
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1100px) {
+  div.all-shelves {
+    justify-content: space-around;
+  }
+
+}
+
+@media only screen and (max-width: 900px) {
+  div.all-shelves {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #662015;
+    border-radius: 15px;
+    margin: 25px; 
+  }
+}
