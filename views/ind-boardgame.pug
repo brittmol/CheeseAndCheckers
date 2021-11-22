@@ -25,7 +25,7 @@ block content
                   label(for='gameShelf' class='label')= shelf.shelfName
         div(class='reviewLi'): a(href=`/boardgames/${boardGame.id}/reviews/new` class='review') Write a Review
       else
-        div(class='loggedOutReview'): a(href='/users/login') Write a review
+        div(class='loggedOutReview'): a(href='/users/login' class='review') Write a review
       br
       div.reviews_div
         h3(class='reviewTitle') Reviews:
