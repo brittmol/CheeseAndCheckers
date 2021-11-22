@@ -131,7 +131,6 @@
   }
 }
 
-
 @media only screen and (min-width: 851px) and (max-width: 1000px) {
   .gameshelf_cards {
     grid-template-columns: repeat(6, 1fr);
