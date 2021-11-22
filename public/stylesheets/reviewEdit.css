@@ -1,0 +1,39 @@
+.boardGameImageEdit{
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: auto;
+    margin-top: 50px;
+    box-shadow: -10px 10px rgba(0, 0, 0, 0.142);
+}
+
+.imgReviewEdit{
+    display: flex;
+    justify-content: center;
+
+}
+.reviewName{
+    display: flex;
+    justify-content: center;
+    margin-top: 7px;
+    color: #662015;
+    font-size: 400%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+}
+
+.inputValueEdit{
+    color: black;
+    font-weight: bolder;
+    margin-left: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition:  all 0.5s ease 0s;
+}
+
+.updateButtonEdit{
+    margin-top: 20px;
+}
